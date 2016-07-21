@@ -14,7 +14,7 @@
 RootModule = 'loader.psm1'
 
 # Version Number
-ModuleVersion = '1.0'
+ModuleVersion = '0.1'
 
 # Unique Module ID
 GUID = '5a3fa905-b099-4165-a608-2e37306cf6b5'
@@ -29,10 +29,10 @@ CompanyName = 'tdemeester.nl'
 Copyright = '(c) 2016 sys_host. All rights reserved.'
 
 # Module Description
-Description = 'API module for GitLab using restrequests'
+Description = 'Gitlab API functions'
 
 # Minimum PowerShell Version Required
-PowerShellVersion = ''
+PowerShellVersion = '5.0'
 
 # Name of Required PowerShell Host
 PowerShellHostName = ''
