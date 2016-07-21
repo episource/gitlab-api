@@ -9,7 +9,9 @@
 # LOADING ALL FUNCTION DEFINITIONS:
 
 . $PSScriptRoot\init.ps1
+. $PSScriptroot\obj\objinit.ps1
 . $PSScriptRoot\Add-GitLabToken.ps1
 . $PSScriptRoot\Get-GitLabToken.ps1
 . $PSScriptRoot\Set-GitLabToken.ps1
 . $PSScriptRoot\Remove-GitLabToken.ps1
+. $PSScriptRoot\Get-GitLabConnect.ps1
