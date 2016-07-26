@@ -148,8 +148,9 @@ class GitLabConnect {
   [pscustomobject] callapi ([string]$apiurl,[HTTPMethod]$HTTPmethod,[hashtable]$parameters){
     #create header
     $gitlabuser = New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList $this.username, $this.token
-    $header = $parameters
-    $header.'PRIVATE-TOKEN' = $gitlabuser.GetNetworkCredential().Password
+    $header = @{
+        'PRIVATE-TOKEN' = $gitlabuser.GetNetworkCredential().Password
+    }
 
     #cleanup url
     $apiurl = $apiurl.TrimStart('/')
@@ -158,8 +159,13 @@ class GitLabConnect {
     $result = $null   
     try
     {
-      $result = Invoke-RestMethod -Uri $userurl -Headers $header -Method $httpmethod
-    
+       write-verbose "HTTPMethod = $httpmethod `r`n httpMethod.__value = $($httpMethod.__value)"
+       switch($httpmethod){ 
+       'get' {$result = Invoke-RestMethod -Uri $userurl -Headers $header -Method Get -Body $parameters}
+       'post' {$result = Invoke-RestMethod -Uri $userurl -Headers $header -Method Post -body $parameters}
+       'put' {$result = Invoke-RestMethod -Uri $userurl -Headers $header -Method Put -body $parameters}
+       default {write-error 'no valid method specified' -ErrorAction Stop} 
+       }
       $errorprop = $null
     }
     catch [System.Net.WebException] 
