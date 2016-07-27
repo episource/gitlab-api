@@ -27,13 +27,19 @@ if(-not (Test-Path $GitlabKeyfile -PathType Leaf))
   Export-Clixml -InputObject $KeyItem -Path $GitlabKeyfile
 }
     
-
+#check for existing key file
 $KeyItem = Import-Clixml $GitlabKeyfile
     
 if( -not $KeyItem.activekey)
 {
   Write-Warning -Message "No gitlab api token is defined for ${env:USERDOMAIN}\${env:username} on computer ${env:computername}. Fix with add-GitLabAPIKey" -WarningAction Continue
 }
+
+#import object definitions
+
+. $PSScriptRoot/obj/objinit.ps1
+
+
     
 
 

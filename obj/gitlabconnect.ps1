@@ -168,7 +168,7 @@ class GitLabConnect {
             {
                 $key = $paramstring.split('=')[0]
                 $urlvalue = $paramstring.split('=')[1]
-                $value = [System.Web.HttpUtility]::UrlDecode($urlvalue)
+                $value = [uri]::UnescapeDataString($urlvalue)
                 $linkparams.$key = $value
             }
             $linkarg = $linkparams
@@ -248,7 +248,7 @@ class GitLabConnect {
         }
         catch 
         {
-            Write-Error $_
+            write-error -message $_.ErrorDetails.Message -Category $_.CategoryInfo.Category -ErrorAction Stop
         }
         finally
         {
