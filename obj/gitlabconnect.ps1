@@ -151,15 +151,25 @@ class GitLabConnect {
     $header = @{
         'PRIVATE-TOKEN' = $gitlabuser.GetNetworkCredential().Password
     }
-
+     #create parameter string for url
+    $parameteruristring = $null
+    if($parameters.count -gt 0){
+        $parameteruristrings = @()
+        foreach($key in $parameters.keys){
+           $encodeparameter = [uri]::EscapeDataString($key)
+           $encodeargument = [uri]::EscapeDataString([string]$parameters.$key)
+           $parameteruristrings += "$encodeparameter=$encodeargument"
+        }
+        $parameteruristring = '?' + ($parameteruristrings -join '&')
+    }
+    
     #cleanup url
     $apiurl = $apiurl.TrimStart('/')
-    $userurl = "https://$($this.hostname)/api/v3/$apiurl"
+    $userurl = "https://$($this.hostname)/api/v3/$apiurl$parameteruristring"
     $errorprop = $null 
     $result = $null   
     try
     {
-       write-verbose "HTTPMethod = $httpmethod `r`n httpMethod.__value = $($httpMethod.__value)"
        switch($httpmethod){ 
        'get' {$result = Invoke-RestMethod -Uri $userurl -Headers $header -Method Get -Body $parameters}
        'post' {$result = Invoke-RestMethod -Uri $userurl -Headers $header -Method Post -body $parameters}
