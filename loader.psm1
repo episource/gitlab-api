@@ -13,5 +13,8 @@
 . $PSScriptRoot\Get-GitLabProject.ps1
 . $PSScriptRoot\Get-GitLabToken.ps1
 . $PSScriptRoot\init.ps1
+. $PSScriptRoot\New-GitlabProject.ps1
+. $PSScriptRoot\Remove-GitlabProject.ps1
 . $PSScriptRoot\Remove-GitLabToken.ps1
+. $PSScriptRoot\Set-GitlabProject.ps1
 . $PSScriptRoot\Set-GitLabToken.ps1
