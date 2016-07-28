@@ -265,9 +265,9 @@ class GitLabConnect {
         $resultobj = ConvertFrom-Json -InputObject $httpresult.Content
         
         #if passed page is not the last page
-        $isLastPage = $httpresult.headers.'X-Page' -eq $httpresult.headers.'X-Total-Pages'
+        $links = $this.resolvelinkheader($httpresult.Headers.Link)
 
-        if(-not $isLastPage)
+        if($links.next)
         {
             #get link for next page
             $links = $this.resolvelinkheader($httpresult.Headers.Link)
