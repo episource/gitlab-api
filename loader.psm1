@@ -28,3 +28,4 @@
 . $PSScriptRoot\Set-GitlabProject.ps1
 . $PSScriptRoot\Set-GitLabProjectLabel.ps1
 . $PSScriptRoot\Set-GitLabToken.ps1
+. $PSSCriptRoot\Unregister-GitLabProjectLabelSubscription.ps1
