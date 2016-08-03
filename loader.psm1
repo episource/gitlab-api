@@ -20,6 +20,7 @@
 . $PSScriptRoot\Invoke-GitLabProjectUnArchive.ps1
 . $PSScriptRoot\Invoke-GitLabProjectFork.ps1
 . $PSScriptRoot\New-GitlabProject.ps1
+. $PSScriptRoot\New-GitLabProjectLabel.ps1
 . $PSScriptRoot\Remove-GitLabProjectStar.ps1
 . $PSScriptRoot\Remove-GitLabToken.ps1
 . $PSScriptRoot\Set-GitlabProject.ps1
