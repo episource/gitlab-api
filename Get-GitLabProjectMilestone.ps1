@@ -7,7 +7,7 @@
       Get all labels for a given project.
       .Example
   #>
-  [CmdletBinding(DefaultParameterSetName='AllMilestones')]
+  [CmdletBinding(DefaultParameterSetName = 'AllMilestones')]
   [Alias()]
   [OutputType()]
   Param
@@ -17,12 +17,12 @@
     [Alias('ProjectID')]
     [int]$id,
 
-    [Parameter(ParameterSetName='AllMilestones', mandatory =$false)]
+    [Parameter(ParameterSetName = 'AllMilestones', mandatory = $false)]
     [validateset('active','closed')]
     [string]$State,
 
     [Parameter(HelpMessage = 'MilestoneID',
-    ParameterSetName='SingleMilestone',mandatory = $true)]
+    ParameterSetName = 'SingleMilestone',mandatory = $true)]
     [int]$MilestoneID,
 
     [Parameter(HelpMessage = 'Specify Existing GitlabConnector',
@@ -34,11 +34,13 @@
   $httpmethod = 'get'
   $apiurl = "projects/$id/milestones"
   $parameters = @{}
-  if($State){
+  if($State)
+  {
     $parameters.state = $State
   }
 
-  if($MilestoneID){
+  if($MilestoneID)
+  {
     $apiurl += "/$MilestoneID"
   }
 

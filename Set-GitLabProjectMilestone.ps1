@@ -24,13 +24,13 @@
     [Parameter(Helpmessage = 'The title of an milestone', mandatory = $false)]
     [string]$Title,
 
-    [Parameter(Helpmessage = 'The description of the milestone',mandatory= $false)]
+    [Parameter(Helpmessage = 'The description of the milestone',mandatory = $false)]
     [string]$Description,
 
     [Parameter(Helpmessage = 'the due date of the milestone',mandatory = $false)]
     [datetime]$dueDate,
     
-    [Parameter(Helpmessage = 'The description of the milestone',mandatory= $false)]
+    [Parameter(Helpmessage = 'The description of the milestone',mandatory = $false)]
     [validateSet('close','activate')]
     [Alias('StateEvent')]
     [string]$State,
@@ -40,35 +40,40 @@
     DontShow = $true)]
     [psobject]$GitlabConnect = (Get-GitlabConnect),
 
-        [Parameter(HelpMessage='Passthru the created project',
-                   Mandatory=$false)]
-        [switch]$PassThru
+    [Parameter(HelpMessage = 'Passthru the created project',
+    Mandatory = $false)]
+    [switch]$PassThru
   )
   
   $httpmethod = 'put'
-  $apiurl = "projects/$id/milestones/$MilestoneID"
+  $apiurl = "projects/$ID/milestones/$MilestoneID"
   $parameters = @{
   }
 
-  if($Title){
+  if($Title)
+  {
     $parameters.title = $Title
   }
 
-  if($description){
-    $parameters.description = $description
+  if($Description)
+  {
+    $parameters.description = $Description
   }
 
-  if($dueDate){
-    $parameters.'due_date' = $duedate.tostring("yyyy'-'MM'-'dd")
+  if($dueDate)
+  {
+    $parameters.'due_date' = $dueDate.tostring("yyyy'-'MM'-'dd")
   }
 
-  if($State){
+  if($State)
+  {
     $parameters.'state_event' = $State
   }
 
   $modmilestone = $GitlabConnect.callapi($apiurl,$httpmethod,$parameters)
 
-  if($PassThru){
+  if($PassThru)
+  {
     return $modmilestone
   }
 }

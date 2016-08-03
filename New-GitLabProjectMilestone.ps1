@@ -20,7 +20,7 @@
     [Parameter(Helpmessage = 'The title of an milestone', mandatory = $true)]
     [string]$Title,
 
-    [Parameter(Helpmessage = 'The description of the milestone',mandatory= $false)]
+    [Parameter(Helpmessage = 'The description of the milestone',mandatory = $false)]
     [string]$Description,
 
     [Parameter(Helpmessage = 'the due date of the milestone',mandatory = $false)]
@@ -31,28 +31,31 @@
     DontShow = $true)]
     [psobject]$GitlabConnect = (Get-GitlabConnect),
 
-        [Parameter(HelpMessage='Passthru the created project',
-                   Mandatory=$false)]
-        [switch]$PassThru
+    [Parameter(HelpMessage = 'Passthru the created project',
+    Mandatory = $false)]
+    [switch]$PassThru
   )
   
   $httpmethod = 'post'
-  $apiurl = "projects/$id/milestones"
+  $apiurl = "projects/$ID/milestones"
   $parameters = @{
     title = $Title
   }
 
-  if($description){
-    $parameters.description = $description
+  if($Description)
+  {
+    $parameters.description = $Description
   }
 
-  if($dueDate){
-    $parameters.'due_date' = $duedate.tostring("yyyy'-'MM'-'dd")
+  if($dueDate)
+  {
+    $parameters.'due_date' = $dueDate.tostring("yyyy'-'MM'-'dd")
   }
 
   $newmilestone = $GitlabConnect.callapi($apiurl,$httpmethod,$parameters)
 
-  if($PassThru){
-        return $newmilestone
-    }
+  if($PassThru)
+  {
+    return $newmilestone
+  }
 }
