@@ -191,9 +191,17 @@ class GitLabConnect {
     }
 
     <#
+            Main function overload to resolve API calls withoud body
+    #>
+    [psobject] callapi ([string]$apiurl,[HTTPMethod]$HTTPmethod,[hashtable]$parameters){
+        $result = $this.callapi($apiurl,$HTTPmethod,$parameters,[hashtable]::new())
+        return $result
+    }
+
+    <#
             Main function to resolve API call with 
     #>
-    [psobject] callapi ([string]$apiurl,[HTTPMethod]$HTTPmethod,[hashtable]$parameters)
+    Hidden [psobject] callapi ([string]$apiurl,[HTTPMethod]$HTTPmethod,[hashtable]$parameters,[hashtable]$body)
     {
         #create header
         $gitlabuser = New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList $this.username, $this.token
@@ -226,19 +234,19 @@ class GitLabConnect {
             switch($HTTPmethod){ 
                 'get' 
                 {
-                    $httpresult = Invoke-WebRequest -Uri $userurl -Headers $header -Method Get -Body $parameters
+                    $httpresult = Invoke-WebRequest -Uri $userurl -Headers $header -Method Get 
                 }
                 'post' 
                 {
-                    $httpresult = Invoke-WebRequest -Uri $userurl -Headers $header -Method Post -Body $parameters
+                    $httpresult = Invoke-WebRequest -Uri $userurl -Headers $header -Method Post -Body $body
                 }
                 'put' 
                 {
-                    $httpresult = Invoke-WebRequest -Uri $userurl -Headers $header -Method Put -Body $parameters
+                    $httpresult = Invoke-WebRequest -Uri $userurl -Headers $header -Method Put -Body $body
                 }
                 'delete' 
                 {
-                    $httpresult = Invoke-WebRequest -Uri $userurl -Headers $header -Method Delete -Body $parameters
+                    $httpresult = Invoke-WebRequest -Uri $userurl -Headers $header -Method Delete
                 }
                 default 
                 {
