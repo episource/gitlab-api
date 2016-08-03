@@ -29,7 +29,11 @@
     [Parameter(HelpMessage = 'Specify Existing GitlabConnector',
         Mandatory = $false,
     DontShow = $true)]
-    [psobject]$GitlabConnect = (Get-GitlabConnect)
+    [psobject]$GitlabConnect = (Get-GitlabConnect),
+
+        [Parameter(HelpMessage='Passthru the created project',
+                   Mandatory=$false)]
+        [switch]$PassThru
   )
   
   $httpmethod = 'post'
@@ -39,12 +43,16 @@
   }
 
   if($description){
-    $parameters.description = $State
+    $parameters.description = $description
   }
 
   if($dueDate){
     $parameters.'due_date' = $duedate.tostring("yyyy'-'MM'-'dd")
   }
 
-  $GitlabConnect.callapi($apiurl,$httpmethod,$parameters)
+  $newmilestone = $GitlabConnect.callapi($apiurl,$httpmethod,$parameters)
+
+  if($PassThru){
+        return $newmilestone
+    }
 }
