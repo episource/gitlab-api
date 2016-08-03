@@ -29,5 +29,6 @@
 . $PSScriptRoot\Remove-GitLabToken.ps1
 . $PSScriptRoot\Set-GitlabProject.ps1
 . $PSScriptRoot\Set-GitLabProjectLabel.ps1
+. $PSScriptRoot\Set-GitLabProjectMilestone.ps1
 . $PSScriptRoot\Set-GitLabToken.ps1
 . $PSSCriptRoot\Unregister-GitLabProjectLabelSubscription.ps1
