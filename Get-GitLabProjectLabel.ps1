@@ -12,7 +12,6 @@
   [OutputType()]
   Param
   (
-    # Param1 help description
     [Parameter(HelpMessage = 'ProjectID',
     Mandatory = $true)]
     [Alias('ProjectID')]

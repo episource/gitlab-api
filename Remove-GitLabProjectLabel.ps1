@@ -35,5 +35,5 @@
     name = $name
   }
 
-  $GitlabConnect.callapi($apiurl,$httpmethod,$parameters)
+  $null = $GitlabConnect.callapi($apiurl,$httpmethod,$parameters)
 }

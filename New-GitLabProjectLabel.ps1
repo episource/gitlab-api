@@ -24,7 +24,7 @@
 
     [Parameter(HelpMessage = 'Label Color Hex notation (#000000)',
     Mandatory = $false)]
-        [Alias('HEXColor')]
+    [Alias('HEXColor')]
     [ValidatePattern('^#[A-Fa-f0-9]{6}$')]
     [string]$Color = '#428bca',
 
@@ -40,27 +40,29 @@
 
     
 
-        [Parameter(HelpMessage='Passthru the created project',
-                   Mandatory=$false)]
-        [switch]$PassThru
+    [Parameter(HelpMessage = 'Passthru the created label',
+    Mandatory = $false)]
+    [switch]$PassThru
   
   )
   
   $httpmethod = 'post'
   $apiurl = "projects/$id/labels"
   $parameters = @{
-    id = $id
-    name = $name
-    color = $color
-    }
+    id    = $id
+    name  = $name
+    color = $Color
+  }
 
-  if($description){
+  if($description)
+  {
     $parameters.description = $description
   }
 
   $newlabel = $GitlabConnect.callapi($apiurl,$httpmethod,$parameters)
 
-  if($PassThru){
+  if($PassThru)
+  {
     return $newlabel
   }
 }

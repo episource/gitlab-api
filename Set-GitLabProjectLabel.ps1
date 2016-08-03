@@ -7,7 +7,7 @@
       Updates an existing label with new name or new color. At least one parameter is required, to update the label.
       .Example
   #>
-  [CmdletBinding(DefaultParameterSetName='NewColor')]
+  [CmdletBinding(DefaultParameterSetName = 'NewColor')]
   [Alias()]
   [OutputType()]
   Param
@@ -22,22 +22,22 @@
     [Alias()]
     [string]$Name,
 
-    [Parameter(ParameterSetName='NewColor',
-    HelpMessage = 'New Label Name',
+    [Parameter(ParameterSetName = 'NewColor',
+        HelpMessage = 'New Label Name',
     Mandatory = $false)]
-    [Parameter(ParameterSetName='NewName',
-    HelpMessage = 'New Label Name',
+    [Parameter(ParameterSetName = 'NewName',
+        HelpMessage = 'New Label Name',
     Mandatory = $true)]
     [Alias()]
     [string]$NewName,
 
-    [Parameter(ParameterSetName='NewColor',
-    HelpMessage = 'Label Color Hex notation (#000000)',
+    [Parameter(ParameterSetName = 'NewColor',
+        HelpMessage = 'Label Color Hex notation (#000000)',
     Mandatory = $true)]
-    [Parameter(ParameterSetName='NewName',
-    HelpMessage = 'Label Color Hex notation (#000000)',
+    [Parameter(ParameterSetName = 'NewName',
+        HelpMessage = 'Label Color Hex notation (#000000)',
     Mandatory = $false)]
-        [Alias('HEXColor')]
+    [Alias('HEXColor')]
     [ValidatePattern('^#[A-Fa-f0-9]{6}$')]
     [string]$Color,
 
@@ -51,34 +51,38 @@
     DontShow = $true)]
     [psobject]$GitlabConnect = (Get-GitlabConnect),
 
-        [Parameter(HelpMessage='Passthru the created project',
-                   Mandatory=$false)]
-        [switch]$PassThru
+    [Parameter(HelpMessage = 'Passthru the label',
+    Mandatory = $false)]
+    [switch]$PassThru
   
   )
   
   $httpmethod = 'put'
-  $apiurl = "projects/$id/labels"
+  $apiurl = "projects/$ID/labels"
   $parameters = @{
-    id = $id
-    name = $name
-    }
+    id   = $ID
+    name = $Name
+  }
 
-  if($NewName){
+  if($NewName)
+  {
     $parameters.'new_name' = $NewName
   }
 
-  if($color){
-    $parameters.color = $color
+  if($Color)
+  {
+    $parameters.color = $Color
   }
 
-  if($description){
+  if($description)
+  {
     $parameters.description = $description
   }
 
   $newlabel = $GitlabConnect.callapi($apiurl,$httpmethod,$parameters)
 
-  if($PassThru){
+  if($PassThru)
+  {
     return $newlabel
   }
 }
