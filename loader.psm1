@@ -15,6 +15,7 @@
 . $PSScriptRoot\Get-GitLabProjectEvents.ps1
 . $PSScriptRoot\Get-GitLabProjectLabel.ps1
 . $PSScriptRoot\Get-GitLabProjectMilestone.ps1
+. $PSScriptRoot\Get-GitLabProjectMilestoneIssues.ps1
 . $PSScriptRoot\Get-GitLabToken.ps1
 . $PSScriptRoot\init.ps1
 . $PSScriptRoot\Invoke-GitLabProjectArchive.ps1
