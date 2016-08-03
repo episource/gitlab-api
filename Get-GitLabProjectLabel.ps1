@@ -13,8 +13,7 @@
   Param
   (
     # Param1 help description
-    [Parameter(ParameterSetName = 'The ID of a project',
-        HelpMessage = 'ProjectID',
+    [Parameter(HelpMessage = 'ProjectID',
     Mandatory = $true)]
     [Alias('ProjectID')]
     [int]$id,
