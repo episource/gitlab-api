@@ -13,6 +13,7 @@
 . $PSScriptRoot\Get-GitlabConnect.ps1
 . $PSScriptRoot\Get-GitLabProject.ps1
 . $PSScriptRoot\Get-GitLabProjectEvents.ps1
+. $PSScriptRoot\Get-GitLabProjectIssue.ps1
 . $PSScriptRoot\Get-GitLabProjectLabel.ps1
 . $PSScriptRoot\Get-GitLabProjectMilestone.ps1
 . $PSScriptRoot\Get-GitLabProjectMilestoneIssues.ps1
