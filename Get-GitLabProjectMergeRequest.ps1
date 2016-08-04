@@ -15,7 +15,7 @@
     # Param1 help description
     [Parameter(HelpMessage = 'ProjectID',
     Mandatory = $true)]
-    [Alias('')]
+    [Alias('ProjectID')]
     [string]$ID,
 
     # Return all requests or just those that are merged, opened or closed
@@ -25,9 +25,14 @@
 
     # The ID of MR
     [Parameter(ParameterSetName='SingleMergeRequest',
-    HelpMessage = 'The ID of MR')]
+    HelpMessage = 'The ID of MR',
+    Mandatory = $true)]
     [Alias('merge_request_id')]
     [string]$MergeRequestID,
+
+    [Parameter(ParameterSetName='SingleMergeRequest',
+    HelpMessage = 'Include changes')]
+    [switch]$IncludeChanges,
 
     [Parameter(HelpMessage = 'Specify Existing GitlabConnector',
         Mandatory = $false,
@@ -49,6 +54,10 @@
 
   if($PSCmdlet.ParameterSetName -like 'SingleMergeRequest'){
     $apiurl += "/$MergeRequestID"
+
+    if($IncludeChanges){
+      $apiurl += '/changes'
+    }
   }
 
   $GitlabConnect.callapi($apiurl,$httpmethod,$parameters)
