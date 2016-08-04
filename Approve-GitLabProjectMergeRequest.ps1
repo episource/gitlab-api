@@ -29,19 +29,19 @@
     [Alias('MRID')]
     [string]$MergeRequestID,
 
-    [Parameter(HelpMessage='Custom merge commit message',mandatory=$false)]
+    [Parameter(HelpMessage = 'Custom merge commit message',mandatory = $false)]
     [alias('merge_commit_message')]
     [string]$MergeCommitMessage,
 
-    [Parameter(HelpMessage='removes the source branch')]
+    [Parameter(HelpMessage = 'removes the source branch')]
     [Alias('should_remove_dource_branch')]
     [switch]$ShouldRemoveSourceBranch,
 
-    [Parameter(HelpMessage='MR is merged when the build succeeds')]
+    [Parameter(HelpMessage = 'MR is merged when the build succeeds')]
     [Alias('merge_when_build_succeeds')]
     [switch]$MergeWhenBuildSucceeds,
 
-    [Parameter(HelpMessage='this SHA must match the HEAD of the source branch, otherwise the merge will fail')]
+    [Parameter(HelpMessage = 'this SHA must match the HEAD of the source branch, otherwise the merge will fail')]
     [String]$sha,
 
     [Parameter(HelpMessage = 'Specify Existing GitlabConnector',
@@ -58,19 +58,23 @@
   $APIUrl = "projects/$ID/merge_requests/$MergeRequestID/merge"
   $Parameters = @{}
 
-  if($MergeCommitMessage){
+  if($MergeCommitMessage)
+  {
     $Parameters.'merge_commit_message' = $MergeCommitMessage
   }
 
-  if($ShouldRemoveSourceBranch){
+  if($ShouldRemoveSourceBranch)
+  {
     $Parameters.'should_remove_source_branch' = 'true'
   }
 
-  if($MergeWhenBuildSucceeds){
+  if($MergeWhenBuildSucceeds)
+  {
     $Parameters.'merge_when_build_succeeds' = 'true'
   }
 
-  if($sha){
+  if($sha)
+  {
     $Parameters.sha = $sha
   }
 
@@ -84,5 +88,4 @@
   {
     return $NupdateMergeRequest
   }
-
 }

@@ -7,7 +7,7 @@
       Shows information about merge requests for this project.
       .Example
   #>
-  [CmdletBinding(defaultParameterSetName='AllMergeRequests')]
+  [CmdletBinding(defaultParameterSetName = 'AllMergeRequests')]
   [Alias()]
   [OutputType()]
   Param
@@ -19,18 +19,18 @@
     [string]$ID,
 
     # Return all requests or just those that are merged, opened or closed
-    [Parameter(ParameterSetName='AllMergeRequests',
+    [Parameter(ParameterSetName = 'AllMergeRequests',
     HelpMessage = 'state (merged|opened|closed)')]
     [string]$state,
 
     # The ID of MR
-    [Parameter(ParameterSetName='SingleMergeRequest',
-    HelpMessage = 'The ID of MR',
+    [Parameter(ParameterSetName = 'SingleMergeRequest',
+        HelpMessage = 'The ID of MR',
     Mandatory = $true)]
     [Alias('merge_request_id')]
     [string]$MergeRequestID,
 
-    [Parameter(ParameterSetName='SingleMergeRequest',
+    [Parameter(ParameterSetName = 'SingleMergeRequest',
     HelpMessage = 'Include changes')]
     [switch]$IncludeChanges,
 
@@ -46,20 +46,23 @@
     id = $ID
   }
 
-  if($PSCmdlet.ParameterSetName -like 'AllMergeRequests'){
-    if($state){
+  if($PSCmdlet.ParameterSetName -like 'AllMergeRequests')
+  {
+    if($state)
+    {
       $parameters.state = $state
     }
   }
 
-  if($PSCmdlet.ParameterSetName -like 'SingleMergeRequest'){
+  if($PSCmdlet.ParameterSetName -like 'SingleMergeRequest')
+  {
     $apiurl += "/$MergeRequestID"
 
-    if($IncludeChanges){
+    if($IncludeChanges)
+    {
       $apiurl += '/changes'
     }
   }
 
   $GitlabConnect.callapi($apiurl,$httpmethod,$parameters)
-
 }

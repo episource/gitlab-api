@@ -35,5 +35,4 @@
   $parameters = @{}
 
   $GitlabConnect.callapi($apiurl,$httpmethod,$parameters)
-
 }
