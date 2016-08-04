@@ -23,6 +23,7 @@
 . $PSScriptRoot\Invoke-GitLabProjectUnArchive.ps1
 . $PSScriptRoot\Invoke-GitLabProjectFork.ps1
 . $PSScriptRoot\New-GitlabProject.ps1
+. $PSScriptRoot\New-GitLabProjectIssue.ps1
 . $PSScriptRoot\New-GitLabProjectLabel.ps1
 . $PSScriptRoot\New-GitLabProjectMilestone.ps1
 . $PSSCriptRoot\Register-GitLabProjectLabelSubscription.ps1
