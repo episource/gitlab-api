@@ -7,7 +7,7 @@
       
       .Example
   #>
-  [CmdletBinding(DefaultParameterSetName='AllIssues')]
+  [CmdletBinding(DefaultParameterSetName = 'AllIssues')]
   [Alias()]
   [OutputType()]
   Param
@@ -20,23 +20,23 @@
     [string]$ID,
 
     # Return all issues or just those that are opened or closed
-    [Parameter(ParameterSetName='AllIssues',
+    [Parameter(ParameterSetName = 'AllIssues',
     HelpMessage = 'State (opened|closed)')]
     [validateset('opened','closed')]
     [string]$State,
 
     #list of label names, issues with any of the labels will be returned
-    [Parameter(ParameterSetName='AllIssues',
-    HelpMessage='list of labels')]
+    [Parameter(ParameterSetName = 'AllIssues',
+    HelpMessage = 'list of labels')]
     [string[]]$Labels,
 
     #only issues belongiong to milestone will be returned
-    [Parameter(ParameterSetName='AllIssues',
-    HelpMessage='milestone title')]
+    [Parameter(ParameterSetName = 'AllIssues',
+    HelpMessage = 'milestone title')]
     [string[]]$Milestone,
 
     #The ID of a projects issue
-    [Parameter(ParameterSetName='SingleIssue',
+    [Parameter(ParameterSetName = 'SingleIssue',
         HelpMessage = 'IssueID',
     Mandatory = $true)]
     [string]$IssueID,
@@ -49,25 +49,30 @@
 
 
   $httpmethod = 'get'
-  $apiurl = "projects/$id/issues"
+  $apiurl = "projects/$ID/issues"
   $parameters = @{}
 
-  if($PSCmdlet.ParameterSetName -like 'AllIssues'){
-    if($state){
-      $parameters.state = $state
+  if($PSCmdlet.ParameterSetName -like 'AllIssues')
+  {
+    if($State)
+    {
+      $parameters.state = $State
     }
  
-    if($labels){
-      $parameters.labels = @($labels) -join ','
+    if($Labels)
+    {
+      $parameters.labels = @($Labels) -join ','
     }
 
-    if($milestone){
-      $parameters.milestone = $milestone
+    if($Milestone)
+    {
+      $parameters.milestone = $Milestone
     }
   }
 
-  if($PSCmdlet.ParameterSetName -like 'SingleIssue'){
-  $apiurl += "/$IssueID"
+  if($PSCmdlet.ParameterSetName -like 'SingleIssue')
+  {
+    $apiurl += "/$IssueID"
   }
 
   $GitlabConnect.callapi($apiurl,$httpmethod,$parameters)

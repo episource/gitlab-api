@@ -31,7 +31,7 @@
     [Alias('milestone_id')]
     [int]$MilestoneID,
     
-    [Parameter(HelpMessage='label names for an issue',mandatory=$false)]
+    [Parameter(HelpMessage = 'label names for an issue',mandatory = $false)]
     [string[]]$Labels,
 
     [Parameter(Helpmessage = 'the date the issue was created',mandatory = $false)]
@@ -63,25 +63,29 @@
     $parameters.description = $Description
   }
 
-  if($AssigneeID){
+  if($AssigneeID)
+  {
     $parameters.'assignee_id' = $AssigneeID
   }
 
-  if ($MilestoneID){
+  if ($MilestoneID)
+  {
     $parameters.'milestone_id' = $MilestoneID
   }
 
-  if($Labels){
-      $parameters.labels = @($Labels) -join ','
+  if($Labels)
+  {
+    $parameters.labels = @($Labels) -join ','
   }
 
-  if($CreatedAt){
-    $parameters.'created_at' = $createdAt.ToUniversalTime().tostring('s') +'Z'
+  if($CreatedAt)
+  {
+    $parameters.'created_at' = $CreatedAt.ToUniversalTime().tostring('s') +'Z'
   }
 
   if($DueDate)
   {
-    $parameters.'due_date' = $dueDate.tostring("yyyy'-'MM'-'dd")
+    $parameters.'due_date' = $DueDate.tostring("yyyy'-'MM'-'dd")
   }
 
   $newissue = $GitlabConnect.callapi($apiurl,$httpmethod,$parameters)

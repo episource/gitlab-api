@@ -36,7 +36,7 @@
     [Alias('milestone_id')]
     [int]$MilestoneID,
     
-    [Parameter(HelpMessage='label names for an issue',mandatory=$false)]
+    [Parameter(HelpMessage = 'label names for an issue',mandatory = $false)]
     [string[]]$Labels,
 
     [Parameter(HelpMessage = 'StateEvent (opened|closed)')]
@@ -67,37 +67,43 @@
   $parameters = @{
   }
 
-  if($title){
-    $parameters.title = $title
+  if($Title)
+  {
+    $parameters.title = $Title
   }
   if($Description)
   {
     $parameters.description = $Description
   }
 
-  if($AssigneeID){
+  if($AssigneeID)
+  {
     $parameters.'assignee_id' = $AssigneeID
   }
 
-  if ($MilestoneID){
+  if ($MilestoneID)
+  {
     $parameters.'milestone_id' = $MilestoneID
   }
 
-  if($Labels){
-      $parameters.labels = @($Labels) -join ','
+  if($Labels)
+  {
+    $parameters.labels = @($Labels) -join ','
   }
 
-  if($StateEvent){
+  if($StateEvent)
+  {
     $parameters.'state_event' = $StateEvent
   }
 
-  if($UpdatedAt){
+  if($UpdatedAt)
+  {
     $parameters.'updated_at' = $UpdatedAt.ToUniversalTime().tostring('s') +'Z'
   }
 
   if($DueDate)
   {
-    $parameters.'due_date' = $dueDate.tostring("yyyy'-'MM'-'dd")
+    $parameters.'due_date' = $DueDate.tostring("yyyy'-'MM'-'dd")
   }
 
   $modissue = $GitlabConnect.callapi($apiurl,$httpmethod,$parameters)
