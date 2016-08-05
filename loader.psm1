@@ -13,6 +13,7 @@
 . $PSScriptRoot\Approve-GitLabProjectMergeRequest.ps1
 . $PSScriptRoot\Get-GitlabConnect.ps1
 . $PSScriptRoot\Get-GitLabProject.ps1
+. $PSScriptRoot\Get-GitLabProjectBranch.ps1
 . $PSScriptRoot\Get-GitLabProjectEvents.ps1
 . $PSScriptRoot\Get-GitLabProjectIssue.ps1
 . $PSScriptRoot\Get-GitLabProjectLabel.ps1
