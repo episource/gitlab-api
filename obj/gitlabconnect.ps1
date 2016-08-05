@@ -199,9 +199,25 @@ class GitLabConnect {
     }
 
     <#
+            Main function overload to resolve API calls withoud outfile
+    #>
+    [psobject] callapi ([string]$apiurl,[HTTPMethod]$HTTPmethod,[hashtable]$parameters,[hashtable]$body){
+        $result = $this.callapi($apiurl,$HTTPmethod,$parameters,$body,[string]::Empty)
+        return $result
+    }
+
+    <#
+            Main function overload to resolve API calls withoud outfile
+    #>
+    [psobject] callapi ([string]$apiurl,[HTTPMethod]$HTTPmethod,[hashtable]$parameters,[string]$OutFile){
+        $result = $this.callapi($apiurl,$HTTPmethod,$parameters,[hashtable]::new(),$OutFile)
+        return $result
+    }
+
+    <#
             Main function to resolve API call with 
     #>
-    Hidden [psobject] callapi ([string]$apiurl,[HTTPMethod]$HTTPmethod,[hashtable]$parameters,[hashtable]$body)
+    [psobject] callapi ([string]$apiurl,[HTTPMethod]$HTTPmethod,[hashtable]$parameters,[hashtable]$body,[string]$OutFile)
     {
         #create header
         $gitlabuser = New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList $this.username, $this.token
