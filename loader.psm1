@@ -13,6 +13,7 @@
 . $PSScriptRoot\Approve-GitLabProjectMergeRequest.ps1
 . $PSScriptRoot\Get-GitlabConnect.ps1
 . $PSScriptRoot\Get-GitLabProject.ps1
+. $PSScriptRoot\Get-GitLabProjectBranch.ps1
 . $PSScriptRoot\Get-GitLabProjectEvents.ps1
 . $PSScriptRoot\Get-GitLabProjectIssue.ps1
 . $PSScriptRoot\Get-GitLabProjectLabel.ps1
@@ -26,10 +27,12 @@
 . $PSScriptRoot\Invoke-GitLabProjectUnArchive.ps1
 . $PSScriptRoot\Invoke-GitLabProjectFork.ps1
 . $PSScriptRoot\New-GitlabProject.ps1
+. $PSScriptRoot\New-GitlabProjectBranch.ps1
 . $PSScriptRoot\New-GitLabProjectIssue.ps1
 . $PSScriptRoot\New-GitLabProjectLabel.ps1
 . $PSScriptRoot\New-GitLabProjectMergeRequest.ps1
 . $PSScriptRoot\New-GitLabProjectMilestone.ps1
+. $PSScriptRoot\Protect-GitlabProjectBranch.ps1
 . $PSSCriptRoot\Register-GitLabProjectLabelSubscription.ps1
 . $PSScriptRoot\Remove-GitLabProjectLabel
 . $PSScriptRoot\Remove-GitLabProjectStar.ps1
@@ -40,4 +43,5 @@
 . $PSScriptRoot\Set-GitLabProjectMergeRequest.ps1
 . $PSScriptRoot\Set-GitLabProjectMilestone.ps1
 . $PSScriptRoot\Set-GitLabToken.ps1
+. $PSScriptRoot\Unprotect-GitlabProjectBranch.ps1
 . $PSSCriptRoot\Unregister-GitLabProjectLabelSubscription.ps1
