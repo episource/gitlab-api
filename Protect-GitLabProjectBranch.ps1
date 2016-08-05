@@ -12,25 +12,30 @@
   [OutputType()]
   Param
   (
+    #The Id of a project
     [Parameter(HelpMessage = 'The Id of a project',
     Mandatory = $true)]
     [Alias('ProjectID')]
     [int]$ID,
 
+    #The name of the branch
     [Parameter(HelpMessage = 'The name of the branch',
     Mandatory = $true)]
     [String]$Branch,
 
+    #Flag if developers can push to the branch
     [Parameter(HelpMessage = 'Flag if developers can push to the branch',
     Mandatory = $false)]
     [Alias('developers_can_push')]
     [switch]$DevelopersCanPush,
 
+    #Flag if developers can merge to the branch
     [Parameter(HelpMessage = 'Flag if developers can merge to the branch',
     Mandatory = $false)]
     [Alias('developers_can_merge')]
     [switch]$DevelopersCanMerge,
 
+    #Specify Existing GitlabConnector
     [Parameter(HelpMessage = 'Specify Existing GitlabConnector',
         Mandatory = $false,
     DontShow = $true)]

@@ -12,20 +12,24 @@
   [OutputType()]
   Param
   (
+    #The Id of a project
     [Parameter(HelpMessage = 'The Id of a project',
     Mandatory = $true)]
     [Alias('ProjectID')]
     [int]$ID,
 
+    #The name of the branch
     [Parameter(HelpMessage = 'The name of the branch',
     Mandatory = $true)]
     [String]$Branch,
 
+    #Specify Existing GitlabConnector
     [Parameter(HelpMessage = 'Specify Existing GitlabConnector',
         Mandatory = $false,
     DontShow = $true)]
     [gitlabconnect]$GitlabConnect = (Get-GitlabConnect),
 
+    #Passthru the created project
     [Parameter(HelpMessage = 'Passthru the created project',
     Mandatory = $false)]
     [switch]$PassThru
