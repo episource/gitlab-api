@@ -27,6 +27,7 @@
 . $PSScriptRoot\Invoke-GitLabProjectUnArchive.ps1
 . $PSScriptRoot\Invoke-GitLabProjectFork.ps1
 . $PSScriptRoot\New-GitlabProject.ps1
+. $PSScriptRoot\New-GitlabProjectBranch.ps1
 . $PSScriptRoot\New-GitLabProjectIssue.ps1
 . $PSScriptRoot\New-GitLabProjectLabel.ps1
 . $PSScriptRoot\New-GitLabProjectMergeRequest.ps1
