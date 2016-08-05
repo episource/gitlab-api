@@ -40,7 +40,7 @@
     [string[]]$Labels,
 
     [Parameter(HelpMessage = 'StateEvent (opened|closed)')]
-    [validateset('opened','closed')]
+    [validateset('reopen','close')]
     [alias('state_event')]
     [string]$StateEvent,
 
