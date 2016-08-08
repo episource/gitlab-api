@@ -52,6 +52,7 @@
 . $PSScriptRoot\Remove-GitLabToken.ps1
 . $PSScriptRoot\Set-GitlabProject.ps1
 . $PSScriptRoot\Set-GitLabProjectIssue.ps1
+. $PSScriptRoot\Set-GitLabProjectIssueNote.ps1
 . $PSScriptRoot\Set-GitLabProjectLabel.ps1
 . $PSScriptRoot\Set-GitLabProjectMergeRequest.ps1
 . $PSScriptRoot\Set-GitLabProjectMilestone.ps1
