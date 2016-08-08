@@ -2,12 +2,12 @@
 {
   <#
       .Synopsis
-      
+      Creates a new note to a single project issue.
       .DESCRIPTION
-      
+      Creates a new note to a single project issue.
       .Example
   #>
-  [CmdletBinding(defaultParameterSetName='')]
+  [CmdletBinding()]
   [Alias()]
   [OutputType()]
   Param
@@ -30,12 +30,12 @@
     [string]$body,
 
     #the time the note was created
-    [Parameter(HelpMessage='time of creation',
-    Mandatory=$false)]
+    [Parameter(HelpMessage = 'time of creation',
+    Mandatory = $false)]
     [Alias('created_at')]
     [DateTime]$CreatedAt,
 
-     [Parameter(HelpMessage = 'Specify Existing GitlabConnector',
+    [Parameter(HelpMessage = 'Specify Existing GitlabConnector',
         Mandatory = $false,
     DontShow = $true)]
     [psobject]$GitlabConnect = (Get-GitlabConnect),
@@ -59,9 +59,8 @@
 
   $newnote = $GitlabConnect.callapi($apiurl,$httpmethod,$parameters)
 
-  if($PassThru){
+  if($PassThru)
+  {
     return $newnote
   }
-
-
 }

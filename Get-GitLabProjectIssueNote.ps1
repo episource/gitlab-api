@@ -26,7 +26,7 @@
 
     #The ID of a issues note
     [Parameter(ParameterSetName = 'SingleNote',
-    HelpMessage = 'NoteID',
+        HelpMessage = 'NoteID',
     Mandatory = $true)]
     [Alias('note_id')]
     [string]$NoteID,

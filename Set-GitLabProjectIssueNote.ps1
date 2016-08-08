@@ -7,7 +7,7 @@
       Modify existing note of an issue.
       .Example
   #>
-  [CmdletBinding(defaultParameterSetName='')]
+  [CmdletBinding()]
   [Alias()]
   [OutputType()]
   Param
@@ -35,7 +35,7 @@
     Mandatory = $true)]
     [string]$body,
 
-     [Parameter(HelpMessage = 'Specify Existing GitlabConnector',
+    [Parameter(HelpMessage = 'Specify Existing GitlabConnector',
         Mandatory = $false,
     DontShow = $true)]
     [psobject]$GitlabConnect = (Get-GitlabConnect),
@@ -55,9 +55,8 @@
 
   $newnote = $GitlabConnect.callapi($apiurl,$httpmethod,$parameters)
 
-  if($PassThru){
+  if($PassThru)
+  {
     return $newnote
   }
-
-
 }
