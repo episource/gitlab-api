@@ -11,6 +11,7 @@
 . $PSScriptRoot\Add-GitLabProjectStar.ps1
 . $PSScriptRoot\Add-GitLabToken.ps1
 . $PSScriptRoot\Approve-GitLabProjectMergeRequest.ps1
+. $PsScriptRoot\Compare-GitLabProjectRepositoryCommit.ps1
 . $PSScriptRoot\Get-GitlabConnect.ps1
 . $PSScriptRoot\Get-GitLabProject.ps1
 . $PSScriptRoot\Get-GitLabProjectBranch.ps1
@@ -22,7 +23,7 @@
 . $PSScriptRoot\Get-GitLabProjectMilestone.ps1
 . $PSScriptRoot\Get-GitLabProjectMilestoneIssues.ps1
 . $PSScriptRoot\Get-GitLabProjectRepositoryArchive.ps1
-. $PsScriptRoot\Compare-GitLabProjectRepositoryCommit.ps1
+. $PSScriptRoot\Get-GitLabProjectRepositoryContributors.ps1
 . $PSScriptRoot\Get-GitLabProjectRepositoryFileRaw.ps1
 . $PSScriptRoot\Get-GitLabProjectRepositoryTree.ps1
 . $PSScriptRoot\Get-GitLabToken.ps1
