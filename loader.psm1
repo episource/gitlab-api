@@ -17,6 +17,7 @@
 . $PSScriptRoot\Get-GitLabProjectBranch.ps1
 . $PSScriptRoot\Get-GitLabProjectEvents.ps1
 . $PSScriptRoot\Get-GitLabProjectIssue.ps1
+. $PSScriptRoot\Get-GitLabProjectIssueNote.ps1
 . $PSScriptRoot\Get-GitLabProjectLabel.ps1
 . $PSScriptRoot\Get-GitLabProjectMergeRequest.ps1
 . $PSScriptRoot\Get-GitLabProjectMergeRequestCommits.ps1
