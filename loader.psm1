@@ -25,6 +25,7 @@
 . $PSScriptRoot\Get-GitLabProjectRepositoryArchive.ps1
 . $PSScriptRoot\Get-GitLabProjectRepositoryContributors.ps1
 . $PSScriptRoot\Get-GitLabProjectRepositoryFileRaw.ps1
+. $PSScriptRoot\Get-GitLabProjectRepositoryTag.ps1
 . $PSScriptRoot\Get-GitLabProjectRepositoryTree.ps1
 . $PSScriptRoot\Get-GitLabToken.ps1
 . $PSScriptRoot\init.ps1
@@ -37,6 +38,7 @@
 . $PSScriptRoot\New-GitLabProjectLabel.ps1
 . $PSScriptRoot\New-GitLabProjectMergeRequest.ps1
 . $PSScriptRoot\New-GitLabProjectMilestone.ps1
+. $PSScriptRoot\New-GitLabProjectRepositoryTag.ps1
 . $PSScriptRoot\Protect-GitlabProjectBranch.ps1
 . $PSSCriptRoot\Register-GitLabProjectLabelSubscription.ps1
 . $PSScriptRoot\Remove-GitLabProjectLabel
@@ -47,6 +49,7 @@
 . $PSScriptRoot\Set-GitLabProjectLabel.ps1
 . $PSScriptRoot\Set-GitLabProjectMergeRequest.ps1
 . $PSScriptRoot\Set-GitLabProjectMilestone.ps1
+. $PSScriptRoot\Set-GitLabProjectRepositoryTagReleaseNotes.ps1
 . $PSScriptRoot\Set-GitLabToken.ps1
 . $PSScriptRoot\Unprotect-GitlabProjectBranch.ps1
 . $PSSCriptRoot\Unregister-GitLabProjectLabelSubscription.ps1
