@@ -40,7 +40,7 @@
     
     #path for the new created file
     [Parameter(HelpMessage = 'filepath for file',
-    Mandatory=$true]
+    Mandatory=$true)]
     [String]$OutFile,
 
     [Parameter(HelpMessage = 'Specify Existing GitlabConnector',
