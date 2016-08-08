@@ -21,6 +21,7 @@
 . $PSScriptRoot\Get-GitLabProjectLabel.ps1
 . $PSScriptRoot\Get-GitLabProjectMergeRequest.ps1
 . $PSScriptRoot\Get-GitLabProjectMergeRequestCommits.ps1
+. $PSScriptRoot\Get-GitLabProjectMergeRequestNote.ps1
 . $PSScriptRoot\Get-GitLabProjectMilestone.ps1
 . $PSScriptRoot\Get-GitLabProjectMilestoneIssues.ps1
 . $PSScriptRoot\Get-GitLabProjectRepositoryArchive.ps1
