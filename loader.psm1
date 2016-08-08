@@ -24,7 +24,8 @@
 . $PSScriptRoot\Get-GitLabProjectMilestoneIssues.ps1
 . $PSScriptRoot\Get-GitLabProjectRepositoryArchive.ps1
 . $PSScriptRoot\Get-GitLabProjectRepositoryCommit.ps1
-. $PSScriptRoot\Get-GitLabProjectRepositoryCommitDiff
+. $PSScriptRoot\Get-GitLabProjectRepositoryCommitComment.ps1
+. $PSScriptRoot\Get-GitLabProjectRepositoryCommitDiff.ps1
 . $PSScriptRoot\Get-GitLabProjectRepositoryContributors.ps1
 . $PSScriptRoot\Get-GitLabProjectRepositoryFileRaw.ps1
 . $PSScriptRoot\Get-GitLabProjectRepositoryTag.ps1
