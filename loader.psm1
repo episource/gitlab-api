@@ -17,9 +17,11 @@
 . $PSScriptRoot\Get-GitLabProjectBranch.ps1
 . $PSScriptRoot\Get-GitLabProjectEvents.ps1
 . $PSScriptRoot\Get-GitLabProjectIssue.ps1
+. $PSScriptRoot\Get-GitLabProjectIssueNote.ps1
 . $PSScriptRoot\Get-GitLabProjectLabel.ps1
 . $PSScriptRoot\Get-GitLabProjectMergeRequest.ps1
 . $PSScriptRoot\Get-GitLabProjectMergeRequestCommits.ps1
+. $PSScriptRoot\Get-GitLabProjectMergeRequestNote.ps1
 . $PSScriptRoot\Get-GitLabProjectMilestone.ps1
 . $PSScriptRoot\Get-GitLabProjectMilestoneIssues.ps1
 . $PSScriptRoot\Get-GitLabProjectRepositoryArchive.ps1
@@ -38,8 +40,10 @@
 . $PSScriptRoot\New-GitlabProject.ps1
 . $PSScriptRoot\New-GitlabProjectBranch.ps1
 . $PSScriptRoot\New-GitLabProjectIssue.ps1
+. $PSScriptRoot\New-GitLabProjectIssueNote.ps1
 . $PSScriptRoot\New-GitLabProjectLabel.ps1
 . $PSScriptRoot\New-GitLabProjectMergeRequest.ps1
+. $PSScriptRoot\New-GitLabProjectMergeRequestNote.ps1
 . $PSScriptRoot\New-GitLabProjectMilestone.ps1
 . $PSScriptRoot\New-GitLabProjectRepositoryCommitComment.ps1
 . $PSScriptRoot\New-GitLabProjectRepositoryTag.ps1
@@ -50,6 +54,7 @@
 . $PSScriptRoot\Remove-GitLabToken.ps1
 . $PSScriptRoot\Set-GitlabProject.ps1
 . $PSScriptRoot\Set-GitLabProjectIssue.ps1
+. $PSScriptRoot\Set-GitLabProjectIssueNote.ps1
 . $PSScriptRoot\Set-GitLabProjectLabel.ps1
 . $PSScriptRoot\Set-GitLabProjectMergeRequest.ps1
 . $PSScriptRoot\Set-GitLabProjectMilestone.ps1
