@@ -18,15 +18,15 @@
     [Alias('ProjectID')]
     [string]$ID,
 
-     #the commit SHA or branch name to compare from
+    #the commit SHA or branch name to compare from
     [Parameter(Helpmessage = 'commit SHA or branch name to compare from',
-    Mandatory=$true)]
+    Mandatory = $true)]
     [Alias('from')]
     [String]$Reference,
 
-     #the commit SHA or branch name to compare to
+    #the commit SHA or branch name to compare to
     [Parameter(Helpmessage = 'commit SHA or branch name to compare to',
-    Mandatory=$true)]
+    Mandatory = $true)]
     [Alias('to')]
     [String]$Target,
 
@@ -36,12 +36,12 @@
     [psobject]$GitlabConnect = (Get-GitlabConnect)
     
   )
-    $httpmethod = 'get'
-    $apiurl = "projects/$ID/repository/compare"
-    $Parameters = @{
-      from = $Reference
-      to = $Target
-    }
+  $httpmethod = 'get'
+  $apiurl = "projects/$ID/repository/compare"
+  $Parameters = @{
+    from = $Reference
+    to   = $Target
+  }
 
-  $GitlabConnect.callapi($apiurl,$httpmethod,$parameters)
+  $GitlabConnect.callapi($apiurl,$httpmethod,$Parameters)
 }

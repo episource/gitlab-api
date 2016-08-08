@@ -1,16 +1,16 @@
 ﻿function Get-GitLabProjectRepositoryTree
 {
-    <#
-.Synopsis
-   Get a list of repository files and directories in a project.
-.DESCRIPTION
-   Get a list of repository files and directories in a project.
-#>
-    [CmdletBinding()]
-    [Alias('Get-GitLabRepository')]
-    [OutputType()]
-    Param
-    (
+  <#
+      .Synopsis
+      Get a list of repository files and directories in a project.
+      .DESCRIPTION
+      Get a list of repository files and directories in a project.
+  #>
+  [CmdletBinding()]
+  [Alias('Get-GitLabRepository')]
+  [OutputType()]
+  Param
+  (
     # The ID of a project
     [Parameter(HelpMessage = 'ProjectID',
     Mandatory = $true)]
@@ -24,7 +24,7 @@
 
     #The name of a repository branch or tag or if not given the default branch
     [Parameter(Helpmessage = 'Name of a repository branch or tag',
-    Mandatory=$false)]
+    Mandatory = $false)]
     [Alias('ref_name','RefName')]
     [String]$ReferenceName,
 
@@ -32,19 +32,21 @@
         Mandatory = $false,
     DontShow = $true)]
     [psobject]$GitlabConnect = (Get-GitlabConnect)
-    )
+  )
 
-    $httpmethod = 'get'
-    $apiurl = "projects/$ID/repository/tree"
-    $Parameters = @{}
+  $httpmethod = 'get'
+  $apiurl = "projects/$ID/repository/tree"
+  $Parameters = @{}
 
-    if($path){
-      $Parameters.path = $Path
-    }
+  if($Path)
+  {
+    $Parameters.path = $Path
+  }
 
-    if($ReferenceName){
-      $Parameters.'ref_name' = $ReferenceName
-    }
+  if($ReferenceName)
+  {
+    $Parameters.'ref_name' = $ReferenceName
+  }
 
-    $GitlabConnect.callapi($apiurl,$httpmethod,$parameters)
+  $GitlabConnect.callapi($apiurl,$httpmethod,$Parameters)
 }
