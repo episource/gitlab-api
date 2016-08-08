@@ -26,19 +26,19 @@
     [string]$TagName,
 
     #Create tag using commit SHA, another tag name, or branch name
-    [Parameter(HelpMessage='Source (Commit SHa|tag name|branch name)',
-    Mandatory=$true)]
+    [Parameter(HelpMessage = 'Source (Commit SHa|tag name|branch name)',
+    Mandatory = $true)]
     [alias('ref')]
     [String]$Reference,
 
     #Specified message for an annotated tag.
-    [Parameter(HelpMessage='Tag Message',
-    Mandatory=$false)]
+    [Parameter(HelpMessage = 'Tag Message',
+    Mandatory = $false)]
     [string]$message,
 
     #Add release notes to the git tag and store it in the GitLab database.
-    [Parameter(HelpMessage='Release Notes',
-    Mandatory=$false)]
+    [Parameter(HelpMessage = 'Release Notes',
+    Mandatory = $false)]
     [Alias('release_description')]
     [string]$ReleaseDescription,
 
@@ -56,14 +56,16 @@
   $apiurl = "projects/$ID/repository/tags"
   $parameters = @{
     'tag_name' = $TagName
-    'ref' = $Reference
+    'ref'    = $Reference
   }
 
-  if($message){
+  if($message)
+  {
     $parameters.message = $message
   }
 
-  if($ReleaseDescription){
+  if($ReleaseDescription)
+  {
     $parameters.'release_description' = $ReleaseDescription
   }
 
@@ -72,7 +74,6 @@
 
   if($PassThru)
   {
-    
     return $newtag
   }
 }

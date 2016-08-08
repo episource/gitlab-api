@@ -7,7 +7,7 @@
       Get a list of repository tags from a project
       .Example
   #>
-  [CmdletBinding(defaultParameterSetName='AllTags')]
+  [CmdletBinding(defaultParameterSetName = 'AllTags')]
   [Alias()]
   [OutputType()]
   Param

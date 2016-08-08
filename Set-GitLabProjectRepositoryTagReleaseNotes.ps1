@@ -26,8 +26,8 @@
     [string]$TagName,
 
     #Add release notes to the git tag and store it in the GitLab database.
-    [Parameter(HelpMessage='Release Notes',
-    Mandatory=$true)]
+    [Parameter(HelpMessage = 'Release Notes',
+    Mandatory = $true)]
     [Alias('release_description','description')]
     [string]$ReleaseDescription,
 
@@ -48,12 +48,16 @@
     description = $ReleaseDescription
   }
   
-  try{
-    $currenttag = Get-GitLabProjectRepositoryTag -id $id -TagName $TagName -GitlabConnect $GitlabConnect
+  try
+  {
+    $currenttag = Get-GitLabProjectRepositoryTag -id $ID -TagName $TagName -GitlabConnect $GitlabConnect
 
-    if($currenttag.release){
+    if($currenttag.release)
+    {
       $httpmethod = 'Put'
-    }else{
+    }
+    else
+    {
       $httpmethod = 'Post'
     }
 
@@ -62,11 +66,11 @@
 
     if($PassThru)
     {
-    
       return $updatedtag
     }
-    }
-  catch{
-    write-error $_
+  }
+  catch
+  {
+    Write-Error $_
   }
 }
