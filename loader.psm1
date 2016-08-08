@@ -43,6 +43,7 @@
 . $PSScriptRoot\New-GitLabProjectIssueNote.ps1
 . $PSScriptRoot\New-GitLabProjectLabel.ps1
 . $PSScriptRoot\New-GitLabProjectMergeRequest.ps1
+. $PSScriptRoot\New-GitLabProjectMergeRequestNote.ps1
 . $PSScriptRoot\New-GitLabProjectMilestone.ps1
 . $PSScriptRoot\New-GitLabProjectRepositoryCommitComment.ps1
 . $PSScriptRoot\New-GitLabProjectRepositoryTag.ps1
