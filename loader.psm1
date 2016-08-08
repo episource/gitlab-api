@@ -22,6 +22,7 @@
 . $PSScriptRoot\Get-GitLabProjectMilestone.ps1
 . $PSScriptRoot\Get-GitLabProjectMilestoneIssues.ps1
 . $PSScriptRoot\Get-GitLabProjectRepositoryArchive.ps1
+. $PsScriptRoot\Compare-GitLabProjectRepositoryCommit.ps1
 . $PSScriptRoot\Get-GitLabProjectRepositoryFileRaw.ps1
 . $PSScriptRoot\Get-GitLabProjectRepositoryTree.ps1
 . $PSScriptRoot\Get-GitLabToken.ps1
