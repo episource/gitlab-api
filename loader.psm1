@@ -23,6 +23,9 @@
 . $PSScriptRoot\Get-GitLabProjectMilestone.ps1
 . $PSScriptRoot\Get-GitLabProjectMilestoneIssues.ps1
 . $PSScriptRoot\Get-GitLabProjectRepositoryArchive.ps1
+. $PSScriptRoot\Get-GitLabProjectRepositoryCommit.ps1
+. $PSScriptRoot\Get-GitLabProjectRepositoryCommitComment.ps1
+. $PSScriptRoot\Get-GitLabProjectRepositoryCommitDiff.ps1
 . $PSScriptRoot\Get-GitLabProjectRepositoryContributors.ps1
 . $PSScriptRoot\Get-GitLabProjectRepositoryFileRaw.ps1
 . $PSScriptRoot\Get-GitLabProjectRepositoryTag.ps1
@@ -38,6 +41,7 @@
 . $PSScriptRoot\New-GitLabProjectLabel.ps1
 . $PSScriptRoot\New-GitLabProjectMergeRequest.ps1
 . $PSScriptRoot\New-GitLabProjectMilestone.ps1
+. $PSScriptRoot\New-GitLabProjectRepositoryCommitComment.ps1
 . $PSScriptRoot\New-GitLabProjectRepositoryTag.ps1
 . $PSScriptRoot\Protect-GitlabProjectBranch.ps1
 . $PSSCriptRoot\Register-GitLabProjectLabelSubscription.ps1
