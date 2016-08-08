@@ -77,10 +77,6 @@
   {
     $Parameters.sha = $sha
   }
-
-  
-  $GitlabConnect.callapi($APIUrl,$HTTPMethod,$Parameters)
-
   
   $updateMergeRequest = $GitlabConnect.callapi($APIUrl,$HTTPMethod,$Parameters)
 
