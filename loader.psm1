@@ -38,6 +38,7 @@
 . $PSScriptRoot\New-GitLabProjectLabel.ps1
 . $PSScriptRoot\New-GitLabProjectMergeRequest.ps1
 . $PSScriptRoot\New-GitLabProjectMilestone.ps1
+. $PSScriptRoot\New-GitLabProjectRepositoryTag.ps1
 . $PSScriptRoot\Protect-GitlabProjectBranch.ps1
 . $PSSCriptRoot\Register-GitLabProjectLabelSubscription.ps1
 . $PSScriptRoot\Remove-GitLabProjectLabel
