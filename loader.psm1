@@ -25,6 +25,7 @@
 . $PSScriptRoot\Get-GitLabProjectRepositoryArchive.ps1
 . $PSScriptRoot\Get-GitLabProjectRepositoryContributors.ps1
 . $PSScriptRoot\Get-GitLabProjectRepositoryFileRaw.ps1
+. $PSScriptRoot\Get-GitLabProjectRepositoryTag.ps1
 . $PSScriptRoot\Get-GitLabProjectRepositoryTree.ps1
 . $PSScriptRoot\Get-GitLabToken.ps1
 . $PSScriptRoot\init.ps1
