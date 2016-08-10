@@ -21,6 +21,7 @@
     # Return all requests or just those that are merged, opened or closed
     [Parameter(ParameterSetName = 'AllMergeRequests',
     HelpMessage = 'state (merged|opened|closed)')]
+    [ValidateSet('merged','opened','closed')]
     [string]$state,
 
     # The ID of MR
