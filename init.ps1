@@ -32,7 +32,7 @@ $KeyItem = Import-Clixml $GitlabKeyfile
     
 if( -not $KeyItem.activekey)
 {
-  Write-Warning -Message "No gitlab api token is defined for ${env:USERDOMAIN}\${env:username} on computer ${env:computername}. Fix with add-GitLabAPIKey" -WarningAction Continue
+  Write-Warning -Message "No gitlab api token is defined for ${env:USERDOMAIN}\${env:username} on computer ${env:computername}. Fix with add-GitLabToken" -WarningAction Continue
 }
 
 #import object definitions
