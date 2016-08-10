@@ -21,7 +21,7 @@
   
   foreach($key in $Keyitem.keys)
   {
-    if(-not $key.id -eq $removekey.id)
+    if(-not ($key.id -eq $removekey.id))
     {
       $newarray += $key
     }
