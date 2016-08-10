@@ -1,2 +1,7 @@
-V0.1.0
- Add Basic API Support
+Please view this file on the master branch, on stable branches it's out of date.
+
+v 0.1.1
+  - Fix Set-Gitlabproject default_branch Parameter Type to [string]
+
+v 0.1.0
+  - Add Basic API Support

@@ -22,7 +22,7 @@
 
         [Parameter(HelpMessage='default branch for teh project',
                    Mandatory=$false)]
-        [int]$default_branch,
+        [string]$default_branch,
 
         [Parameter(HelpMessage='short project description',
                    Mandatory=$false)]
