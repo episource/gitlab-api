@@ -1,5 +1,11 @@
 Please view this file on the master branch, on stable branches it's out of date.
 
+v 0.3.0
+  - Add function Get-GitLabProjectRepositoryFile
+  - Add function New-GitLabProjectRepositoryFile
+  - Add function Set-GitLabProjectRepositoryFile
+  - Add function Remove-GitLabProjectRepositoryFile
+
 v 0.2.2
   - Fix Set-GitLabProject parameter Handling
   - Fix New-GitLabProject parameter Handling
