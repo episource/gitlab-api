@@ -29,6 +29,7 @@
 . $PSScriptRoot\Get-GitLabProjectRepositoryCommitComment.ps1
 . $PSScriptRoot\Get-GitLabProjectRepositoryCommitDiff.ps1
 . $PSScriptRoot\Get-GitLabProjectRepositoryContributors.ps1
+. $PSScriptRoot\Get-GitlabProjectRepositoryFile.ps1
 . $PSScriptRoot\Get-GitLabProjectRepositoryFileRaw.ps1
 . $PSScriptRoot\Get-GitLabProjectRepositoryTag.ps1
 . $PSScriptRoot\Get-GitLabProjectRepositoryTree.ps1
