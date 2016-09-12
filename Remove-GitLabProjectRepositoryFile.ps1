@@ -2,12 +2,12 @@
 {
   <#
       .Synopsis
-      
+      Delete existing file in repository
       .DESCRIPTION
-      
+      Delete existing file in repository
       .Example
   #>
-  [CmdletBinding(defaultParameterSetName='')]
+  [CmdletBinding(defaultParameterSetName = '')]
   [Alias()]
   [OutputType()]
   Param
@@ -31,7 +31,7 @@
     [String]$FilePath,
 
     #Commit message
-    [Parameter(HelpMessage=' Commit message',
+    [Parameter(HelpMessage = ' Commit message',
     Mandatory = $true)]
     [alias('commit_message')]
     [string]$CommitMessage,
@@ -45,10 +45,10 @@
   $httpmethod = 'delete'
   $apiurl = "/projects/$ID/repository/files"
   $parameters = @{
-    'file_path' = $FilePath
-    'branch_name' = $BranchName
+    'file_path'    = $FilePath
+    'branch_name'  = $BranchName
     'commit_message' = $CommitMessage
   }
 
-  $GitlabConnect.callapi($apiurl,$httpmethod,$Parameters)
+  $GitlabConnect.callapi($apiurl,$httpmethod,$parameters)
 }

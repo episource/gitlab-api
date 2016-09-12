@@ -2,12 +2,12 @@
 {
   <#
       .Synopsis
-      
+      Create a new file in a repository
       .DESCRIPTION
-      
+      Create a new file in a repository
       .Example
   #>
-  [CmdletBinding(defaultParameterSetName='')]
+  [CmdletBinding(defaultParameterSetName = '')]
   [Alias()]
   [OutputType()]
   Param
@@ -31,17 +31,17 @@
     [String]$FilePath,
 
     #encoding of seplied content. 'text' or 'base64'. Text is default.
-    [Parameter(HelpMessage="Encoding of content (text|base64)")]
-    [validateset("text",'base64')]
-    [string]$encoding='text',
+    [Parameter(HelpMessage = 'Encoding of content (text|base64)')]
+    [validateset('text','base64')]
+    [string]$encoding = 'text',
 
     #File content
-    [Parameter(Helpmessage="File content",
-    Mandatory=$true)]
+    [Parameter(Helpmessage = 'File content',
+    Mandatory = $true)]
     [string]$content,
 
     #Commit message
-    [Parameter(HelpMessage=' Commit message',
+    [Parameter(HelpMessage = ' Commit message',
     Mandatory = $true)]
     [alias('commit_message')]
     [string]$CommitMessage,
@@ -56,8 +56,8 @@
   $httpmethod = 'post'
   $apiurl = "/projects/$ID/repository/files"
   $parameters = @{
-    'file_path' = $FilePath
-    'branch_name' = $BranchName
+    'file_path'    = $FilePath
+    'branch_name'  = $BranchName
     'commit_message' = $CommitMessage
   }
   $body = @{
@@ -65,9 +65,17 @@
   }
 
   switch($encoding){
-    'text' {$parameters.encoding = 'text' ; break}
-    'base64' {$parameters.encoding = 'base64' ; break}
+    'text' 
+    {
+      $parameters.encoding = 'text' 
+      break
+    }
+    'base64' 
+    {
+      $parameters.encoding = 'base64' 
+      break
+    }
   }
 
-  $GitlabConnect.callapi($apiurl,$httpmethod,$Parameters,$body)
+  $GitlabConnect.callapi($apiurl,$httpmethod,$parameters,$body)
 }
