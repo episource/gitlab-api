@@ -51,7 +51,7 @@
 . $PSScriptRoot\New-GitLabProjectRepositoryTag.ps1
 . $PSScriptRoot\Protect-GitlabProjectBranch.ps1
 . $PSSCriptRoot\Register-GitLabProjectLabelSubscription.ps1
-. $PSScriptRoot\Remove-GitLabProjectLabel
+. $PSScriptRoot\Remove-GitLabProjectLabel.ps1
 . $PSSCriptRoot\Remove-GitLabProjectRepositoryFile.ps1
 . $PSScriptRoot\Remove-GitLabProjectStar.ps1
 . $PSScriptRoot\Remove-GitLabToken.ps1
