@@ -1,9 +1,21 @@
 ﻿function Get-GitlabConnect {
   param(
-    [parameter(Mandatory = $false)]
+    [CmdletBinding(DefaultParameterSetName = 'ByTokenID')]
+    [parameter(Mandatory = $false,
+    ParameterSetName='ByTokenID')]
     [Alias('KeyId')]
-    [system.guid]$id
+    [system.guid]$id,
+
+        #Hostname for the Gitlabserver. if url for gitlabserver is https://gitlab.contoso.com, hostname would be gitlab.contoso.com
+    [Parameter(Mandatory = $true,
+    ParameterSetName='OnTheFly')]
+    [string]$GitLabHostName,
+    #Token supplied from gitlab. This can be an private and an Access Token.
+    [Parameter(Mandatory = $true,
+    ParameterSetName='OnTheFly')]
+    [string]$Token
   )
+  if($PSCmdlet.ParameterSetName -like 'ByTokenID'){
   if($id){
     $Gitlabtoken = (Get-GitLabToken).where({$_.id -eq $id})
 
@@ -14,6 +26,11 @@
   }else{
     $Gitlabtoken = Get-GitLabToken -active
   }
-
+  
   return [gitlabconnect]::new($Gitlabtoken.gitlabhost,$Gitlabtoken.gitlabuser)
+  }
+  if($PSCmdlet.ParameterSetName -like 'OnTheFly')
+  {
+    return [gitlabconnect]::new($GitLabHostName,$Token)
+  }
 }

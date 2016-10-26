@@ -1,5 +1,8 @@
 Please view this file on the master branch, on stable branches it's out of date.
 
+v 0.4.0
+  - Add parameterSet OnTheFly to Get-GitlabConnect
+
 v 0.3.1
   - Fix GitLab-API Loader file
   
