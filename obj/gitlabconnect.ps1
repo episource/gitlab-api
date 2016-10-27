@@ -289,19 +289,19 @@ class GitLabConnect {
       switch($HTTPmethod){ 
         'get' 
         {
-          $httpresult = Invoke-WebRequest @webrequestparams -Method Get
+          $httpresult = Invoke-WebRequest @webrequestparams -Method Get -UseBasicParsing
         }
         'post' 
         {
-          $httpresult = Invoke-WebRequest @webrequestparams -Method Post
+          $httpresult = Invoke-WebRequest @webrequestparams -Method Post -UseBasicParsing
         }
         'put' 
         {
-          $httpresult = Invoke-WebRequest @webrequestparams -Method Put
+          $httpresult = Invoke-WebRequest @webrequestparams -Method Put -UseBasicParsing
         }
         'delete' 
         {
-          $httpresult = Invoke-WebRequest @webrequestparams -Method Delete
+          $httpresult = Invoke-WebRequest @webrequestparams -Method Delete -UseBasicParsing
         }
         default 
         {
