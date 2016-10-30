@@ -1,11 +1,18 @@
 ﻿function Set-GitLabProjectRepositoryTagReleaseNotes
 {
   <#
-      .Synopsis
-      Sets release notes of the existing git tag
+      .SYNOPSIS
+      Sets release notes on an existing tag
       .DESCRIPTION
-      Sets release notes of the existing git tag
-      .Example
+      The Set-GitLabProjectRepositoryTagReleaseNotes function updates sets release notes on a current tag.
+      If no release notes are set creates a release for the specified branch.
+
+      use -PassThru to return the modified Tag 
+      .EXAMPLE
+      Set-GitLabProjectRepositoryTagReleaseNotes -ProjectID 20 -TagName 'v1.0.0' -ReleaseDescription 'Release v1.0.0'
+      ---------------------------------------------------------------
+      Sets a release on tag 'v1.0.0' named 'Release v1.0.0'
+      if the release existed beforehand the Release description is overwritten.
   #>
   [CmdletBinding()]
   [Alias('Set-GitLabProjectRepositoryTag')]
@@ -25,21 +32,22 @@
     [Alias('Tag','tag_name')]
     [string]$TagName,
 
-    #Add release notes to the git tag and store it in the GitLab database.
+    # Set Releas Notes for the tag 
     [Parameter(HelpMessage = 'Release Notes',
     Mandatory = $true)]
     [Alias('release_description','description')]
     [string]$ReleaseDescription,
 
+    # Specify Existing GitlabConnector
     [Parameter(HelpMessage = 'Specify Existing GitlabConnector',
         Mandatory = $false,
     DontShow = $true)]
     [psobject]$GitlabConnect = (Get-GitlabConnect),
 
+    # Return the modified tag.
     [Parameter(HelpMessage = 'Passthru the created project',
     Mandatory = $false)]
     [switch]$PassThru
-    
   )
 
   

@@ -5,7 +5,7 @@
 
 #region check data file
 
-$GitlabdataFolder = Join-Path -Path $env:programdata -ChildPath '/GitLab-API'
+$GitlabdataFolder = Join-Path -Path $env:programdata -ChildPath 'GitLab-API'
 $keyfilename = "${env:USERDOMAIN}_${env:username}_${env:computername}_APIs.key"
 $GitlabKeyfile = Join-Path -Path $Script:GitlabdataFolder -ChildPath $keyfilename
     

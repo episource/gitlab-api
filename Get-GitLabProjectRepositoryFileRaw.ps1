@@ -1,10 +1,20 @@
 ﻿function Get-GitLabProjectRepositoryFileRaw
 {
   <#
-      .Synopsis
-      Get the raw file contents for a file.
+      .SYNOPSIS
+      Get a file and save the raw content to disk.
       .DESCRIPTION
-      Get the raw file contents for a file by blob SHA or by commit SHA/branche name and path.
+      The Get-GitLabProjectRepositoryFileRaw retrieves the raw file contents for a file by blob SHA or by commit SHA/branche name and path.
+      It saves it to the path specified. Container must exists beforehand.
+      .EXAMPLE
+      Get-GitLabProjectRepositoryFileRaw -ProjectID 20 -SHA 5a411e1 -path README.md -OutFile README.md
+      ---------------------------------------------------------------
+      gets from project 20 commit 5a411e1 the file README.md and saves it locally to README.md
+      .EXAMPLE
+      Get-GitLabProjectRepositoryFileRaw -ProjectID 20 -SHA master -path README.md -Outfile C:\README.md
+      ---------------------------------------------------------------
+      gets from project 20 branch master the file README.md and saves it locally to README.md
+
   #>
   [CmdletBinding(DefaultParameterSetName = 'ByCommit')]
   [Alias()]
@@ -30,7 +40,6 @@
     Mandatory = $true)]
     [String]$FilePath,
 
-
     #The blob SHA for a blob from the projects repository
     [Parameter( ParameterSetName = 'ByBlobSHA',
         Helpmessage = 'Blob SHA',
@@ -43,6 +52,7 @@
     Mandatory = $true)]
     [String]$OutFile,
 
+    # Existing GitlabConnector Object, can be retrieved with Get-GitlabConnect
     [Parameter(HelpMessage = 'Specify Existing GitlabConnector',
         Mandatory = $false,
     DontShow = $true)]

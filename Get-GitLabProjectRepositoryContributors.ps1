@@ -1,23 +1,28 @@
 ﻿function Get-GitLabProjectRepositoryContributors
 {
   <#
-      .Synopsis
-      Get repository contributors list
+      .SYNOPSIS
+      Get contributors for project
       .DESCRIPTION
-      Get repository contributors list
-      .Example
+      The Get-GitLabProjectRepositoryContributors function retrieves all contributors for the sepecified project.
+      Shows name, emailaddress and the amount of commits made
+      .EXAMPLE
+      Get-GitLabProjectRepositoryContributors -ProjectID 20
+      ---------------------------------------------------------------
+      retrieves all the contributors for project 20.
   #>
   [CmdletBinding()]
   [Alias()]
   [OutputType()]
   Param
   (
-    # The ID of a project
+    # The ID of the project
     [Parameter(HelpMessage = 'ProjectID',
     Mandatory = $true)]
     [Alias('ProjectID')]
     [string]$ID,
 
+    # Existing GitlabConnector Object, can be retrieved with Get-GitlabConnect
     [Parameter(HelpMessage = 'Specify Existing GitlabConnector',
         Mandatory = $false,
     DontShow = $true)]

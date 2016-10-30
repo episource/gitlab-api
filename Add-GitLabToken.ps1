@@ -1,12 +1,35 @@
 ﻿Function Add-GitLabToken 
 {
+    <#
+      .SYNOPSIS
+      Adds a access token to the local GitLab-API instance
+      .DESCRIPTION
+      Adds a access token to the local GitLab-API instance. 
+      First checks if the specified token and hostname is valid.
+      If valid adds it to the local configuration file.
+
+      If -Active is used the token will be added as the active token.
+      .EXAMPLE
+      Add-GitLabToken -GitLabHostName gitlab.com -Token XXXXXXXXXX
+      ---------------------------------------------------------------
+      Adds a GitlabToken for gitlab.com to the local instance of the powershell gitlab-api
+  #>
+  [CmdletBinding()]
+  [Alias()]
+  [OutputType()]
   param(
     #Hostname for the Gitlabserver. if url for gitlabserver is https://gitlab.contoso.com, hostname would be gitlab.contoso.com
-    [Parameter(Mandatory = $true)]
+    [Parameter(HelpMessage = 'GitlabServer Hostname',
+    Mandatory = $true)]
     [string]$GitLabHostName,
+
     #Token supplied from gitlab. This can be an private and an Access Token.
-    [Parameter(Mandatory = $true)]
+    [Parameter(HelpMessage = 'access token GitlabServer',
+    Mandatory = $true)]
     [string]$Token,
+
+    #If specified adds the token as the active token
+    [Parameter(HelpMessage = 'is token active')]
     [Switch]$active
   )
   #region check token

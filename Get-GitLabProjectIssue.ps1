@@ -1,36 +1,53 @@
 ﻿function Get-GitLabProjectIssue
 {
   <#
-      .Synopsis
-      Get a  a project's issues.
+      .SYNOPSIS
+      Gets GitLab Project Issue.
       .DESCRIPTION
-      
-      .Example
+      Gets GitLab Project Issue. Gets all Issues by Default.
+      All issues can be filtered by:
+         -State (opened:closed)
+         -Labels (comma seperated labels)
+         -Milestone (assigned Milestone)
+
+      If IssueID is passed only specified issue is retured.
+      .EXAMPLE
+      Get-GitLabProjectIssue -ProjectID 20
+      ---------------------------------------------------------------
+      Gets all issues for project 20
+      .EXAMPLE
+      Get-GitLabProjectIssue -ProjectID 20 -IssueID 1
+      ---------------------------------------------------------------
+      Gets issue 1 for project 20
+      .EXAMPLE
+      Get-GitLabProjectIssue -ProjectID 20 -State 'opened'
+      ---------------------------------------------------------------
+      Gets all open issues for project 20
   #>
   [CmdletBinding(DefaultParameterSetName = 'AllIssues')]
   [Alias()]
   [OutputType()]
   Param
   (
-    #The ID of a project
+    # The ID of a project
     [Parameter(
         HelpMessage = 'ProjectID',
     Mandatory = $true)]
     [Alias('ProjectID')]
     [string]$ID,
 
-    # Return all issues or just those that are opened or closed
+    # If specified only returns opened or closed issues.
     [Parameter(ParameterSetName = 'AllIssues',
     HelpMessage = 'State (opened|closed)')]
     [validateset('opened','closed')]
     [string]$State,
 
-    #list of label names, issues with any of the labels will be returned
+    # If list of label names is specified only issues with any of the labels will be returned
     [Parameter(ParameterSetName = 'AllIssues',
     HelpMessage = 'list of labels')]
     [string[]]$Labels,
 
-    #only issues belongiong to milestone will be returned
+    # If Specified only issues belonging to specified milestone will be returned
     [Parameter(ParameterSetName = 'AllIssues',
     HelpMessage = 'milestone title')]
     [string[]]$Milestone,
@@ -41,6 +58,7 @@
     Mandatory = $true)]
     [string]$IssueID,
 
+    # Existing GitlabConnector Object, can be retrieved with Get-GitlabConnect
     [Parameter(HelpMessage = 'Specify Existing GitlabConnector',
         Mandatory = $false,
     DontShow = $true)]

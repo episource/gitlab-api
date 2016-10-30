@@ -1,11 +1,19 @@
 ﻿function Get-GitLabProjectRepositoryArchive
 {
   <#
-      .Synopsis
+      .SYNOPSIS
       Get an archive of the repository of the specified project.
       .DESCRIPTION
       Get an archive of the repository of the specified project. Can be retrieved as [zip], [tar], [tar.gz] & [tar.bz2]
-      .Example
+      .EXAMPLE
+      Get-GitLabProjectRepositoryArchive -ProjectID 20 -SHA 5a411e1 -OutFile 5a411e1.zip 
+      ---------------------------------------------------------------
+      Saves the commit 5a411e1 to the file 5a411e1.zip
+      .EXAMPLE
+      Get-GitLabProjectRepositoryArchive -ProjectID 20 -SHA master -OutFile msater.zip 
+      ---------------------------------------------------------------
+      Saves the commit master to the file master.zip
+      
   #>
   [CmdletBinding()]
   [Alias()]
@@ -35,6 +43,7 @@
     Mandatory=$true)]
     [String]$OutFile,
 
+    # Existing GitlabConnector Object, can be retrieved with Get-GitlabConnect
     [Parameter(HelpMessage = 'Specify Existing GitlabConnector',
         Mandatory = $false,
     DontShow = $true)]

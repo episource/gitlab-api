@@ -1,29 +1,33 @@
 ﻿function Get-GitLabProjectMergeRequestCommits
 {
   <#
-      .Synopsis
-      Get a list of merge request commits.
+      .SYNOPSIS
+      Gets all commits associated with specified Merge Request.
       .DESCRIPTION
-      Get a list of merge request commits. for teh specified project and merge request.
-      .Example
+      Gets all commits associated with specified Merge Request.
+      .EXAMPLE
+      Get-GitLabProjectMergeRequestCommits -ProjectID 20 -MergeRequestID 1
+      ---------------------------------------------------------------
+      Gets all commits associated with Merge Request 1 on porject 20
   #>
   [CmdletBinding()]
   [Alias('Get-GitLabProjectMRCommits')]
   [OutputType()]
   Param
   (
-    # Param1 help description
+    #The ID of the project
     [Parameter(HelpMessage = 'ProjectID',
-    Mandatory = $true)]
-    [Alias('')]
+        Mandatory = $true)]
+    [Alias('ProjectID')]
     [string]$ID,
 
-    # The ID of MR
+    # The ID of the MR
     [Parameter(HelpMessage = 'The ID of MR',
-    Mandatory = $true)]
+        Mandatory = $true)]
     [Alias('merge_request_id')]
     [string]$MergeRequestID,
 
+    # Existing GitlabConnector Object, can be retrieved with Get-GitlabConnect
     [Parameter(HelpMessage = 'Specify Existing GitlabConnector',
         Mandatory = $false,
     DontShow = $true)]

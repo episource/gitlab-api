@@ -1,20 +1,29 @@
 ﻿function Set-GitLabProjectIssueNote
 {
   <#
-      .Synopsis
-      Modify existing note of an issue.
+      .SYNOPSIS
+      Modify an Existing Note on an issue.
       .DESCRIPTION
-      Modify existing note of an issue.
-      .Example
+      The Set-GitLabProjectIssueNote function modifies an existing note on an issue.
+      You can retrieve note ids using Get-GitLabProjectIssueNote.
+      when -PassThru is specified the modified note is returned.
+      .EXAMPLE
+      Set-GitLabProjectIssueNote -ProjectID 20 -IssueID 15 -NoteID 1 -Body 'Interresting Comment'
+      ---------------------------------------------------------------
+      Sets the content of note 1 on issue 15 for project 20 to 'Interresting Comment'
+      .EXAMPLE
+      Set-GitLabProjectIssueNote -ProjectID 20 -IssueID 15 -NoteID 1 -Body 'Interresting Comment' -PassThru
+      ---------------------------------------------------------------
+      Sets the content of note 1 on issue 15 for project 20 to 'Interresting Comment'
+      Returns the modified Note.
   #>
   [CmdletBinding()]
   [Alias()]
   [OutputType()]
   Param
   (
-    #The ID of a project
-    [Parameter(
-        HelpMessage = 'ProjectID',
+    #The ID of the project
+    [Parameter(HelpMessage = 'ProjectID',
     Mandatory = $true)]
     [Alias('ProjectID')]
     [string]$ID,
@@ -33,14 +42,16 @@
     #The content of a note
     [Parameter(HelpMessage = 'The content of a note',
     Mandatory = $true)]
-    [string]$body,
+    [string]$Body,
 
+    # Existing GitlabConnector Object, can be retrieved with Get-GitlabConnect
     [Parameter(HelpMessage = 'Specify Existing GitlabConnector',
         Mandatory = $false,
     DontShow = $true)]
     [psobject]$GitlabConnect = (Get-GitlabConnect),
 
-    [Parameter(HelpMessage = 'Passthru the created label',
+    # Return the modified issue note
+    [Parameter(HelpMessage = 'Passthru the modified issue note',
     Mandatory = $false)]
     [switch]$PassThru
 

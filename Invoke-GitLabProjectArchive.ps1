@@ -1,23 +1,28 @@
 ﻿function Invoke-GitLabProjectArchive
 {
   <#
-      .Synopsis
-      Archives the specified GitlabProject
+      .SYNOPSIS
+      Archives the a project
       .DESCRIPTION
-      Archives the specified GitlabProject. use invoke-gitlabprojectunarchive to make it available again
+      the function Archives the specified GitlabProject. 
+      To unarchive a project use Invoke-GitLabProjectUnArchive to make it available again.
+      .EXAMPLE
+      Invoke-GitLabProjectArchive -ProjectID 20
+      ---------------------------------------------------------------
+      Archives project with ID 20
   #>
-  [CmdletBinding(ConfirmImpact='High')]
+  [CmdletBinding()]
   [Alias()]
   [OutputType()]
   Param
   (
-    # Param1 help description
-    [Parameter(ParameterSetName = 'The ID of a project',
-        HelpMessage = 'ProjectID',
+    # The ID of the project
+    [Parameter(HelpMessage = 'ProjectID',
     Mandatory = $true)]
     [Alias('ProjectID')]
     [int]$id,
 
+    # Existing GitlabConnector Object, can be retrieved with Get-GitlabConnect
     [Parameter(HelpMessage = 'Specify Existing GitlabConnector',
         Mandatory = $false,
     DontShow = $true)]

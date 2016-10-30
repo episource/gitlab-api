@@ -1,13 +1,19 @@
 ﻿function Remove-GitLabProjectRepositoryFile
 {
   <#
-      .Synopsis
+      .SYNOPSIS
       Delete existing file in repository
       .DESCRIPTION
-      Delete existing file in repository
-      .Example
+      The Remove-GitLabProjectRepositoryFile function removes the specified file from the branch.
+      a commit message needs to be passed.
+      .EXAMPLE
+      Remove-GitLabProjectRepositoryFile -ProjectID 20 -BranchName master -FilePath 'Readme.md' -commit 'no readme needed'
+      ---------------------------------------------------------------
+      Removes readme.md from branch master with commit 'no readme needed'
   #>
-  [CmdletBinding(defaultParameterSetName = '')]
+  [CmdletBinding(
+     SupportsShouldProcess=$true,
+    ConfirmImpact="High")]
   [Alias()]
   [OutputType()]
   Param
@@ -18,24 +24,25 @@
     [Alias('ProjectID')]
     [string]$ID,
 
-    #The name of branch
+    # The name of branch
     [Parameter(HelpMessage = 'Commit SHA or branch name',
     Mandatory = $true)]
     [Alias('branch_name')]
     [string]$BranchName,
 
-    #The path of the file inside the projects repository.
+    # The path of the file inside the projects repository.
     [Parameter(Helpmessage = 'The path of the file',
     Mandatory = $true)]
     [alias('file_path')]
     [String]$FilePath,
 
-    #Commit message
-    [Parameter(HelpMessage = ' Commit message',
+    # Commit message
+    [Parameter(HelpMessage = 'Commit message',
     Mandatory = $true)]
     [alias('commit_message')]
     [string]$CommitMessage,
 
+    # Specify Existing GitlabConnector
     [Parameter(HelpMessage = 'Specify Existing GitlabConnector',
         Mandatory = $false,
     DontShow = $true)]
@@ -49,6 +56,7 @@
     'branch_name'  = $BranchName
     'commit_message' = $CommitMessage
   }
-
-  $GitlabConnect.callapi($apiurl,$httpmethod,$parameters)
+  if($pscmdlet.ShouldProcess("$($BranchName):$FilePath","Remove")){
+    $GitlabConnect.callapi($apiurl,$httpmethod,$parameters)
+  }
 }

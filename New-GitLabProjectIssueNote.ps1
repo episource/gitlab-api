@@ -1,45 +1,53 @@
 ﻿function New-GitLabProjectIssueNote
 {
   <#
-      .Synopsis
-      Creates a new note to a single project issue.
+      .SYNOPSIS
+      Adds a single note to an issue
       .DESCRIPTION
-      Creates a new note to a single project issue.
-      .Example
+      The New-GitLabProjectIssueNote function adds a single note to an issue.
+      .EXAMPLE
+      New-GitLabProjectIssueNote -ProjectID 20 -IssueID 1 -Body 'Started research'
+      ---------------------------------------------------------------
+      Adds a new note reading 'Started research' to issue 1 in project 20
+      .EXAMPLE
+      New-GitLabProjectIssueNote -ProjectID 20 -IssueID 1 -Body 'Started research' -PassThru
+      ---------------------------------------------------------------
+      Adds a new note reading 'Started research' to issue 1 in project 20 and returns the newly created note.
   #>
   [CmdletBinding()]
   [Alias()]
   [OutputType()]
   Param
   (
-    #The ID of a project
-    [Parameter(
-        HelpMessage = 'ProjectID',
+    # The ID of the project
+    [Parameter(HelpMessage = 'ProjectID',
     Mandatory = $true)]
     [Alias('ProjectID')]
     [string]$ID,
 
-    #The ID of a projects issue
+    # The ID of the projects issue
     [Parameter(HelpMessage = 'IssueID',
     Mandatory = $true)]
     [string]$IssueID,
 
-    #The content of a note
+    # The content of the note
     [Parameter(HelpMessage = 'The content of a note',
     Mandatory = $true)]
-    [string]$body,
+    [string]$Body,
 
-    #the time the note was created
+    # The time the note was created
     [Parameter(HelpMessage = 'time of creation',
     Mandatory = $false)]
     [Alias('created_at')]
     [DateTime]$CreatedAt,
 
+    # Specify Existing GitlabConnector
     [Parameter(HelpMessage = 'Specify Existing GitlabConnector',
         Mandatory = $false,
     DontShow = $true)]
     [psobject]$GitlabConnect = (Get-GitlabConnect),
 
+    # Passthru the created label
     [Parameter(HelpMessage = 'Passthru the created label',
     Mandatory = $false)]
     [switch]$PassThru

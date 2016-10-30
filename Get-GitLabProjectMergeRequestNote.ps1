@@ -1,11 +1,19 @@
 ﻿function Get-GitLabProjectMergeRequestNote
 {
   <#
-      .Synopsis
-      Get Notes for a single Merge Request.
+      .SYNOPSIS
+      Get Merge Request Note
       .DESCRIPTION
-      Get Notes for a single Merge Request.
-      .Example
+      Get note for specified Merge Request. 
+      Returnes all notes by default, Specify -NoteID to return single note.
+      .EXAMPLE
+      Get-GitLabProjectMergeRequestNote -ProjectID 20 -MergeRequestID 1
+      ---------------------------------------------------------------
+      get all notes for project 20 and Merge Request 1
+      .EXAMPLE
+      Get-GitLabProjectMergeRequestNote -ProjectID 20 -MergeRequestID 1 -NoteID 3
+      ---------------------------------------------------------------
+      gets note 3 for project 20 and Merge Request 1 
   #>
   [CmdletBinding(DefaultParameterSetName = 'AllNotes')]
   [Alias('Get-GitLabProjectMRNote')]
@@ -13,28 +21,28 @@
   Param
   (
     #The ID of a project
-    [Parameter(
-        HelpMessage = 'ProjectID',
-    Mandatory = $true)]
+    [Parameter(HelpMessage = 'ProjectID',
+        Mandatory = $true)]
     [Alias('ProjectID')]
     [string]$ID,
 
-    #The ID of a projects issue
+    #The ID of a projects Merge Request
     [Parameter(HelpMessage = 'MergeRequestID',
-    Mandatory = $true)]
+        Mandatory = $true)]
     [Alias('merge_request_id','MRID')]
     [string]$MergeRequestID,
 
-    #The ID of a issues note
+    #The ID of a MergeRequests note
     [Parameter(ParameterSetName = 'SingleNote',
         HelpMessage = 'NoteID',
-    Mandatory = $true)]
+        Mandatory = $true)]
     [Alias('note_id')]
     [string]$NoteID,
 
+    # Existing GitlabConnector Object, can be retrieved with Get-GitlabConnect
     [Parameter(HelpMessage = 'Specify Existing GitlabConnector',
         Mandatory = $false,
-    DontShow = $true)]
+        DontShow = $true)]
     [psobject]$GitlabConnect = (Get-GitlabConnect)
   )
 

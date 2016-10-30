@@ -1,18 +1,26 @@
 ﻿function Get-GitLabProjectRepositoryTag
 {
   <#
-      .Synopsis
-      Get a list of repository tags from a project
+      .SYNOPSIS
+      Get tags on repository.
       .DESCRIPTION
       Get a list of repository tags from a project
-      .Example
+      only specified tag is returned when -TagName is passed.
+      .EXAMPLE
+      Get-GitLabProjectRepositoryTag -ProjectID 20 
+      ---------------------------------------------------------------
+      gets all tags for the repository in project 20
+      .EXAMPLE
+      Get-GitLabProjectRepositoryTag -ProjectID 20 -TagName 'v1.0.0' 
+      ---------------------------------------------------------------
+      gets tag 'v1.0.0' for the repository in project 20
   #>
   [CmdletBinding(defaultParameterSetName = 'AllTags')]
   [Alias()]
   [OutputType()]
   Param
   (
-    #The ID of a project
+    #The ID of the project
     [Parameter(
         HelpMessage = 'ProjectID',
     Mandatory = $true)]
@@ -26,6 +34,7 @@
     [Alias('Tag','tag_name')]
     [string]$TagName,
 
+    # Existing GitlabConnector Object, can be retrieved with Get-GitlabConnect
     [Parameter(HelpMessage = 'Specify Existing GitlabConnector',
         Mandatory = $false,
     DontShow = $true)]

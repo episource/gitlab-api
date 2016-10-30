@@ -1,14 +1,34 @@
 ﻿function Get-GitLabProject
 {
     <#
-            .Synopsis
-            gets gitlabprojects. to select single object use -id
+      .SYNOPSIS
+      Gets Gitlab projects
+      .DESCRIPTION
+      The Get-GitlabProject function returns one or more projects specified.
+      By default this function returns all projects that the authenticated user is authorized for.
+      By passing -Starred or -Owned only starred or owned projects are returned.
+      By passing -Archived or -Visibility ('public','internal','private') results can be further narrowed.
+
+      if you have the ID of a project you can specify the projectID by passing $ID
+      .EXAMPLE
+      Get-GitLabProject
+      ---------------------------------------------------------------
+      Returns all projects that the authenticated user is authorized for.
+      .EXAMPLE
+      Get-GitLabProject -ProjectID 20
+      ---------------------------------------------------------------
+      Return Project with ID 20
+      .EXAMPLE
+      Get-GitLabProject -archived
+      ---------------------------------------------------------------
+      Only Return Archived Projects
     #>
     [CmdletBinding(DefaultparametersetName = 'AllProjects')]
     [Alias()]
     [OutputType()]
     Param
     (
+        # Limit the result by Archived status
         [Parameter(ParameterSetName = 'AllProjects',
                 HelpMessage = 'limit by archived status',
         Mandatory = $false)]
@@ -18,8 +38,9 @@
         [Parameter(ParameterSetName = 'AllProjectsStarred',
                 HelpMessage = 'limit by archived status',
         Mandatory = $false)]
-        [switch]$archived,
+        [switch]$Archived,
 
+        # Limit the result by visibility
         [Parameter(ParameterSetName = 'AllProjects',
                 HelpMessage = 'limit by visibility public, internal, private',
         Mandatory = $false)]
@@ -30,23 +51,28 @@
                 HelpMessage = 'limit by visibility public, internal, private',
         Mandatory = $false)]
         [validateset('public','internal','private')]
-        [switch]$visibility,
+        [switch]$Visibility,
 
+        # Limit the result by Starred status
         [Parameter(ParameterSetName = 'AllProjectsStarred',
-                HelpMessage = 'limit by archived status',
+                HelpMessage = 'limit by starred status',
         Mandatory = $true)]
-        [switch]$starred,
+        [switch]$Starred,
 
+        # Limit the result by Owned status
         [Parameter(ParameterSetName = 'AllProjectsOwned',
-                HelpMessage = 'limit by archived status',
+                HelpMessage = 'limit by owned status',
         Mandatory = $true)]
-        [switch]$owned,
+        [switch]$Owned,
 
+        # The ID of the project
         [Parameter(ParameterSetName = 'SingleProject',
-                HelpMessage = 'The ID or NAMESPACE/PROJECT_NAME of a project',
+                HelpMessage = 'The ID of a project',
         Mandatory = $true)]
-        [int]$id,
+        [Alias('ProjectID')]
+        [int]$ID,
 
+        # Existing GitlabConnector Object, can be retrieved with Get-GitlabConnect
         [Parameter(HelpMessage = 'Specify Existing GitlabConnector',
                 Mandatory = $false,
         DontShow = $true)]

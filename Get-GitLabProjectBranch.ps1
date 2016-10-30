@@ -1,30 +1,41 @@
 ﻿function Get-GitLabProjectBranch
 {
   <#
-      .Synopsis
-      Get a list of repository branches from a project
+      .SYNOPSIS
+      Gets GitLab Project Branches.
       .DESCRIPTION
-      Get a list of repository branches from a project
+      Get branch of specified project.
+      By default all branches of the project are retrieved.
+
+      when -Branch is specified only the specified branch is returned.
+      If the branch is not found a 404 error is returned. 
       .EXAMPLE
+      Get-GitLabProjectBranch -ProjectID 20
+      ---------------------------------------------------------------
+      Gets all branches for project 20
+      .EXAMPLE
+      Get-GitLabProjectBranch -ProjectID 20 -Branch 'master'
+      ---------------------------------------------------------------
+      Gets branch 'master' for project 20
   #>
   [CmdletBinding(DefaultParameterSetName = 'AllBranches')]
   [Alias()]
   [OutputType()]
   Param
   (
-    #
-    [Parameter(HelpMessage = 'The Id of a project',
+    # The ID of the project
+    [Parameter(HelpMessage = 'ProjectID',
     Mandatory = $true)]
     [Alias('ProjectID')]
     [int]$ID,
 
-    #The name of the branch
+    # Name of the branch
     [Parameter(ParameterSetName = 'SingleBranch',
         HelpMessage = 'The name of the branch',
     Mandatory = $true)]
     [String]$Branch,
 
-    #Specify Existing GitlabConnector
+    # Existing GitlabConnector Object, can be retrieved with Get-GitlabConnect
     [Parameter(HelpMessage = 'Specify Existing GitlabConnector',
         Mandatory = $false,
     DontShow = $true)]

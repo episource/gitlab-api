@@ -1,27 +1,32 @@
 ﻿function Get-GitLabProjectRepositoryCommitComment
 {
   <#
-      .Synopsis
-      Get the comments of a commit in a project.
+      .SYNOPSIS
+      Get comments on a commit of a project
       .DESCRIPTION
-      Get the comments of a commit in a project.
-      .Example
+      The Get-GitLabProjectRepositoryCommitComment function gets all comments on a specified commit
+      .EXAMPLE
+      Get-GitLabProjectRepositoryCommitComment -ID 20 -SHA 5a411e1
+      ---------------------------------------------------------------
+      gets all comments for project 20 on commit 5a411e1.
   #>
   [CmdletBinding()]
   [Alias()]
   [OutputType()]
   Param
   (
-    #The ID of a project
+    # The ID of The project
     [Parameter(HelpMessage = 'The ID of a project',
     Mandatory = $true)]
     [int]$ID,
 
-    #The commit hash or name of a repository branch or tag
+    # The commit hash or name of a repository branch or tag
     [Parameter(HelpMessage = 'Commit Reference(hash|branchname|tagname)',
     Mandatory = $true)]
-    [String]$sha,
+    [Alias('RefName','ReferenceName')]
+    [string]$SHA,
 
+    # Existing GitlabConnector Object, can be retrieved with Get-GitlabConnect
     [Parameter(HelpMessage = 'Specify Existing GitlabConnector',
         Mandatory = $false,
     DontShow = $true)]
