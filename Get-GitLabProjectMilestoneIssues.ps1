@@ -18,8 +18,8 @@
     #The ID of a project
     [Parameter(HelpMessage = 'ProjectID',
     Mandatory = $true)]
-    [Alias('ProjectID')]
-    [int]$ID,
+    [Alias('ID')]
+    [int]$ProjectID,
 
     #The ID of a projects Merge Request
     [Parameter(HelpMessage = 'MilestoneID',mandatory = $true)]

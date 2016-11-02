@@ -23,8 +23,8 @@
         # The Project ID
         [Parameter(HelpMessage='The Project ID',
                    Mandatory=$true)]
-        [Alias('ProjectID')]
-        [string]$ID,
+    [Alias('ID')]
+    [int]$ProjectID,
 
         # The Name of the project.
         [Parameter(HelpMessage='new project name',

@@ -26,8 +26,8 @@
     # The ID of the project
     [Parameter(HelpMessage = 'ProjectID',
     Mandatory = $true)]
-    [Alias('ProjectID')]
-    [string]$ID,
+    [Alias('ID')]
+    [int]$ProjectID,
     
     # The source branch for the MR
     [Parameter(HelpMessage = 'Source Branch',mandatory = $true)]

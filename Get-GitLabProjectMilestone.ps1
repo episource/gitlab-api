@@ -20,8 +20,8 @@
   (
     [Parameter(HelpMessage = 'ProjectID',
     Mandatory = $true)]
-    [Alias('ProjectID')]
-    [int]$id,
+    [Alias('ID')]
+    [int]$ProjectID,
 
     [Parameter(ParameterSetName = 'AllMilestones', mandatory = $false)]
     [validateset('active','closed')]

@@ -20,8 +20,8 @@
     # ID of the porject
     [Parameter(HelpMessage = 'ProjectID',
     Mandatory = $true)]
-    [Alias('ProjectID')]
-    [int]$ID,
+    [Alias('ID')]
+    [int]$ProjectID,
     
     # ID of th milestone
     [Parameter(HelpMessage = 'MilestoneID',

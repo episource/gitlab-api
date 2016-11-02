@@ -22,8 +22,8 @@
     #The Id of the project
     [Parameter(HelpMessage = 'ProjectID',
     Mandatory = $true)]
-    [Alias('ProjectID')]
-    [int]$ID,
+    [Alias('ID')]
+    [int]$ProjectID,
 
     # The title of the new issue
     [Parameter(Helpmessage = 'The title of an issue', 

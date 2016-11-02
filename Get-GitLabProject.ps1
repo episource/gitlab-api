@@ -69,8 +69,8 @@
         [Parameter(ParameterSetName = 'SingleProject',
                 HelpMessage = 'The ID of a project',
         Mandatory = $true)]
-        [Alias('ProjectID')]
-        [int]$ID,
+    [Alias('ID')]
+    [int]$ProjectID,
 
         # Existing GitlabConnector Object, can be retrieved with Get-GitlabConnect
         [Parameter(HelpMessage = 'Specify Existing GitlabConnector',

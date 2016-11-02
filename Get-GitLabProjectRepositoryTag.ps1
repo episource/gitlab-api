@@ -24,8 +24,8 @@
     [Parameter(
         HelpMessage = 'ProjectID',
     Mandatory = $true)]
-    [Alias('ProjectID')]
-    [string]$ID,
+    [Alias('ID')]
+    [int]$ProjectID,
 
     #The name of the tag
     [Parameter(ParameterSetName = 'SingleTag',

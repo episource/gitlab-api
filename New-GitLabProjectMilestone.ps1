@@ -24,8 +24,8 @@
     # The ID of the project
     [Parameter(HelpMessage = 'ProjectID',
     Mandatory = $true)]
-    [Alias('ProjectID')]
-    [int]$ID,
+    [Alias('ID')]
+    [int]$ProjectID,
 
     # The title of the milestone
     [Parameter(Helpmessage = 'The title of an milestone', mandatory = $true)]

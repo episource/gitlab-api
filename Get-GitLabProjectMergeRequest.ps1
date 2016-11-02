@@ -31,8 +31,8 @@
     #The ID of a project
     [Parameter(HelpMessage = 'ProjectID',
         Mandatory = $true)]
-    [Alias('ProjectID')]
-    [string]$ID,
+    [Alias('ID')]
+    [int]$ProjectID,
 
     # When specified returns only Merge Request that are merged, opened or closed
     [Parameter(ParameterSetName = 'AllMergeRequests',

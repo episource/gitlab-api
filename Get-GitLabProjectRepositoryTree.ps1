@@ -33,8 +33,8 @@
     # The ID of the project
     [Parameter(HelpMessage = 'ProjectID',
     Mandatory = $true)]
-    [Alias('ProjectID')]
-    [string]$ID,
+    [Alias('ID')]
+    [int]$ProjectID,
 
     #The path inside repository. Used to get contend of subdirectories
     [Parameter(Helpmessage = 'path inside repository',
