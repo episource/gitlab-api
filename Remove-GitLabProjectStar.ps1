@@ -20,8 +20,8 @@
     [Parameter(ParameterSetName = 'The ID of a project',
         HelpMessage = 'ProjectID',
     Mandatory = $true)]
-    [Alias('ProjectID')]
-    [int]$id,
+    [Alias('ID')]
+    [int]$ProjectID,
 
     # Specify Existing GitlabConnector
     [Parameter(HelpMessage = 'Specify Existing GitlabConnector',

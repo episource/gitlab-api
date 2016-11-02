@@ -26,8 +26,8 @@
     # The ID of the project
     [Parameter(HelpMessage = 'ProjectID',
     Mandatory = $true)]
-    [Alias('ProjectID')]
-    [int]$ID,
+    [Alias('ID')]
+    [int]$ProjectID,
 
     # Name of the branch
     [Parameter(ParameterSetName = 'SingleBranch',

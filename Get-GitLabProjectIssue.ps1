@@ -33,8 +33,8 @@
     [Parameter(
         HelpMessage = 'ProjectID',
     Mandatory = $true)]
-    [Alias('ProjectID')]
-    [string]$ID,
+    [Alias('ID')]
+    [int]$ProjectID,
 
     # If specified only returns opened or closed issues.
     [Parameter(ParameterSetName = 'AllIssues',

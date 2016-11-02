@@ -24,8 +24,8 @@
     # The ID of the project
     [Parameter(HelpMessage = 'ProjectID',
     Mandatory = $true)]
-    [Alias('ProjectID')]
-    [int]$id,
+    [Alias('ID')]
+    [int]$ProjectID,
 
     # The Label Name
     [Parameter(HelpMessage = 'Label Name',

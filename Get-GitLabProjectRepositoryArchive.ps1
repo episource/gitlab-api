@@ -23,8 +23,8 @@
     # The ID of a project
     [Parameter(HelpMessage = 'ProjectID',
     Mandatory = $true)]
-    [Alias('ProjectID')]
-    [string]$ID,
+    [Alias('ID')]
+    [int]$ProjectID,
 
     #the commit SHA or Branch name
     [Parameter(HelpMessage = 'Commit SHA or branch name',

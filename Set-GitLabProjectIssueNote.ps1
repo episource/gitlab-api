@@ -25,8 +25,8 @@
     #The ID of the project
     [Parameter(HelpMessage = 'ProjectID',
     Mandatory = $true)]
-    [Alias('ProjectID')]
-    [string]$ID,
+    [Alias('ID')]
+    [int]$ProjectID,
 
     #The ID of a projects issue
     [Parameter(HelpMessage = 'IssueID',

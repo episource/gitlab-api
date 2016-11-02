@@ -25,8 +25,8 @@
     #The ID of a project
     [Parameter(HelpMessage = 'The ID of a project',
     Mandatory = $true)]
-    [Alias('ProjectID')]
-    [int]$ID,
+    [Alias('ID')]
+    [int]$ProjectID,
 
     #The commit hash or name of a repository branch or tag
     [Parameter(HelpMessage = 'Commit Reference(hash|branchname|tagname)',
