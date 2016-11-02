@@ -1,20 +1,28 @@
 ﻿function Get-GitLabProjectRepositoryCommitDiff
 {
   <#
-      .Synopsis
-      Get the diff of a commit in a project.
+      .SYNOPSIS
+      Get Diff of a commit of a project
       .DESCRIPTION
-      Get the diff of a commit in a project.
-      .Example
+      The Get-GitLabProjectRepositoryCommitDiff function retrieves the diffs for a specified commit
+      .EXAMPLE
+      Get-GitLabProjectRepositoryCommitDiff-ID 20 -SHA 5a411e1
+      ---------------------------------------------------------------
+      gets the diff on commit 5a411e1 for project 20.
+      .EXAMPLE
+      Get-GitLabProjectRepositoryCommitDiff-ID 20 -SHA master
+      ---------------------------------------------------------------
+      gets the diff on branch master for project 20.
   #>
   [CmdletBinding()]
   [Alias()]
   [OutputType()]
   Param
   (
-    #The ID of a project
+    #The ID of the project
     [Parameter(HelpMessage = 'The ID of a project',
     Mandatory = $true)]
+    [Alias('ProjectID')]
     [int]$ID,
 
     #The commit hash or name of a repository branch or tag
@@ -22,6 +30,7 @@
     Mandatory = $true)]
     [String]$sha,
 
+    # Existing GitlabConnector Object, can be retrieved with Get-GitlabConnect
     [Parameter(HelpMessage = 'Specify Existing GitlabConnector',
         Mandatory = $false,
     DontShow = $true)]

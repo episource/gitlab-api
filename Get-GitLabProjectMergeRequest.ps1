@@ -1,43 +1,61 @@
 ﻿function Get-GitLabProjectMergeRequest
 {
   <#
-      .Synopsis
-      Shows information about merge requests for this project.
+      .SYNOPSIS
+      Gets Merge Request for project.
       .DESCRIPTION
-      Shows information about merge requests for this project.
-      .Example
+      Get Merge Request for Project. Gets all Merge Requests for Project by default.
+      can be filtered by state using -State.
+
+      Returns single Merge Request when -MergeRequestID is specified.
+
+      Retrieves changes associated with merge request when -IncludeChanges is specified.
+      .EXAMPLE
+      Get-GitLabProjectMergeRequest -ProjectID 20 
+      ---------------------------------------------------------------
+      gets all merge request created under project 20
+      .EXAMPLE
+      Get-GitLabProjectMergeRequest -ProjectID 20 -MergeRequestID 8 
+      ---------------------------------------------------------------
+      gets merge request 8 project 20
+      .EXAMPLE
+      Get-GitLabProjectMergeRequest -ProjectID 20 -MergeRequestID 8 -IncludeChanges 
+      ---------------------------------------------------------------
+      gets merge request 8 project 20 and includes all changes.
   #>
   [CmdletBinding(defaultParameterSetName = 'AllMergeRequests')]
   [Alias()]
   [OutputType()]
   Param
   (
-    # Param1 help description
+    #The ID of a project
     [Parameter(HelpMessage = 'ProjectID',
-    Mandatory = $true)]
+        Mandatory = $true)]
     [Alias('ProjectID')]
     [string]$ID,
 
-    # Return all requests or just those that are merged, opened or closed
+    # When specified returns only Merge Request that are merged, opened or closed
     [Parameter(ParameterSetName = 'AllMergeRequests',
-    HelpMessage = 'state (merged|opened|closed)')]
+        HelpMessage = 'State (merged|opened|closed)')]
     [ValidateSet('merged','opened','closed')]
-    [string]$state,
+    [string]$State,
 
-    # The ID of MR
+    # Only return the Merge Rquest with specified ID.
     [Parameter(ParameterSetName = 'SingleMergeRequest',
         HelpMessage = 'The ID of MR',
-    Mandatory = $true)]
+        Mandatory = $true)]
     [Alias('merge_request_id')]
     [string]$MergeRequestID,
 
+    # Adds Changes merged with Merge Request to returned object. 
     [Parameter(ParameterSetName = 'SingleMergeRequest',
-    HelpMessage = 'Include changes')]
+        HelpMessage = 'Include changes')]
     [switch]$IncludeChanges,
 
+    # Existing GitlabConnector Object, can be retrieved with Get-GitlabConnect
     [Parameter(HelpMessage = 'Specify Existing GitlabConnector',
         Mandatory = $false,
-    DontShow = $true)]
+        DontShow = $true)]
     [psobject]$GitlabConnect = (Get-GitlabConnect)
   )
 

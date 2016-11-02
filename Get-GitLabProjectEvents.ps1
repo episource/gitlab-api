@@ -1,23 +1,27 @@
 ﻿function Get-GitLabProjectEvents
 {
   <#
-      .Synopsis
-      Get the events for the specified project.
+      .SYNOPSIS
+      Gets GitLab Project Events.
       .DESCRIPTION
-      Get the events for the specified project. Sorted from newest to latest.
+      Gets GitLab Project Events. 
+      .EXAMPLE
+      Get-GitLabProjectEvents -ProjectID 20
+      ---------------------------------------------------------------
+      Gets events for project 20
   #>
   [CmdletBinding()]
   [Alias()]
   [OutputType()]
   Param
   (
-    # Param1 help description
-    [Parameter(ParameterSetName = 'The ID of a project',
-        HelpMessage = 'ProjectID',
+    # The ID of the project
+    [Parameter(HelpMessage = 'ProjectID',
     Mandatory = $true)]
     [Alias('ProjectID')]
     [int]$id,
 
+    # Existing GitlabConnector Object, can be retrieved with Get-GitlabConnect
     [Parameter(HelpMessage = 'Specify Existing GitlabConnector',
         Mandatory = $false,
     DontShow = $true)]

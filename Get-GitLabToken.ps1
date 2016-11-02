@@ -1,5 +1,23 @@
 ﻿Function Get-GitLabToken 
 {
+  <#
+      .SYNOPSIS
+      Get persisted gitlab token
+      .DESCRIPTION
+      TThe Get-GitLabToken returns all persisted API token objects available for the current user and system.
+      When -Active is specified only the active (default) token will be returned.
+
+      Tokens can be set to active using set-gitlabToken
+      .EXAMPLE
+      Get-GitLabToken
+      ---------------------------------------------------------------
+      Get all persistant Gitlab tokens.
+      .EXAMPLE
+      Get-GitLabToken -Active
+      ---------------------------------------------------------------
+      Gets the active GitLab token.
+
+  #>
   param(
     #returns only the active gitlabtoken
     [switch]$active

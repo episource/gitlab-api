@@ -1,11 +1,16 @@
 ﻿function Compare-GitLabProjectRepositoryCommit
 {
   <#
-      .Synopsis
-      Compares branches, tags or commits
+      .SYNOPSIS
+      Compares 2 commits
       .DESCRIPTION
-      Compares branches, tags or commits
-      .Example
+      Compares 2 commits by branch, tag or commits. 
+      one is the reference and the other is the target. 
+      returns the difference in commits and in files.
+      .EXAMPLE
+      Compare-GitLabProjectRepositoryCommit -ProjectID 20 -Reference 'master' -target 2484458d2f97c5e0263406065f83be0fa8b75d92
+      ---------------------------------------------------------------
+      compares the branch master with commit 2484458d2f97c5e0263406065f83be0fa8b75d92
   #>
   [CmdletBinding()]
   [Alias()]
@@ -30,6 +35,7 @@
     [Alias('to')]
     [String]$Target,
 
+    #Existing GitlabConnector Object, can be retrieved with Get-GitlabConnect
     [Parameter(HelpMessage = 'Specify Existing GitlabConnector',
         Mandatory = $false,
     DontShow = $true)]

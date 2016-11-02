@@ -1,23 +1,27 @@
 ﻿function Invoke-GitLabProjectFork
 {
   <#
-      .Synopsis
-      Archives the specified GitlabProject
+      .SYNOPSIS
+      Forks a gitlab project.
       .DESCRIPTION
-      Archives the specified GitlabProject. use invoke-gitlabprojectunarchive to make it available again
+      Forks a gitlab project to the namespace of the authenticated user.
+      .EXAMPLE
+      Invoke-GitLabProjectFork -ProjectID 1
+      --------------------------------------------------------------
+      Forks project 1
   #>
   [CmdletBinding(ConfirmImpact='High')]
   [Alias()]
   [OutputType()]
   Param
   (
-    # Param1 help description
-    [Parameter(ParameterSetName = 'The ID of a project',
-        HelpMessage = 'ProjectID',
+    # The ID of the project
+    [Parameter(HelpMessage = 'ProjectID',
     Mandatory = $true)]
     [Alias('ProjectID')]
     [int]$id,
 
+    # Existing GitlabConnector Object, can be retrieved with Get-GitlabConnect
     [Parameter(HelpMessage = 'Specify Existing GitlabConnector',
         Mandatory = $false,
     DontShow = $true)]

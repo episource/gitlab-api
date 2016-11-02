@@ -1,11 +1,17 @@
 ﻿function Get-GitLabProjectMilestone
 {
   <#
-      .Synopsis
-      get Milestones
+      .SYNOPSIS
+      Gets Milestone for project.
       .DESCRIPTION
-      Get all labels for a given project.
-      .Example
+      Gets Milestone for Project. Gets all Milestone for Project by default.
+      can be filtered by state using -State.
+
+      Returns single Milestone when -MilestoneID is specified.
+      .EXAMPLE
+      Get-GitLabProjectMilestone -ProjectID 20
+      ---------------------------------------------------------------
+      gets all milestones created under project 20
   #>
   [CmdletBinding(DefaultParameterSetName = 'AllMilestones')]
   [Alias()]

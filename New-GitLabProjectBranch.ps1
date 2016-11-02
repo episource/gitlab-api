@@ -1,47 +1,56 @@
 ﻿function New-GitLabProjectBranch
 {
   <#
-      .Synopsis
-      Create a Repository Branch
+      .SYNOPSIS
+      Create a new branch in a projects repository.
       .DESCRIPTION
-      Create a Repository branch for specified project from specified reference. Reference can be passed as Sha or BranchName
+      The New-GitLabProjectBranch function creates a new branch in the repository.
+      The source branch can be specified via sha or commit.
       .EXAMPLE
-      Example of how to use this cmdlet
-  #>[CmdletBinding(DefaultParameterSetName = 'FromBranch')]
+      New-GitLabProjectBranch -ProjectID 20 -Name staging -SourceBranch master
+      ---------------------------------------------------------------
+      Creates a new branch named staging from master in project 20
+      .EXAMPLE
+      New-GitLabProjectBranch -ProjectID 20 -Name staging -SourceSHA 5a411e1
+      ---------------------------------------------------------------
+      Creates a new branch named staging from commit 5a411e1 in project 20
+  #>
+  [CmdletBinding(DefaultParameterSetName = 'FromBranch')]
   [Alias()]
   [OutputType()]
   Param
   (
-    #The Id of a project
+    # The Id of the project
     [Parameter(HelpMessage = 'The Id of a project',
     Mandatory = $true)]
     [Alias('ProjectID')]
     [int]$ID,
 
-    #The name of the branch
+    # The name of the branch new branch
     [Parameter(HelpMessage = 'The name of the branch',
     Mandatory = $true)]
     [Alias('branch_name','BranchName')]
     [String]$Name,
 
-    #The branch Name to create branch from.
+    # The branch Name to create branch from.
     [Parameter(ParameterSetName = 'FromBranch',
         HelpMessage = 'The branch Name to create branch from.',
     Mandatory = $true)]
     [String]$SourceBranch,
 
-    #The commit SHA to create branch from.
+    # The commit SHA to create branch from.
     [Parameter(ParameterSetName = 'FromSHA',
         HelpMessage = 'The commit SHA to create branch from.',
     Mandatory = $true)]
     [String]$SourceSHA,
 
-    #Specify Existing GitlabConnector
+    # Specify Existing GitlabConnector
     [Parameter(HelpMessage = 'Specify Existing GitlabConnector',
         Mandatory = $false,
     DontShow = $true)]
     [gitlabconnect]$GitlabConnect = (Get-GitlabConnect),
 
+    # Passthru the created Branch
     [Parameter(HelpMessage = 'Passthru the created project',
     Mandatory = $false)]
     [switch]$PassThru

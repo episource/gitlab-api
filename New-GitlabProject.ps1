@@ -1,82 +1,119 @@
-﻿function New-GitlabProject
+﻿function New-GitLabProject
 {
     <#
-    .Synopsis
-        Creates new project in gitlab
+      .SYNOPSIS
+      GCreate a new Project
+      .DESCRIPTION
+      The New-GitLabProject function creates a new project.
+      Defaults namespace to current user's namespace and path on name.
+
+      returns new project when -PassThru is specified
+      .EXAMPLE
+      New-GitLabProject -Name 'GitLab-API'
+      ---------------------------------------------------------------
+      creates a new project named 'Gitlab-API'
+      .EXAMPLE
+      New-GitLabProject -Name 'GitLab-API' -PassThru
+      ---------------------------------------------------------------
+      creates a new project named 'Gitlab-API' and returns the projects object
+      .EXAMPLE
+      New-GitLabProject -Name 'GitLab-API' -container_registry_enabled $true
+      ---------------------------------------------------------------
+      Creates a new project named 'Gitlab-API' with container Registry enabled.
     #>
     [CmdletBinding(DefaultParameterSetName='VisibilityCustom')]
     [Alias()]
     [OutputType()]
     Param
     (
+        #The Name of the new project
         [Parameter(HelpMessage='new project name',
                    Mandatory=$true)]
-        [string]$name,
+        [string]$Name,
 
+        #custom repository name for new project. By default generated based on name
         [Parameter(HelpMessage='custom repository name for new project. By default generated based on name',
                    Mandatory=$false)]
         [string]$path,
 
+        #namespace for the new project (defaults to user)
         [Parameter(HelpMessage='namespace for the new project (defaults to user)',
                    Mandatory=$false)]
         [int]$namespace_id,
 
+        # Short project description
         [Parameter(HelpMessage='short project description',
                    Mandatory=$false)]
         [string]$description,
 
+        # Specify if issues are enabled for this project
         [Parameter(HelpMessage='Are issues enabled for this project',
                    Mandatory=$false)]
         [boolean]$issues_enabled,
 
+        # Specify if Merge Requests are enabled for this project
         [Parameter(HelpMessage='Are Merge Requests enabled for this project',
                    Mandatory=$false)]
         [boolean]$merge_requests_enabled,
 
+        # Specify if builds are enabled for this project
         [Parameter(HelpMessage='Are Builds enabled for this project',
                    Mandatory=$false)]
         [boolean]$builds_enabled,
 
+        # Specify if a wiki is enabled for this project
         [Parameter(HelpMessage='is the wiki enabled for this project',
                    Mandatory=$false)]
         [boolean]$wiki_enabled,
 
+        # Specify if snippets are enabled for this project
         [Parameter(HelpMessage='are snippets enabled for this project',
                    Mandatory=$false)]
         [boolean]$snippets_enabled,
 
+        # Specify if Issues are enabled for this project
         [Parameter(HelpMessage='are issues enabled for this project',
                    Mandatory=$false)]
         [boolean]$container_registry_enabled,
 
+        # Specify if Shared runners are enabled for this project
         [Parameter(HelpMessage='are shared runners enabled for this project',
                    Mandatory=$false)]
         [boolean]$shared_runners_enabled,
 
+        # Specify Project Visibility
+        # Private. visibility_level is 0. Project access must be granted explicitly for each user. 
+        # Internal. visibility_level is 10. The project can be cloned by any logged in user. 
+        # Public. visibility_level is 20. The project can be cloned without any authentication.
         [Parameter(ParameterSetName = 'VisibilityCustom',
                     HelpMessage = "Private. visibility_level is 0. Project access must be granted explicitly for each user. `r`n Internal. visibility_level is 10. The project can be cloned by any logged in user. `r`n Public. visibility_level is 20. The project can be cloned without any authentication.",
                     Mandatory = $false)]
         [validateset(0,10,20)]
         [int]$visibility_level,
 
+        # Is Visibility Public, if true same as setting visibility_level = 20
         [Parameter(ParameterSetName = 'VisibilityPublic',
                     HelpMessage='if true same as setting visibility_level = 20',
                    Mandatory=$false)]
         [switch]$public,
 
+        # Sepecify Import URL, used to import a project from an external repository.
         [Parameter(HelpMessage='use an import url to import the project',
                    Mandatory=$false)]
         [string]$import_url,
 
+        # Specify if builds are publicly accessible
         [Parameter(HelpMessage='are build public',
                    Mandatory=$false)]
         [boolean]$public_builds,
 
+        # Existing GitlabConnector Object, can be retrieved with Get-GitlabConnect
         [Parameter(HelpMessage = 'Specify Existing GitlabConnector',
                 Mandatory = $false,
         DontShow = $true)]
         [psobject]$GitlabConnect = (Get-GitlabConnect),
 
+        # Passthru the created project
         [Parameter(HelpMessage='Passthru the created project',
                    Mandatory=$false)]
         [switch]$PassThru

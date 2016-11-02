@@ -1,17 +1,36 @@
 ﻿function Get-GitLabProjectRepositoryTree
 {
   <#
-      .Synopsis
-      Get a list of repository files and directories in a project.
+      .SYNOPSIS
+      Get a list of Repository files and directories in a project.
       .DESCRIPTION
-      Get a list of repository files and directories in a project.
+      Get a list of Repository files and directories in a project. 
+      By deafult only shows files and folders in the root of the project for the default branch.
+      -Path can be passed to dig down into the directory structure.
+      to specify a different branch of commit -ReferenceName can be used.
+      .EXAMPLE
+      Get-GitLabProjectRepositoryTree -ProjectID 20
+      ---------------------------------------------------------------
+      retrieves all files for project 20.
+      Returns all the files and folders for the default branch in the repository root.
+      .EXAMPLE
+      Get-GitLabProjectRepositoryTree -ProjectID 20 -Path bin/
+      ---------------------------------------------------------------
+      retrieves all files for project 20 in folder bin/.
+      Returns all the files and folders for the default branch in bin/.
+      .EXAMPLE
+      Get-GitLabProjectRepositoryTree -ProjectID 20 -ReferenceName staging
+      ---------------------------------------------------------------
+      retrieves all files for project 20 in branch staging.
+      Returns all the files and folders for the branch staging.
+
   #>
   [CmdletBinding()]
   [Alias('Get-GitLabRepository')]
   [OutputType()]
   Param
   (
-    # The ID of a project
+    # The ID of the project
     [Parameter(HelpMessage = 'ProjectID',
     Mandatory = $true)]
     [Alias('ProjectID')]

@@ -1,33 +1,41 @@
 ﻿function Register-GitLabProjectLabelSubscription
 {
   <#
-      .Synopsis
-      Subscribes the authenticated user to a label
+      .SYNOPSIS
+      Subscribes the authenticated user to a label.
       .DESCRIPTION
-      Subscribes the authenticated user to a label to receive notifications.
-      .Example
+      the Register-GitLabProjectLabelSubscription function subscribes the authenticated user to a label to receive notifications.
+
+      Use -PassThru to return the updated label.
+      .EXAMPLE
+      Register-GitLabProjectLabelSubscription -ProjectID 20 -Name 'Type:Bug'
+      ---------------------------------------------------------------
+      Sets up a subscription to label 'Type:Bug' for the authenticated user.
   #>
   [CmdletBinding()]
   [Alias()]
   [OutputType()]
   Param
   (
-    # Param1 help description
+    # The ID of the project
     [Parameter(HelpMessage = 'ProjectID',
     Mandatory = $true)]
     [Alias('ProjectID')]
-    [int]$id,
+    [int]$ID,
 
+    # The Name of the Label
     [Parameter(HelpMessage = 'Label Name',
     Mandatory = $true)]
     [Alias()]
-    [string]$name,
+    [string]$Name,
 
+    #Specify Existing GitlabConnector
     [Parameter(HelpMessage = 'Specify Existing GitlabConnector',
         Mandatory = $false,
     DontShow = $true)]
     [psobject]$GitlabConnect = (Get-GitlabConnect),
 
+    #Return the updated Label
     [Parameter(HelpMessage = 'Passthru the label',
     Mandatory = $false)]
     [switch]$PassThru

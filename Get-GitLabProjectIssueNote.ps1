@@ -1,11 +1,19 @@
 ﻿function Get-GitLabProjectIssueNote
 {
   <#
-      .Synopsis
-      Get Notes for a single issue.
+      .SYNOPSIS
+      Get Issue Note
       .DESCRIPTION
-      Get Notes for a single issue.
-      .Example
+      Get note for specified issue. 
+      Returnes all notes by default, Specify -NoteID to return single note.
+      .EXAMPLE
+      Get-GitLabProjectIssueNote -ProjectID 20 -IssueID 1
+      ---------------------------------------------------------------
+      get all notes for project 20 and issue 1
+      .EXAMPLE
+      Get-GitLabProjectIssueNote -ProjectID 20 -IssueID 1 -NoteID 3
+      ---------------------------------------------------------------
+      gets note 3 for project 20 and issue 1 
   #>
   [CmdletBinding(DefaultParameterSetName = 'AllNotes')]
   [Alias()]
@@ -13,9 +21,8 @@
   Param
   (
     #The ID of a project
-    [Parameter(
-        HelpMessage = 'ProjectID',
-    Mandatory = $true)]
+    [Parameter(HelpMessage = 'ProjectID',
+        Mandatory = $true)]
     [Alias('ProjectID')]
     [string]$ID,
 
@@ -27,13 +34,14 @@
     #The ID of a issues note
     [Parameter(ParameterSetName = 'SingleNote',
         HelpMessage = 'NoteID',
-    Mandatory = $true)]
+        Mandatory = $true)]
     [Alias('note_id')]
     [string]$NoteID,
 
+    # Existing GitlabConnector Object, can be retrieved with Get-GitlabConnect
     [Parameter(HelpMessage = 'Specify Existing GitlabConnector',
         Mandatory = $false,
-    DontShow = $true)]
+        DontShow = $true)]
     [psobject]$GitlabConnect = (Get-GitlabConnect)
   )
 

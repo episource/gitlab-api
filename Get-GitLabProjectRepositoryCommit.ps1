@@ -1,22 +1,35 @@
 ﻿function Get-GitLabProjectRepositoryCommit
 {
   <#
-      .Synopsis
-      Get a list of repository commits in a project.
+      .SYNOPSIS
+      Get project commit history.
       .DESCRIPTION
-      Get a list of repository commits in a project.
-      .Example
+      Get project commit history. returns full history for deafult branch by default.
+      using -ReferenceName a different branch, tag or commit can be specified.
+      to retrieve commits for a speceific timeframe use -StartTime and -EndTime.
+
+      to retrieve a single commit specify the commit with -SHA
+      .EXAMPLE
+      Get-GitLabProjectRepositoryCommit -ProjectID 20
+      ---------------------------------------------------------------
+      retrieves all commits composing the default branch.
+      .EXAMPLE
+      Get-GitLabProjectRepositoryCommit -StartTime (Get-Date).addDays(-2) -Endtime (Get-Date)
+      ---------------------------------------------------------------
+      retrieves all commits composing the default branch between now and 2 days ago.
   #>
   [CmdletBinding(defaultParameterSetName = 'AllCommits')]
   [Alias()]
   [OutputType()]
   Param
   (
+    # The ID of a project
     [Parameter(HelpMessage = 'The ID of a project',
     Mandatory = $true)]
-    [int]$id,
+    [Alias('ProjectID')]
+    [int]$ID,
 
-    #The name of a repository branch or tag or if not given the default branch
+    # The name of a repository branch or tag or if not given the default branch
     [Parameter(ParameterSetName = 'AllCommits',
         HelpMessage = 'name of a repository branch or tag',
     Mandatory = $false)]
@@ -37,12 +50,13 @@
     [Alias('until')]
     [datetime]$EndTime,
 
-    #The commit hash or name of a repository branch or tag
+    # The commit hash or name of a repository branch or tag
     [Parameter(ParameterSetName = 'SingleCommit',
         HelpMessage = 'Commit Reference(hash|branchname|tagname)',
     Mandatory = $true)]
     [String]$sha,
-
+    
+    # Existing GitlabConnector Object, can be retrieved with Get-GitlabConnect
     [Parameter(HelpMessage = 'Specify Existing GitlabConnector',
         Mandatory = $false,
     DontShow = $true)]

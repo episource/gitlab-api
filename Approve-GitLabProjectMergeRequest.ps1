@@ -1,55 +1,68 @@
 ﻿function Approve-GitLabProjectMergeRequest
 {
   <#
-      .Synopsis
-      Merge changes submitted with MR using this API.
+      .SYNOPSIS
+      Merge changes submitted with MR.
       .DESCRIPTION
-      Merge changes submitted with MR using this API.
+      Merge changes submitted with MR.
 
       If the -sha parameter is passed and does not match the HEAD of the source - you'll get a 409 and the error message 'SHA does not match HEAD of source branch'
 
-      If the -ShouldRemoveSourceBranch parameter is passed teh source brances is removed after the merge.
-
-      .Example
+      If the -ShouldRemoveSourceBranch parameter is passed the source brances is removed after the merge.
+      .EXAMPLE
+      Approve-GitLabProjectMergeRequest -ProjectID 20 -MergeRequestID 1
+      ---------------------------------------------------------------
+      Approves Merge Request 1 for Gitlabproject 20      
+      .EXAMPLE
+      Approve-GitLabProjectMergeRequest -ProjectID 20 -MergeRequestID 1 -ShouldRemoveSourceBranch
+      ---------------------------------------------------------------
+      Approves Merge Request 1 for Gitlabproject 20 and removes sourcebranch
   #>
   [CmdletBinding()]
   [Alias()]
   [OutputType()]
   Param
   (
-    [Parameter(
-        HelpMessage = 'ProjectID',
+    # The ID of the project
+    [Parameter(HelpMessage = 'ProjectID',
     Mandatory = $true)]
     [Alias('ProjectID')]
     [string]$ID,
     
-    [Parameter(
-        HelpMessage = 'MergeRequestID',
+    # The ID of the MergeRequest
+    [Parameter(HelpMessage = 'MergeRequestID',
     Mandatory = $true)]
     [Alias('MRID')]
     [string]$MergeRequestID,
 
-    [Parameter(HelpMessage = 'Custom merge commit message',mandatory = $false)]
+    # Add a Custom merge commit message for the Merge
+    [Parameter(HelpMessage = 'Custom merge commit message'
+    ,mandatory = $false)]
     [alias('merge_commit_message')]
     [string]$MergeCommitMessage,
 
+    # If Specified removes the source branch after Merge
     [Parameter(HelpMessage = 'removes the source branch')]
     [Alias('should_remove_dource_branch')]
     [switch]$ShouldRemoveSourceBranch,
 
+    # If Specified will only merge when build succeeds
     [Parameter(HelpMessage = 'MR is merged when the build succeeds')]
     [Alias('merge_when_build_succeeds')]
     [switch]$MergeWhenBuildSucceeds,
 
-    [Parameter(HelpMessage = 'this SHA must match the HEAD of the source branch, otherwise the merge will fail')]
+    # this SHA must match the HEAD of the source branch, otherwise the merge will fail
+    [Parameter(HelpMessage = 'Merge should match SHA')]
     [String]$sha,
 
+    # Existing GitlabConnector Object, can be retrieved with Get-GitlabConnect
     [Parameter(HelpMessage = 'Specify Existing GitlabConnector',
         Mandatory = $false,
     DontShow = $true)]
     [psobject]$GitlabConnect = (Get-GitlabConnect),
 
-    [Parameter(HelpMessage = 'Passthru the created project',
+    # Returns the modified Merge Request. By default, this cmdlet does not generate any output.
+    [Parameter(HelpMessage = 'Passthru the modified Merge Request',
     Mandatory = $false)]
     [switch]$PassThru
   )

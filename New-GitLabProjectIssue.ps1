@@ -1,52 +1,76 @@
 ﻿function New-GitLabProjectIssue
 {
   <#
-      .Synopsis
+      .SYNOPSIS
       Creates a new project issue.
       .DESCRIPTION
-      Creates a new project issue for a given project.
-      .Example
+      The New-GitLabProjectIssue functions creates a new function in the specified project.
+      .EXAMPLE
+      New-GitLabProjectIssue -ProjectID 20 -Title 'Important Issue'
+      ---------------------------------------------------------------
+      Creates the Issue title 'Important Issue' in project woth ID 20
+      .EXAMPLE
+      New-GitLabProjectIssue -ProjectID 20 -Title 'Important Issue' -PassThru
+      ---------------------------------------------------------------
+      Creates the Issue title 'Important Issue' in project woth ID 20 and returns the new issue.
   #>
   [CmdletBinding()]
   [Alias()]
   [OutputType()]
   Param
   (
+    #The Id of the project
     [Parameter(HelpMessage = 'ProjectID',
     Mandatory = $true)]
     [Alias('ProjectID')]
     [int]$ID,
 
-    [Parameter(Helpmessage = 'The title of an issue', mandatory = $true)]
+    # The title of the new issue
+    [Parameter(Helpmessage = 'The title of an issue', 
+    mandatory = $true)]
     [string]$Title,
 
-    [Parameter(Helpmessage = 'The description of the issue',mandatory = $false)]
+    # The description of the new issue
+    [Parameter(Helpmessage = 'The description of the issue',
+    mandatory = $false)]
     [string]$Description,
     
-    [Parameter(Helpmessage = 'The ID of a user to assign issue',mandatory = $false)]
+    # Specify the user to assign the issue
+    [Parameter(Helpmessage = 'The ID of a user to assign issue',
+    mandatory = $false)]
     [Alias('assignee_id')]
     [int]$AssigneeID,
     
-    [Parameter(Helpmessage = 'The ID of a milestone to assign issue',mandatory = $false)]
+    # Specify the ID of the milestone to assign the issue
+    [Parameter(Helpmessage = 'The ID of a milestone to assign issue',
+    mandatory = $false)]
     [Alias('milestone_id')]
     [int]$MilestoneID,
     
-    [Parameter(HelpMessage = 'label names for an issue',mandatory = $false)]
+    # Specify the labels for the new issue
+    [Parameter(HelpMessage = 'label names for an issue',
+    mandatory = $false)]
     [string[]]$Labels,
 
-    [Parameter(Helpmessage = 'the date the issue was created',mandatory = $false)]
+    # Specify the date the issue was created 
+    [Parameter(Helpmessage = 'the date the issue was created',
+    mandatory = $false)]
     [alias('created_at')]
     [datetime]$CreatedAt,
 
-    [Parameter(Helpmessage = 'the due date of the issue',mandatory = $false)]
+    # Specify the due date for the issue
+    [Parameter(Helpmessage = 'the due date of the issue',
+    mandatory = $false)]
     [alias('due_date')]
     [datetime]$DueDate,
 
+    # Specify Existing GitlabConnector
     [Parameter(HelpMessage = 'Specify Existing GitlabConnector',
         Mandatory = $false,
     DontShow = $true)]
     [psobject]$GitlabConnect = (Get-GitlabConnect),
 
+    # Passthru the created Issue
     [Parameter(HelpMessage = 'Passthru the created project',
     Mandatory = $false)]
     [switch]$PassThru

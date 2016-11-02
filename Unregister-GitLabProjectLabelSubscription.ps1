@@ -1,34 +1,42 @@
 ﻿function Unregister-GitLabProjectLabelSubscription
 {
   <#
-      .Synopsis
-      Unsubscribes the authenticated user to a label
+      .SYNOPSIS
+      Unsubscribes the authenticated user from a label.
       .DESCRIPTION
-      Unsubscribes the authenticated user from a label to not receive notifications from it.
-      .Example
+      the UnRegister-GitLabProjectLabelSubscription function unsubscribes the authenticated user from a label.
+
+      Use -PassThru to return the updated label.
+      .EXAMPLE
+      unregister-GitLabProjectLabelSubscription -ProjectID 20 -Name 'Type:Bug'
+      ---------------------------------------------------------------
+      Removes the subscription to label 'Type:Bug' for the authenticated user.
   #>
   [CmdletBinding()]
   [Alias()]
   [OutputType()]
   Param
   (
-    # Param1 help description
+    # ID of the project
     [Parameter(HelpMessage = 'ProjectID',
     Mandatory = $true)]
     [Alias('ProjectID')]
     [int]$id,
 
+    # The name of the label
     [Parameter(HelpMessage = 'Label Name',
     Mandatory = $true)]
     [Alias()]
     [string]$name,
 
+    # Specify Existing GitlabConnector
     [Parameter(HelpMessage = 'Specify Existing GitlabConnector',
         Mandatory = $false,
     DontShow = $true)]
     [psobject]$GitlabConnect = (Get-GitlabConnect),
 
-    [Parameter(HelpMessage = 'Passthru the label',
+    # PassThru the modified label.
+    [Parameter(HelpMessage = 'Passthru the modified label',
     Mandatory = $false)]
     [switch]$PassThru
   )

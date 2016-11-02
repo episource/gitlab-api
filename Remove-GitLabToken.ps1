@@ -1,11 +1,25 @@
 ﻿Function Remove-GitLabToken 
 {
+  <#
+      .SYNOPSIS
+      Remove Token from local GitLab-API instance.
+      .DESCRIPTION
+      The Remove-GitLabToken function removes a token from the local GitLab-API instance.
+      IDs for tokens can be retrievd via Get-GitLabToken.
+      .EXAMPLE
+      Remove-GitLabToken -id 30b4bcdb-7094-484d-b537-8e9ff8e58995
+      ---------------------------------------------------------------
+      Removes the token with id 30b4bcdb-7094-484d-b537-8e9ff8e58995 from teh local gitlab instance
+  #>
+  [CmdletBinding()]
+  [Alias()]
+  [OutputType()]
   param(
-    #Hostname 
+    # ID of the key, can be retrieved via Get-GitLabToken.
     [Parameter(Mandatory = $true)]
     [string]$ID
   )
-  #region check for key  
+  # region check for key  
   $Keyitem = Import-Clixml $script:GitlabKeyfile 
   $removekey  = $Keyitem.keys.where({
       $_.id -eq $ID

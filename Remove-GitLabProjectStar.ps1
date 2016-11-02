@@ -1,23 +1,29 @@
 ﻿function Remove-GitLabProjectStar
 {
   <#
-      .Synopsis
+      .SYNOPSIS
       Removes starred status from the specified gitlab project.
       .DESCRIPTION
-      Removes starred status from the specified gitlab project. user Add-GitlabProjectStar to add starred status of project
+      The Remove-GitlabProjectstar function removes starred status from the specified gitlab project. 
+      use Add-GitlabProjectStar to add starred status of project
+      .EXAMPLE
+      Remove-GitLabProjectStar -ProjectID 20
+      ---------------------------------------------------------------
+      Removes the Star from project 20
   #>
   [CmdletBinding()]
   [Alias()]
   [OutputType()]
   Param
   (
-    # Param1 help description
+    # The Project ID
     [Parameter(ParameterSetName = 'The ID of a project',
         HelpMessage = 'ProjectID',
     Mandatory = $true)]
     [Alias('ProjectID')]
     [int]$id,
 
+    # Specify Existing GitlabConnector
     [Parameter(HelpMessage = 'Specify Existing GitlabConnector',
         Mandatory = $false,
     DontShow = $true)]
