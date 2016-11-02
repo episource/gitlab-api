@@ -60,9 +60,9 @@
   )
   
   $httpmethod = 'post'
-  $apiurl = "projects/$id/labels"
+  $apiurl = "projects/$ProjectID/labels"
   $parameters = @{
-    id    = $id
+    id    = $ProjectID
     name  = $name
     color = $Color
   }

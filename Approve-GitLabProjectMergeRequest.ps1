@@ -68,7 +68,7 @@
   )
 
   $HTTPMethod = 'put'
-  $APIUrl = "projects/$ID/merge_requests/$MergeRequestID/merge"
+  $APIUrl = "projects/$ProjectID/merge_requests/$MergeRequestID/merge"
   $Parameters = @{}
 
   if($MergeCommitMessage)

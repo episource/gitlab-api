@@ -114,7 +114,7 @@
         [switch]$PassThru
     )
     $httpmethod = 'put'
-    $apiurl = "projects/$id"
+    $apiurl = "projects/$ProjectID"
     $parameters =@{}
     #name
     if($name){

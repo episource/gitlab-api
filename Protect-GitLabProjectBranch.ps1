@@ -62,7 +62,7 @@
 
     
   $httpmethod = 'put'
-  $apiurl = "projects/$ID/repository/branches/$Branch/protect"
+  $apiurl = "projects/$ProjectID/repository/branches/$Branch/protect"
   $parameters = @{}
 
   if('DevelopersCanPush' -in $PSCmdlet.MyInvocation.BoundParameters.keys)

@@ -60,7 +60,7 @@
   )
 
   $httpmethod = 'get'
-  $apiurl = "/projects/$ID/repository/"
+  $apiurl = "/projects/$ProjectID/repository/"
   $Parameters = @{}
 
     

@@ -54,7 +54,7 @@
   )
 
   $httpmethod = 'get'
-  $apiurl = "projects/$ID/repository/tree"
+  $apiurl = "projects/$ProjectID/repository/tree"
   $Parameters = @{}
 
   if($Path)

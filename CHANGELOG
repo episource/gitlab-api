@@ -1,7 +1,11 @@
 Please view this file on the master branch, on stable branches it's out of date.
 
+v 0.5.1
+  - fix rename ID to ProjectID in functions
+
 v 0.5.0
   - Fix Function Help throughout module
+  - Rename parameter ID to ProjectID
 
 v 0.4.1
   - Fix module not working without IE engine. 

@@ -9,7 +9,7 @@
       By passing -Starred or -Owned only starred or owned projects are returned.
       By passing -Archived or -Visibility ('public','internal','private') results can be further narrowed.
 
-      if you have the ID of a project you can specify the projectID by passing $ID
+      if you have the ID of a project you can specify the projectID by passing $ProjectID
       .EXAMPLE
       Get-GitLabProject
       ---------------------------------------------------------------
@@ -105,7 +105,7 @@
     
     if($PSCmdlet.ParameterSetName -eq 'SingleProject')
     {
-        $apiurl += "/$id"
+        $apiurl += "/$ProjectID"
     }
 
     $GitlabConnect.callapi($apiurl,$httpmethod,$parameters)

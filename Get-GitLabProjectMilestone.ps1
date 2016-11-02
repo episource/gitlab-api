@@ -38,7 +38,7 @@
   )
   
   $httpmethod = 'get'
-  $apiurl = "projects/$id/milestones"
+  $apiurl = "projects/$ProjectID/milestones"
   $parameters = @{}
   if($State)
   {

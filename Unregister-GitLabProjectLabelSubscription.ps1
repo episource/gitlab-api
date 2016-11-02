@@ -42,7 +42,7 @@
   )
 
   $httpmethod = 'delete'
-  $apiurl = "projects/$id/labels/$name/subscription"
+  $apiurl = "projects/$ProjectID/labels/$name/subscription"
 
   $newlabel = $GitlabConnect.callapi($apiurl,$httpmethod)
 

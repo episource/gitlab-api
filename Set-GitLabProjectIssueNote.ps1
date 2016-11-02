@@ -58,7 +58,7 @@
   )
 
   $httpmethod = 'put'
-  $apiurl = "projects/$ID/issues/$IssueID/notes/$NoteID"
+  $apiurl = "projects/$ProjectID/issues/$IssueID/notes/$NoteID"
   $parameters = @{
     body = $body
   }

@@ -51,14 +51,14 @@
   )
 
   
-  $apiurl = "projects/$ID/repository/tags/$TagName/release"
+  $apiurl = "projects/$ProjectID/repository/tags/$TagName/release"
   $parameters = @{
     description = $ReleaseDescription
   }
   
   try
   {
-    $currenttag = Get-GitLabProjectRepositoryTag -id $ID -TagName $TagName -GitlabConnect $GitlabConnect
+    $currenttag = Get-GitLabProjectRepositoryTag -ProjectID $ProjectID -TagName $TagName -GitlabConnect $GitlabConnect
 
     if($currenttag.release)
     {

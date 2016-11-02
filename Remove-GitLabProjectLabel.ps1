@@ -37,7 +37,7 @@
   )
   
   $httpmethod = 'delete'
-  $apiurl = "projects/$id/labels"
+  $apiurl = "projects/$ProjectID/labels"
   $parameters = @{
     name = $name
   }

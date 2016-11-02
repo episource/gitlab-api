@@ -43,7 +43,7 @@
   )
 
   $httpmethod = 'get'
-  $apiurl = "projects/$ID/repository/branches"
+  $apiurl = "projects/$ProjectID/repository/branches"
   $parameters = @{}
 
   if($PSCmdlet.ParameterSetName -like 'AllBranches')

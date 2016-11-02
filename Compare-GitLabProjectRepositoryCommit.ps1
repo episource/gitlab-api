@@ -43,7 +43,7 @@
     
   )
   $httpmethod = 'get'
-  $apiurl = "projects/$ID/repository/compare"
+  $apiurl = "projects/$ProjectID/repository/compare"
   $Parameters = @{
     from = $Reference
     to   = $Target

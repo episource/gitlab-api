@@ -55,7 +55,7 @@
   )
 
   $httpmethod = 'post'
-  $apiurl = "projects/$ID/issues/$IssueID/notes"
+  $apiurl = "projects/$ProjectID/issues/$IssueID/notes"
   $parameters = @{
     body = $body
   }

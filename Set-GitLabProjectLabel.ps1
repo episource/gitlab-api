@@ -73,9 +73,9 @@
   )
   
   $httpmethod = 'put'
-  $apiurl = "projects/$ID/labels"
+  $apiurl = "projects/$ProjectID/labels"
   $parameters = @{
-    id   = $ID
+    id   = $ProjectID
     name = $Name
   }
 
