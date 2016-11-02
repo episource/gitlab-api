@@ -65,7 +65,7 @@
 
   
   $httpmethod = 'put'
-  $apiurl = "/projects/$ID/repository/files"
+  $apiurl = "/projects/$ProjectID/repository/files"
   $parameters = @{
     'file_path'    = $FilePath
     'branch_name'  = $BranchName

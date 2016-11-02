@@ -29,7 +29,7 @@
   )
 
   $httpmethod = 'post'
-  $apiurl = "projects/$id/star"
+  $apiurl = "projects/$ProjectID/star"
   $parameters = @{}
 
   $GitlabConnect.callapi($apiurl,$httpmethod,$parameters)

@@ -35,7 +35,7 @@
   )
 
   $httpmethod = 'get'
-  $apiurl = "projects/$ID/repository/commits/$sha/comments"
+  $apiurl = "projects/$ProjectID/repository/commits/$sha/comments"
   $parameters = @{}
 
   $GitlabConnect.callapi($apiurl,$httpmethod,$parameters)

@@ -40,7 +40,7 @@
 
     
   $httpmethod = 'put'
-  $apiurl = "projects/$ID/repository/branches/$Branch/unprotect"
+  $apiurl = "projects/$ProjectID/repository/branches/$Branch/unprotect"
   $parameters = @{}
 
   $updatebranch = $GitlabConnect.callapi($apiurl,$httpmethod,$parameters)

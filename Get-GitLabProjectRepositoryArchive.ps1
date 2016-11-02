@@ -61,7 +61,7 @@
     }
 
     $httpmethod = 'get'
-    $apiurl = "/projects/$ID/repository/archive.$ArchiveType"
+    $apiurl = "/projects/$ProjectID/repository/archive.$ArchiveType"
     $Parameters = @{}
 
     if($sha){

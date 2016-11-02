@@ -60,9 +60,9 @@
   )
 
   $httpmethod = 'get'
-  $apiurl = "projects/$ID/merge_requests"
+  $apiurl = "projects/$ProjectID/merge_requests"
   $parameters = @{
-    id = $ID
+    id = $ProjectID
   }
 
   if($PSCmdlet.ParameterSetName -like 'AllMergeRequests')

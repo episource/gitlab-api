@@ -57,7 +57,7 @@
   )
 
   $httpmethod = 'post'
-  $apiurl = "projects/$ID/repository/branches/"
+  $apiurl = "projects/$ProjectID/repository/branches/"
   $parameters = @{
     'branch_name' = $Name
   }

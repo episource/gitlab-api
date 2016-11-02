@@ -65,7 +65,7 @@
   )
 
   $httpmethod = 'post'
-  $apiurl = "projects/$ID/repository/tags"
+  $apiurl = "projects/$ProjectID/repository/tags"
   $parameters = @{
     'tag_name' = $TagName
     'ref'    = $Reference

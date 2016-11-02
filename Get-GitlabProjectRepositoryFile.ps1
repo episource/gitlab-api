@@ -55,7 +55,7 @@
   )
 
   $httpmethod = 'get'
-  $apiurl = "/projects/$ID/repository/files"
+  $apiurl = "/projects/$ProjectID/repository/files"
   $Parameters = @{
     'file_path'=$FilePath
     'ref' =$ReferenceName

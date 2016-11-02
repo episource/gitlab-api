@@ -64,7 +64,7 @@
   )
 
   $httpmethod = 'get'
-  $apiurl = "projects/$id/repository/commits"
+  $apiurl = "projects/$ProjectID/repository/commits"
   $parameters = @{}
 
   if($PSCmdlet.ParameterSetName -eq 'AllCommits')

@@ -42,7 +42,7 @@
   )
 
   $httpmethod = 'get'
-  $apiurl = "projects/$ID/repository/tags"
+  $apiurl = "projects/$ProjectID/repository/tags"
   $parameters = @{}
 
   if($PSCmdlet.ParameterSetName -like 'SingleTag')

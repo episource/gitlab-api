@@ -84,7 +84,7 @@
   )
 
   $HTTPMethod = 'put'
-  $APIUrl = "projects/$ID/merge_requests/$MergeRequestID"
+  $APIUrl = "projects/$ProjectID/merge_requests/$MergeRequestID"
   $Parameters = @{}
   
   if($TargetBranch)

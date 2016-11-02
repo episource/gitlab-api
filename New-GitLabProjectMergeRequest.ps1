@@ -80,7 +80,7 @@
   )
 
   $HTTPMethod = 'post'
-  $APIUrl = "projects/$ID/merge_requests"
+  $APIUrl = "projects/$ProjectID/merge_requests"
   $Parameters = @{
     title         = $Title
     'source_branch' = $SourceBranch

@@ -52,7 +52,7 @@
   )
   
   $httpmethod = 'post'
-  $apiurl = "projects/$ID/milestones"
+  $apiurl = "projects/$ProjectID/milestones"
   $parameters = @{
     title = $Title
   }

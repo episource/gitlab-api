@@ -67,7 +67,7 @@
 
 
   $httpmethod = 'get'
-  $apiurl = "projects/$ID/issues"
+  $apiurl = "projects/$ProjectID/issues"
   $parameters = @{}
 
   if($PSCmdlet.ParameterSetName -like 'AllIssues')
