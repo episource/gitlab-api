@@ -10,7 +10,7 @@
 
       If -Active is used the token will be added as the active token.
       .EXAMPLE
-      Add-GitLabToken -GitLabHostName gitlab.com -Token XXXXXXXXXX
+      Add-GitLabToken -GitLabURI gitlab.com -Token XXXXXXXXXX
       ---------------------------------------------------------------
       Adds a GitlabToken for gitlab.com to the local instance of the powershell gitlab-api
   #>
@@ -18,10 +18,11 @@
   [Alias()]
   [OutputType()]
   param(
-    #Hostname for the Gitlabserver. if url for gitlabserver is https://gitlab.contoso.com, hostname would be gitlab.contoso.com
-    [Parameter(HelpMessage = 'GitlabServer Hostname',
+    #Gitlab URI, e.a. https://gitab.com
+    [Parameter(HelpMessage = 'GitlabServer URI',
     Mandatory = $true)]
-    [string]$GitLabHostName,
+    [ValidatePattern("^(?:http|https):\/\/(?:[\w\.\-\+]+:{0,1}[\w\.\-\+]*@)?(?:[a-z0-9\-\.]+)(?::[0-9]+)?(?:\/|\/(?:[\w#!:\.\?\+=&%@!\-\/\(\)]+)|\?(?:[\w#!:\.\?\+=&%@!\-\/\(\)]+))?$")]
+    [string]$GitLabURI,
 
     #Token supplied from gitlab. This can be an private and an Access Token.
     [Parameter(HelpMessage = 'access token GitlabServer',
@@ -38,7 +39,7 @@
     'PRIVATE-TOKEN' = $Token
   }
       
-  $userurl = "https://$GitLabHostName/api/v3/user"
+  $userurl = "$GitLabURI/api/v3/user"
       
   try
   {
@@ -96,11 +97,11 @@
   foreach($key in $Keyitem.keys)
   {
     if(
-      ($key.gitlabhost -eq $GitLabHostName) -and
+      ($key.gitlabhost -eq $GitLabURI) -and
       ($key.gitlabuser.username -eq $gitlabusername)
     )
     {
-      $errormessage = "Combination of $GitLabHostName and $gitlabusername (user associated with passed token) already exists. remove token before creation."
+      $errormessage = "Combination of $GitLabURI and $gitlabusername (user associated with passed token) already exists. remove token before creation."
       Write-Error $errormessage -Category ResourceExists -ErrorAction Stop
     }
   }
@@ -111,7 +112,7 @@
   $gitlabuser = New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList $gitlabusername, $securekey
   $newkey = [pscustomobject]@{
     ID         = [guid]::NewGuid().ToString()
-    GitLabHost = $GitLabHostName
+    GitLabHost = $GitLabURI
     GitLabUser = $gitlabuser
   }
   #endregion

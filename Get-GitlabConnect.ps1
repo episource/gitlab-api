@@ -10,7 +10,7 @@
 
       Gitlabconnect objects can be passed to all functions to specify a connection to use for interaction with gitlab.
 
-      A gitlabconnectobject can also be generated on the fly by passing -GitlabHostname and -Token 
+      A gitlabconnectobject can also be generated on the fly by passing -GitlabURI and -Token 
       .EXAMPLE
       Get-GitLabConnect
       ---------------------------------------------------------------
@@ -21,12 +21,12 @@
       returns a Connect object based of token 695c6eea-1fc3-4f78-886e-6b7c0f27102e
       tokenid can be retrieved with Get-GitlabToken
       .EXAMPLE
-      Get-GitLabConnect -GitLabHostName gitlab.com -Token XXXXXXXXXX
+      Get-GitLabConnect -GitLabURI gitlab.com -Token XXXXXXXXXX
       ---------------------------------------------------------------
       Returns a Connect object based on passed hostname and token.
       These connect settings are not persistent
       .EXAMPLE
-      $GitLabConnectObj = Get-GitLabConnect -GitLabHostName gitlab.com -Token XXXXXXXXXX
+      $GitLabConnectObj = Get-GitLabConnect -GitLabURI gitlab.com -Token XXXXXXXXXX
       Get-GitLabProject -GitLabConnect $GitLabConnectObj
 
       ---------------------------------------------------------------
@@ -43,10 +43,12 @@
     [Alias('KeyId')]
     [system.guid]$id,
 
-    # Hostname for the Gitlabserver. if url for gitlabserver is https://gitlab.contoso.com, hostname would be gitlab.contoso.com
-    [Parameter(Mandatory = $true,
+    #Gitlab URI, e.a. https://gitab.com
+    [Parameter(HelpMessage = 'GitlabServer URI',
+    Mandatory = $true,
     ParameterSetName='OnTheFly')]
-    [string]$GitLabHostName,
+    [ValidatePattern("^(?:http|https):\/\/(?:[\w\.\-\+]+:{0,1}[\w\.\-\+]*@)?(?:[a-z0-9\-\.]+)(?::[0-9]+)?(?:\/|\/(?:[\w#!:\.\?\+=&%@!\-\/\(\)]+)|\?(?:[\w#!:\.\?\+=&%@!\-\/\(\)]+))?$")]
+    [string]$GitLabURI,
 
     # Token supplied from gitlab. This can be an private and an Access Token.
     [Parameter(Mandatory = $true,
@@ -70,6 +72,6 @@
   
   if($PSCmdlet.ParameterSetName -like 'OnTheFly')
   {
-    return [gitlabconnect]::new($GitLabHostName,$Token)
+    return [gitlabconnect]::new($GitLabURI,$Token)
   }
 }
