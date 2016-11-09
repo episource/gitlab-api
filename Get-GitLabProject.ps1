@@ -40,6 +40,18 @@
         Mandatory = $false)]
         [switch]$Archived,
 
+        # Search for a project.
+        [Parameter(ParameterSetName = 'AllProjects',
+                HelpMessage = 'Search for a project.',
+        Mandatory = $false)]
+        [Parameter(ParameterSetName = 'AllProjectsOwned',
+                HelpMessage = 'Search for a project.',
+        Mandatory = $false)]
+        [Parameter(ParameterSetName = 'AllProjectsStarred',
+                HelpMessage = 'Search for a project.',
+        Mandatory = $false)]
+        [string]$Search,
+
         # Limit the result by visibility
         [Parameter(ParameterSetName = 'AllProjects',
                 HelpMessage = 'limit by visibility public, internal, private',
@@ -92,6 +104,9 @@
         if($visibility)
         {
             $parameters.visibility = $visibility
+        }
+        if($search){
+            $parameters.search=$search
         }
         if($starred)
         {
