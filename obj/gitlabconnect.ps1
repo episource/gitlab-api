@@ -22,7 +22,7 @@ class GitLabConnect {
       'PRIVATE-TOKEN' = $token
     }
       
-    $userurl = "https://$hostname/api/v3/user"
+    $userurl = "$hostname/api/v3/user"
     $errorprop = $null 
     $result = $null   
     try
@@ -89,7 +89,7 @@ class GitLabConnect {
       'PRIVATE-TOKEN' = $User.GetNetworkCredential().Password
     }
       
-    $userurl = "https://$hostname/api/v3/user"
+    $userurl = "$hostname/api/v3/user"
     $errorprop = $null 
     $result = $null   
     try
@@ -250,7 +250,7 @@ class GitLabConnect {
         
     #cleanup url
     $apiurl = $apiurl.TrimStart('/')
-    $userurl = "https://$($this.hostname)/api/v3/$apiurl$parameteruristring"
+    $userurl = "$($this.hostname)/api/v3/$apiurl$parameteruristring"
     $errorprop = $null 
     $resultobj = $null   
     $httpresult = $null
