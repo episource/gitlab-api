@@ -27,7 +27,7 @@ Author = 'thijs de Meester'
 CompanyName = 'tdemeester.nl'
 
 # Copyright statement for this module
-Copyright = '(c) 2016 Thijs de Meester.'
+Copyright = '(c) 2016 Thijs de Meester (OGD ICT-diensten).'
 
 # Description of the functionality provided by this module
 Description = 'PowerShell module to interact with Gitlab API without any dependency on a local git installation.'
@@ -134,7 +134,7 @@ PrivateData = @{
     PSData = @{
 
         # Tags applied to this module. These help with module discovery in online galleries.
-        Tags = 'GitLab','DevOps','git','API'
+        Tags = 'GitLab','DevOps','git','API','MIT'
 
         # A URL to the license for this module.
         LicenseUri = 'https://gitlab.com/tdemeester/gitlab-api/blob/master/LICENSE'
