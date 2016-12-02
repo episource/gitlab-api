@@ -134,7 +134,7 @@ PrivateData = @{
     PSData = @{
 
         # Tags applied to this module. These help with module discovery in online galleries.
-        Tags = 'GitLab','DevOps','git','API'
+        Tags = 'GitLab','DevOps','git','API','MIT'
 
         # A URL to the license for this module.
         LicenseUri = 'https://gitlab.com/tdemeester/gitlab-api/blob/master/LICENSE'
