@@ -48,6 +48,7 @@
 . $PSScriptRoot\New-GitLabProjectRepositoryCommitComment.ps1
 . $PSSCriptRoot\New-GitlabProjectRepositoryFile.ps1
 . $PSScriptRoot\New-GitLabProjectRepositoryTag.ps1
+. $PSScriptRoot\New-GitLabUser.ps1
 . $PSScriptRoot\Protect-GitlabProjectBranch.ps1
 . $PSSCriptRoot\Register-GitLabProjectLabelSubscription.ps1
 . $PSScriptRoot\Remove-GitLabProjectLabel.ps1
