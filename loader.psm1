@@ -34,6 +34,7 @@
 . $PSScriptRoot\Get-GitLabProjectRepositoryTag.ps1
 . $PSScriptRoot\Get-GitLabProjectRepositoryTree.ps1
 . $PSScriptRoot\Get-GitLabToken.ps1
+. $PSScriptRoot\Get-GitLabUser.ps1
 . $PSScriptRoot\Invoke-GitLabProjectArchive.ps1
 . $PSScriptRoot\Invoke-GitLabProjectUnArchive.ps1
 . $PSScriptRoot\Invoke-GitLabProjectFork.ps1
@@ -64,5 +65,6 @@
 . $PSScriptRoot\Set-GitLabProjectRepositoryFile.ps1
 . $PSScriptRoot\Set-GitLabProjectRepositoryTagReleaseNotes.ps1
 . $PSScriptRoot\Set-GitLabToken.ps1
+. $PSScriptRoot\Set-GitLabUser.ps1
 . $PSScriptRoot\Unprotect-GitlabProjectBranch.ps1
 . $PSSCriptRoot\Unregister-GitLabProjectLabelSubscription.ps1

@@ -105,7 +105,7 @@ FunctionsToExport = 'Get-GitLabProjectMRCommits', 'Get-GitLabProjectMRNote',
                'Set-GitLabProjectLabel', 'Set-GitLabProjectMergeRequest', 
                'Set-GitLabProjectMilestone', 'Set-GitLabProjectRepositoryFile', 
                'Set-GitLabProjectRepositoryTagReleaseNotes', 'Set-GitLabToken', 
-               'Unprotect-GitLabProjectBranch', 
+               'Set-GitLabUser','Unprotect-GitLabProjectBranch', 
                'Unregister-GitLabProjectLabelSubscription'
 
 # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
