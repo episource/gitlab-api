@@ -12,7 +12,7 @@
 RootModule = 'loader.psm1'
 
 # Version number of this module.
-ModuleVersion = '0.6.0'
+ModuleVersion = '0.7.0'
 
 # Supported PSEditions
 # CompatiblePSEditions = @()
@@ -89,7 +89,7 @@ FunctionsToExport = 'Get-GitLabProjectMRCommits', 'Get-GitLabProjectMRNote',
                'Get-GitLabProjectRepositoryFile', 
                'Get-GitLabProjectRepositoryFileRaw', 
                'Get-GitLabProjectRepositoryTag', 'Get-GitLabProjectRepositoryTree', 
-               'Get-GitLabToken', 'Invoke-GitLabProjectArchive', 
+               'Get-GitLabToken', 'Get-GitlabUser',  'Invoke-GitLabProjectArchive', 
                'Invoke-GitLabProjectFork', 'Invoke-GitLabProjectUnArchive', 
                'New-GitlabProject', 'New-GitLabProjectBranch', 
                'New-GitLabProjectIssue', 'New-GitLabProjectIssueNote', 
@@ -97,7 +97,7 @@ FunctionsToExport = 'Get-GitLabProjectMRCommits', 'Get-GitLabProjectMRNote',
                'New-GitLabProjectMergeRequestNote', 'New-GitLabProjectMilestone', 
                'New-GitLabProjectRepositoryCommitComment', 
                'New-GitLabProjectRepositoryFile', 'New-GitLabProjectRepositoryTag', 
-               'Protect-GitLabProjectBranch', 
+               'New-GitLabUser', 'Protect-GitLabProjectBranch', 
                'Register-GitLabProjectLabelSubscription', 
                'Remove-GitLabProjectLabel', 'Remove-GitLabProjectRepositoryFile', 
                'Remove-GitLabProjectStar', 'Remove-GitLabToken', 'Set-GitlabProject', 
@@ -105,8 +105,9 @@ FunctionsToExport = 'Get-GitLabProjectMRCommits', 'Get-GitLabProjectMRNote',
                'Set-GitLabProjectLabel', 'Set-GitLabProjectMergeRequest', 
                'Set-GitLabProjectMilestone', 'Set-GitLabProjectRepositoryFile', 
                'Set-GitLabProjectRepositoryTagReleaseNotes', 'Set-GitLabToken', 
-               'Unprotect-GitLabProjectBranch', 
-               'Unregister-GitLabProjectLabelSubscription'
+               'Set-GitLabUser','Unprotect-GitLabProjectBranch', 
+               'Unregister-GitLabProjectLabelSubscription','Block-GitlabUser',
+               'Unblock-GitlabUser'
 
 # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
 CmdletsToExport = @()

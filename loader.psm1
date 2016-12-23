@@ -11,6 +11,7 @@
 . $PSScriptRoot\Add-GitLabProjectStar.ps1
 . $PSScriptRoot\Add-GitLabToken.ps1
 . $PSScriptRoot\Approve-GitLabProjectMergeRequest.ps1
+. $PSScriptRoot\Block-GitlabUser.ps1
 . $PsScriptRoot\Compare-GitLabProjectRepositoryCommit.ps1
 . $PSScriptRoot\Get-GitLabConnect.ps1
 . $PSScriptRoot\Get-GitLabProject.ps1
@@ -34,6 +35,7 @@
 . $PSScriptRoot\Get-GitLabProjectRepositoryTag.ps1
 . $PSScriptRoot\Get-GitLabProjectRepositoryTree.ps1
 . $PSScriptRoot\Get-GitLabToken.ps1
+. $PSScriptRoot\Get-GitLabUser.ps1
 . $PSScriptRoot\Invoke-GitLabProjectArchive.ps1
 . $PSScriptRoot\Invoke-GitLabProjectUnArchive.ps1
 . $PSScriptRoot\Invoke-GitLabProjectFork.ps1
@@ -48,6 +50,7 @@
 . $PSScriptRoot\New-GitLabProjectRepositoryCommitComment.ps1
 . $PSSCriptRoot\New-GitlabProjectRepositoryFile.ps1
 . $PSScriptRoot\New-GitLabProjectRepositoryTag.ps1
+. $PSScriptRoot\New-GitLabUser.ps1
 . $PSScriptRoot\Protect-GitlabProjectBranch.ps1
 . $PSSCriptRoot\Register-GitLabProjectLabelSubscription.ps1
 . $PSScriptRoot\Remove-GitLabProjectLabel.ps1
@@ -63,5 +66,7 @@
 . $PSScriptRoot\Set-GitLabProjectRepositoryFile.ps1
 . $PSScriptRoot\Set-GitLabProjectRepositoryTagReleaseNotes.ps1
 . $PSScriptRoot\Set-GitLabToken.ps1
+. $PSScriptRoot\Set-GitLabUser.ps1
+. $PSScriptRoot\Unblock-GitlabUser.ps1
 . $PSScriptRoot\Unprotect-GitlabProjectBranch.ps1
 . $PSSCriptRoot\Unregister-GitLabProjectLabelSubscription.ps1
