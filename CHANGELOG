@@ -1,7 +1,14 @@
 Please view this file on the master branch, on stable branches it's out of date.
 
+v 0.7.0
+  - add new user function
+  - add get user function
+  - add set user function
+  - add block user function
+  - add unblock user function
+
 v 0.6.0
-  - dd non https support to connectobjects
+  - add non https support to connectobjects
   - add search to get projects
 
 v 0.5.1

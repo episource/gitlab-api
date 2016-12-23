@@ -8,17 +8,10 @@
 
       returns modified user when -PassThru is specified
       .EXAMPLE
-      Set-GitLabUser -Email 'John.Johnson@contoso.com' -Password 'randompassword' -UserName 'john.johnson' -Name 'John Johnson'
+      Set-GitLabUser -id 1 -bio 'awesome root acocunt'
       ---------------------------------------------------------------
-      Creates a 
+      Sets the bio of user with id 1 to awesome root account
       .EXAMPLE
-      New-GitLabProject -Name 'GitLab-API' -PassThru
-      ---------------------------------------------------------------
-      creates a new project named 'Gitlab-API' and returns the projects object
-      .EXAMPLE
-      New-GitLabProject -Name 'GitLab-API' -container_registry_enabled $true
-      ---------------------------------------------------------------
-      Creates a new project named 'Gitlab-API' with container Registry enabled.
   #>
   [CmdletBinding()]
   [Alias()]

@@ -25,7 +25,7 @@
     [Parameter(HelpMessage = 'Specify Existing GitlabConnector',
         Mandatory = $false,
     DontShow = $true)]
-    [psobject]$GitlabConnect = (Get-GitlabConnect)
+    [psobject]$GitlabConnect = (Get-GitLabConnect)
   )
 
   $httpmethod = 'put'
