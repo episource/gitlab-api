@@ -22,7 +22,7 @@ class GitLabConnect {
       'PRIVATE-TOKEN' = $token
     }
       
-    $userurl = "$hostname/api/v3/user"
+    $userurl = "$hostname/api/v4/user"
     $errorprop = $null 
     $result = $null   
     try
@@ -89,7 +89,7 @@ class GitLabConnect {
       'PRIVATE-TOKEN' = $User.GetNetworkCredential().Password
     }
       
-    $userurl = "$hostname/api/v3/user"
+    $userurl = "$hostname/api/v4/user"
     $errorprop = $null 
     $result = $null   
     try
@@ -250,7 +250,7 @@ class GitLabConnect {
         
     #cleanup url
     $apiurl = $apiurl.TrimStart('/')
-    $userurl = "$($this.hostname)/api/v3/$apiurl$parameteruristring"
+    $userurl = "$($this.hostname)/api/v4/$apiurl$parameteruristring"
     $errorprop = $null 
     $resultobj = $null   
     $httpresult = $null
@@ -324,7 +324,7 @@ class GitLabConnect {
       $isResultJson = $httpresult.headers.'Content-Type' -eq 'application/json'
       if (-not $isResultJson)
       {
-        Write-Error -Message "Result from api call is not json, check if $($this.hostname) is a gitlab server and supports api v3" -Category InvalidData -ErrorAction Stop
+        Write-Error -Message "Result from api call is not json, check if $($this.hostname) is a gitlab server and supports api v4" -Category InvalidData -ErrorAction Stop
       }
                
       $resultobj = ConvertFrom-Json -InputObject $httpresult.Content
