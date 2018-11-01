@@ -101,6 +101,36 @@
         [Parameter(HelpMessage='are build public',
                    Mandatory=$false)]
         [boolean]$public_builds,
+        
+        # URL to import repository from
+        [Parameter(HelpMessage='URL to import repository from',
+                   Mandatory=$false)]
+        [String]$import_url,
+        
+        # Enables pull mirroring in a project
+        [Parameter(HelpMessage='Enables pull mirroring in a project',
+                   Mandatory=$false)]
+        [boolean]$mirror,
+        
+        # User responsible for all the activity surrounding a pull mirror event
+        [Parameter(HelpMessage='User responsible for all the activity surrounding a pull mirror event',
+                   Mandatory=$false)]
+        [int]$mirror_user_id,
+        
+        # Pull mirroring triggers builds
+        [Parameter(HelpMessage='Pull mirroring triggers builds',
+                   Mandatory=$false)]
+        [boolean]$mirror_trigger_builds,
+        
+        # Only mirror protected branches
+        [Parameter(HelpMessage='Only mirror protected branches',
+                   Mandatory=$false)]
+        [boolean]$only_mirror_protected_branches,
+        
+        # Pull mirror overwrites diverged branches
+        [Parameter(HelpMessage='Pull mirror overwrites diverged branches; note: depending on server version you may need to set this to $null instead of $false!',
+                   Mandatory=$false)]
+        [boolean]$mirror_overwrites_diverged_branches,
 
         # Existing GitlabConnector Object, can be retrieved with Get-GitlabConnect
         [Parameter(HelpMessage = 'Specify Existing GitlabConnector',
@@ -222,8 +252,56 @@
         $parameters.public_builds = 'false'
       }
     }
+    
+    # import_url
+    if ($PSCmdlet.MyInvocation.BoundParameters.keys -contains 'import_url') {
+      $parameters.import_url = $import_url
+    }
+    
+    # mirror
+    if ($PSCmdlet.MyInvocation.BoundParameters.keys -contains 'mirror') {
+      if($mirror){
+        $parameters.mirror = 'true'
+      }
+      else{
+        $parameters.mirror = 'false'
+      }
+    }
+    
+    # mirror_user_id
+    if ($PSCmdlet.MyInvocation.BoundParameters.keys -contains 'mirror_user_id') {
+      $parameters.mirror_user_id = $mirror_user_id
+    }
+    
+    # mirror_trigger_builds
+    if ($PSCmdlet.MyInvocation.BoundParameters.keys -contains 'mirror_trigger_builds') {
+      if($mirror_trigger_builds){
+        $parameters.mirror_trigger_builds = 'true'
+      }
+      else{
+        $parameters.mirror_trigger_builds = 'false'
+      }
+    }
+    
+    # only_mirror_protected_branches
+    if ($PSCmdlet.MyInvocation.BoundParameters.keys -contains 'only_mirror_protected_branches') {
+      if($only_mirror_protected_branches){
+        $parameters.only_mirror_protected_branches = 'true'
+      }
+      else{
+        $parameters.only_mirror_protected_branches = 'false'
+      }
+    }
 
-
+    # mirror_overwrites_diverged_branches
+    if ($PSCmdlet.MyInvocation.BoundParameters.keys -contains 'mirror_overwrites_diverged_branches') {
+      if($mirror_overwrites_diverged_branches){
+        $parameters.mirror_overwrites_diverged_branches = 'true'
+      }
+      else{
+        $parameters.mirror_overwrites_diverged_branches = 'false'
+      }
+    }
 
 
     $newproj = $GitlabConnect.callapi($apiurl,$httpmethod,$parameters)
