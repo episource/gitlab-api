@@ -24,6 +24,7 @@
     # Name of the branch
     [Parameter(HelpMessage = 'The name of the branch',
     Mandatory = $true)]
+    [Alias('Pattern')]
     [String]$Branch,
 
     # Specify Existing GitlabConnector
@@ -39,14 +40,15 @@
   )
 
     
-  $httpmethod = 'put'
-  $apiurl = "projects/$ProjectID/repository/branches/$Branch/unprotect"
+  $httpmethod = 'delete'
+  $apiurl = "projects/$ProjectID/protected_branches/$Branch"
   $parameters = @{}
 
-  $updatebranch = $GitlabConnect.callapi($apiurl,$httpmethod,$parameters)
+  $responseNotMandatory = $false
+  $updatebranch = $GitlabConnect.callapi($apiurl,$httpmethod,$parameters,$responseNotMandatory)
 
   if($PassThru)
   {
-    return $updatebranch
+    return Get-GitlabProjectBranch -ProjectId $projectId -ProtectionRules
   }
 }

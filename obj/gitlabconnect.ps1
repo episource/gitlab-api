@@ -198,13 +198,22 @@ class GitLabConnect {
     $result = $this.callapi($apiurl,$HTTPmethod,$parameters,[hashtable]::new())
     return $result
   }
+  
+  <#
+      Main function overload to resolve API calls withoud body
+  #>
+  [psobject] callapi ([string]$apiurl,[HTTPMethod]$HTTPmethod,[hashtable]$parameters,[bool]$mandatoryResponse)
+  {
+    $result = $this.callapi($apiurl,$HTTPmethod,$parameters,[hashtable]::new(),$mandatoryResponse,[string]::Empty)
+    return $result
+  }
 
   <#
       Main function overload to resolve API calls withoud outfile
   #>
   [psobject] callapi ([string]$apiurl,[HTTPMethod]$HTTPmethod,[hashtable]$parameters,[hashtable]$body)
   {
-    $result = $this.callapi($apiurl,$HTTPmethod,$parameters,$body,[string]::Empty)
+    $result = $this.callapi($apiurl,$HTTPmethod,$parameters,$body,$true,[string]::Empty)
     return $result
   }
 
@@ -213,14 +222,14 @@ class GitLabConnect {
   #>
   [psobject] callapi ([string]$apiurl,[HTTPMethod]$HTTPmethod,[hashtable]$parameters,[string]$OutFile)
   {
-    $result = $this.callapi($apiurl,$HTTPmethod,$parameters,[hashtable]::new(),$OutFile)
+    $result = $this.callapi($apiurl,$HTTPmethod,$parameters,[hashtable]::new(),$true,$OutFile)
     return $result
   }
 
   <#
       Main function to resolve API call with 
   #>
-  [psobject] callapi ([string]$apiurl,[HTTPMethod]$HTTPmethod,[hashtable]$parameters,[hashtable]$body,[string]$OutFile)
+  [psobject] callapi ([string]$apiurl,[HTTPMethod]$HTTPmethod,[hashtable]$parameters,[hashtable]$body,[bool]$mandatoryResponse,[string]$OutFile)
   {
     #create object for webrequest parameters
     $webrequestparams = @{}
@@ -324,10 +333,14 @@ class GitLabConnect {
       $isResultJson = $httpresult.headers.'Content-Type' -eq 'application/json'
       if (-not $isResultJson)
       {
-        Write-Error -Message "Result from api call is not json, check if $($this.hostname) is a gitlab server and supports api v4" -Category InvalidData -ErrorAction Stop
+        if ($mandatoryResponse) {
+          Write-Error -Message "Result from api call is not json, check if $($this.hostname) is a gitlab server and supports api v4" -Category InvalidData -ErrorAction Stop
+        } else {
+          $resultObj = @{}    
+        }
+      } else {               
+        $resultobj = ConvertFrom-Json -InputObject $httpresult.Content
       }
-               
-      $resultobj = ConvertFrom-Json -InputObject $httpresult.Content
         
       #if passed page is not the last page
       $links = @{}

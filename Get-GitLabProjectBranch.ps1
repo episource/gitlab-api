@@ -34,6 +34,12 @@
         HelpMessage = 'The name of the branch',
     Mandatory = $true)]
     [String]$Branch,
+    
+    # Branch protection rules (inlcuding patterns)
+    [Parameter(ParameterSetName = 'ProtectedBranch',
+        HelpMessage = 'Get branch protection rules (acutal branches and patterns)',
+        Mandatory = $true)]
+    [Switch]$ProtectionRules,
 
     # Existing GitlabConnector Object, can be retrieved with Get-GitlabConnect
     [Parameter(HelpMessage = 'Specify Existing GitlabConnector',
@@ -45,7 +51,7 @@
   $httpmethod = 'get'
   $apiurl = "projects/$ProjectID/repository/branches"
   $parameters = @{}
-
+  
   if($PSCmdlet.ParameterSetName -like 'AllBranches')
   {
     #no extra action required
@@ -53,7 +59,14 @@
   if($PSCmdlet.ParameterSetName -like 'SingleBranch')
   {
     $apiurl += "\$Branch"
+  } elseif ($PSCmdlet.ParameterSetName -like 'ProtectedBranch')
+  {
+    $apiurl = "projects/$ProjectID/protected_branches"
   }
 
-  $GitlabConnect.callapi($apiurl,$httpmethod,$parameters)
+  $res = $GitlabConnect.callapi($apiurl,$httpmethod,$parameters)
+  if ($res -eq $null) {
+    $res = @()
+  }
+  @() + $res | write-output  
 }
