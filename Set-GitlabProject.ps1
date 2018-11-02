@@ -128,7 +128,7 @@
         [boolean]$only_mirror_protected_branches,
         
         # Pull mirror overwrites diverged branches
-        [Parameter(HelpMessage='Pull mirror overwrites diverged branches; note: depending on server version you may need to set this to $null instead of $false!',
+        [Parameter(HelpMessage='Pull mirror overwrites diverged branches',
                    Mandatory=$false)]
         [boolean]$mirror_overwrites_diverged_branches,
 
