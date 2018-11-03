@@ -70,3 +70,4 @@
 . $PSScriptRoot\Unblock-GitlabUser.ps1
 . $PSScriptRoot\Unprotect-GitlabProjectBranch.ps1
 . $PSSCriptRoot\Unregister-GitLabProjectLabelSubscription.ps1
+. $PSScriptRoot\Update-GitLabProjectMirror.ps1
