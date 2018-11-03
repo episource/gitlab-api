@@ -57,7 +57,7 @@
   )
   if($PSCmdlet.ParameterSetName -like 'ByTokenID'){
     if($id){
-      $Gitlabtoken = (Get-GitLabToken).where({$_.id -eq $id})
+      $Gitlabtoken = Get-GitLabToken | ?{$_.id -eq $id}
 
       if(-not $Gitlabtoken){
         $errormessage = 'No Token found with Id [$ID]'
