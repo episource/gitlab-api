@@ -101,6 +101,16 @@
         [Parameter(HelpMessage='use an import url to import the project',
                    Mandatory=$false)]
         [string]$import_url,
+        
+        # Enables pull mirroring in a project
+        [Parameter(HelpMessage='Enables pull mirroring in a project',
+                   Mandatory=$false)]
+        [boolean]$mirror,
+        
+        # Pull mirroring triggers builds
+        [Parameter(HelpMessage='Pull mirroring triggers builds',
+                   Mandatory=$false)]
+        [boolean]$mirror_trigger_builds,
 
         # Specify if builds are publicly accessible
         [Parameter(HelpMessage='are build public',
@@ -227,6 +237,17 @@
       else{
         $parameters.public_builds = 'false'
       }
+    }
+    
+    # import_url
+    if ($PSCmdlet.MyInvocation.BoundParameters.keys -contains 'import_url') {
+      $parameters.import_url = $import_url
+    }
+    if ($PSCmdlet.MyInvocation.BoundParameters.keys -contains 'mirror') {
+        $parameters.mirror = "$mirror".ToLower()
+    }
+    if ($PSCmdlet.MyInvocation.BoundParameters.keys -contains 'mirror_trigger_builds') {
+        $parameters.mirror_trigger_builds = "$mirror_trigger_builds".ToLower()
     }
 
     $newproj = $GitlabConnect.callapi($apiurl,$httpmethod,$parameters)
