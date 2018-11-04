@@ -146,12 +146,7 @@
     }
     #description
     if($PSCmdlet.MyInvocation.BoundParameters.keys -contains 'description'){
-      if($description){
-        $parameters.description = 'true'
-      }
-      else{
-        $parameters.description = 'false'
-      }
+        $parameters.description = $description
     }
     #issues_enabled
     if($PSCmdlet.MyInvocation.BoundParameters.keys -contains 'issues_enabled'){
