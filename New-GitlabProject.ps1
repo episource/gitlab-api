@@ -89,12 +89,13 @@
         [Parameter(ParameterSetName = 'VisibilityCustom',
                     HelpMessage = "Private. visibility_level is 0. Project access must be granted explicitly for each user. `r`n Internal. visibility_level is 10. The project can be cloned by any logged in user. `r`n Public. visibility_level is 20. The project can be cloned without any authentication.",
                     Mandatory = $false)]
-        [validateset(0,10,20)]
-        [int]$visibility_level,
+        [validateset("private","internal","public")]
+        [Alias("visibility_level")]
+        [int]$visibility,
 
         # Is Visibility Public, if true same as setting visibility_level = 20
         [Parameter(ParameterSetName = 'VisibilityPublic',
-                    HelpMessage='if true same as setting visibility_level = 20',
+                    HelpMessage='if true same as setting visibility = public',
                    Mandatory=$false)]
         [switch]$public,
 
@@ -217,16 +218,13 @@
       }
     }
     #visibility_level
-    if($visibility_level){
-      $parameters.'visibility_level' = $visibility_level
-    }
-    #public
-    if($PSCmdlet.MyInvocation.BoundParameters.keys -contains 'public'){
+    if($PSCmdlet.MyInvocation.BoundParameters.keys -contains 'visibility_level'){
+      $parameters.'visibility' = $visibility_level
+    } elseif($PSCmdlet.MyInvocation.BoundParameters.keys -contains 'public'){
       if($public){
-        $parameters.public = 'true'
-      }
-      else{
-        $parameters.public = 'false'
+        $parameters.visibility = 'public'
+      } else {
+        $parameters.visibility = 'private'
       }
     }
     #public_builds
