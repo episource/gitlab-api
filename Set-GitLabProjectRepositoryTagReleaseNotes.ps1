@@ -24,7 +24,7 @@
         HelpMessage = 'ProjectID',
     Mandatory = $true)]
     [Alias('ID')]
-    [int]$ProjectID,
+    [String]$ProjectID,
 
     #The name of the tag
     [Parameter(HelpMessage = 'Tag Name',
@@ -50,15 +50,15 @@
     [switch]$PassThru
   )
 
-  
-  $apiurl = "projects/$ProjectID/repository/tags/$TagName/release"
+  $id = [System.Web.HttpUtility]::UrlEncode($projectId)
+  $apiurl = "projects/$id/repository/tags/$TagName/release"
   $parameters = @{
     description = $ReleaseDescription
   }
   
   try
   {
-    $currenttag = Get-GitLabProjectRepositoryTag -ProjectID $ProjectID -TagName $TagName -GitlabConnect $GitlabConnect
+    $currenttag = Get-GitLabProjectRepositoryTag -ProjectID $id -TagName $TagName -GitlabConnect $GitlabConnect
 
     if($currenttag.release)
     {

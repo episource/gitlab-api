@@ -81,8 +81,8 @@
         [Parameter(ParameterSetName = 'SingleProject',
                 HelpMessage = 'The ID of a project',
         Mandatory = $true)]
-    [Alias('ID')]
-    [int]$ProjectID,
+        [Alias('ID')]
+        [String]$ProjectID,
 
         # Existing GitlabConnector Object, can be retrieved with Get-GitlabConnect
         [Parameter(HelpMessage = 'Specify Existing GitlabConnector',
@@ -118,9 +118,9 @@
         }
     }
     
-    if($PSCmdlet.ParameterSetName -eq 'SingleProject')
+    if($PSCmdlet.ParameterSetName -like 'SingleProject*')
     {
-        $apiurl += "/$ProjectID"
+        $apiurl += "/$([System.Web.HttpUtility]::UrlEncode($projectId))"
     }
 
     $GitlabConnect.callapi($apiurl,$httpmethod,$parameters)

@@ -24,49 +24,49 @@
   Param
   (
     # The ID of the project
-    [Parameter(HelpMessage = 'ProjectID',
-    Mandatory = $true)]
+    [Parameter(Mandatory = $true, HelpMessage = 'ProjectID')]
     [Alias('ID')]
-    [int]$ProjectID,
+    [String]$ProjectID,
 
     # Name of the branch
-    [Parameter(ParameterSetName = 'SingleBranch',
-        HelpMessage = 'The name of the branch',
-    Mandatory = $true)]
+    [Parameter(ParameterSetName = 'SingleBranch', Mandatory = $true,
+            HelpMessage = 'The name of the branch')]
     [String]$Branch,
     
     # Branch protection rules (inlcuding patterns)
-    [Parameter(ParameterSetName = 'ProtectedBranch',
-        HelpMessage = 'Get branch protection rules (acutal branches and patterns)',
-        Mandatory = $true)]
+    [Parameter(ParameterSetName = 'ProtectedBranch', Mandatory = $true,
+            HelpMessage = 'Get branch protection rules (acutal branches and patterns)')]
+    [Parameter(ParameterSetName = 'SingleBranch', Mandatory = $false,
+            HelpMessage = 'Get branch protection rules (acutal branches and patterns)')]
     [Switch]$ProtectionRules,
 
     # Existing GitlabConnector Object, can be retrieved with Get-GitlabConnect
     [Parameter(HelpMessage = 'Specify Existing GitlabConnector',
-        Mandatory = $false,
-    DontShow = $true)]
+            Mandatory = $false, DontShow = $true)]
     [psobject]$GitlabConnect = (Get-GitlabConnect)
   )
-
+  
   $httpmethod = 'get'
-  $apiurl = "projects/$ProjectID/repository/branches"
+  $id = [System.Web.HttpUtility]::UrlEncode($projectId)
+  $apiurl = "projects/$id/repository/branches"
   $parameters = @{}
   
-  if($PSCmdlet.ParameterSetName -like 'AllBranches')
-  {
-    #no extra action required
-  }
-  if($PSCmdlet.ParameterSetName -like 'SingleBranch')
-  {
+  $filterProtectionRules = $false
+  if ($PSCmdlet.MyInvocation.BoundParameters.keys -contains "ProtectionRules" -and $ProtectionRules) {
+    $apiurl = "projects/$id/protected_branches"
+    $filterProtectionRules = $PSCmdlet.ParameterSetName -like 'SingleBranch*'
+  } elseif($PSCmdlet.ParameterSetName -like 'SingleBranch*') {
     $apiurl += "\$Branch"
-  } elseif ($PSCmdlet.ParameterSetName -like 'ProtectedBranch')
-  {
-    $apiurl = "projects/$ProjectID/protected_branches"
   }
 
   $res = $GitlabConnect.callapi($apiurl,$httpmethod,$parameters)
   if ($res -eq $null) {
     $res = @()
   }
-  @() + $res | write-output  
+  
+  if($filterProtectionRules) {
+    $res | ?{ $Branch -like $_.name } | write-output
+  } else {
+    @() + $res | write-output  
+  }
 }

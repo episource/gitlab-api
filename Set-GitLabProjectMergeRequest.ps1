@@ -29,7 +29,7 @@
     [Parameter(HelpMessage = 'ProjectID',
     Mandatory = $true)]
     [Alias('ID')]
-    [int]$ProjectID,
+    [String]$ProjectID,
     
     # The ID of the Merge Request
     [Parameter(HelpMessage = 'MergeRequestID',
@@ -84,7 +84,7 @@
   )
 
   $HTTPMethod = 'put'
-  $APIUrl = "projects/$ProjectID/merge_requests/$MergeRequestID"
+  $APIUrl = "projects/$([System.Web.HttpUtility]::UrlEncode($projectId))/merge_requests/$MergeRequestID"
   $Parameters = @{}
   
   if($TargetBranch)

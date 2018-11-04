@@ -24,7 +24,7 @@
     [Parameter(HelpMessage = 'ProjectID',
         Mandatory = $true)]
     [Alias('ID')]
-    [int]$ProjectID,
+    [String]$ProjectID,
 
     #The ID of a projects Merge Request
     [Parameter(HelpMessage = 'MergeRequestID',
@@ -48,7 +48,7 @@
 
 
   $httpmethod = 'get'
-  $apiurl = "projects/$ProjectID/merge_requests/$MergeRequestID/notes"
+  $apiurl = "projects/$$([System.Web.HttpUtility]::UrlEncode($projectId))/merge_requests/$MergeRequestID/notes"
   $parameters = @{}
 
   if($PSCmdlet.ParameterSetName -like 'AllNotes')

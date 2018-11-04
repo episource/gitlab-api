@@ -24,7 +24,7 @@
     [Parameter(HelpMessage = 'ProjectID',
         Mandatory = $true)]
     [Alias('ID')]
-    [int]$ProjectID,
+    [String]$ProjectID,
 
     #The ID of a projects issue
     [Parameter(HelpMessage = 'IssueID',
@@ -47,7 +47,7 @@
 
 
   $httpmethod = 'get'
-  $apiurl = "projects/$ProjectID/issues/$IssueID/notes"
+  $apiurl = "projects/$([System.Web.HttpUtility]::UrlEncode($projectId))/issues/$IssueID/notes"
   $parameters = @{}
 
   if($PSCmdlet.ParameterSetName -like 'AllNotes')

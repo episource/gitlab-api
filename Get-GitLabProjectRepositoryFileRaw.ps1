@@ -25,7 +25,7 @@
     [Parameter(HelpMessage = 'ProjectID',
     Mandatory = $true)]
     [Alias('ID')]
-    [int]$ProjectID,
+    [String]$ProjectID,
 
     #the commit SHA or Branch name
     [Parameter(ParameterSetName = 'ByCommit',
@@ -60,7 +60,7 @@
   )
 
   $httpmethod = 'get'
-  $apiurl = "/projects/$ProjectID/repository/"
+  $apiurl = "/projects/$([System.Web.HttpUtility]::UrlEncode($projectId))/repository/"
   $Parameters = @{}
 
     

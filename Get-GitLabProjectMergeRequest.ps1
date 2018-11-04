@@ -32,7 +32,7 @@
     [Parameter(HelpMessage = 'ProjectID',
         Mandatory = $true)]
     [Alias('ID')]
-    [int]$ProjectID,
+    [String]$ProjectID,
 
     # When specified returns only Merge Request that are merged, opened or closed
     [Parameter(ParameterSetName = 'AllMergeRequests',
@@ -60,7 +60,7 @@
   )
 
   $httpmethod = 'get'
-  $apiurl = "projects/$ProjectID/merge_requests"
+  $apiurl = "projects/$([System.Web.HttpUtility]::UrlEncode($projectId))/merge_requests"
   $parameters = @{
     id = $ProjectID
   }

@@ -31,11 +31,10 @@
   Param
   (
     # The ID of the project
-    [Parameter(HelpMessage = 'ProjectID',
-    Mandatory = $true)]
+    [Parameter(Mandatory = $true, HelpMessage = 'The ID of a project')]
     [Alias('ID')]
-    [int]$ProjectID,
-
+    [String]$ProjectID,
+    
     #The path inside repository. Used to get contend of subdirectories
     [Parameter(Helpmessage = 'path inside repository',
     Mandatory = $false)]
@@ -52,9 +51,9 @@
     DontShow = $true)]
     [psobject]$GitlabConnect = (Get-GitlabConnect)
   )
-
+  
   $httpmethod = 'get'
-  $apiurl = "projects/$ProjectID/repository/tree"
+  $apiurl = "projects/$([System.Web.HttpUtility]::UrlEncode($projectId))/repository/tree"
   $Parameters = @{}
 
   if($Path)

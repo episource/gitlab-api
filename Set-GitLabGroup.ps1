@@ -16,7 +16,7 @@
         [Parameter(HelpMessage='id of the group',
                 Mandatory=$true)]
         [Alias("ID")]
-        [int]$GroupId,
+        [String]$GroupId,
     
         #The Name of the new group
         [Parameter(HelpMessage='new group name',
@@ -88,7 +88,7 @@
     )
 
     $httpmethod = "put"
-    $apiurl = "groups/$groupId"
+    $apiurl = "groups/$([System.Web.HttpUtility]::UrlEncode($groupId))"
     $parameters = @{}
 
     if($PSCmdlet.MyInvocation.BoundParameters.keys -contains 'Name'){

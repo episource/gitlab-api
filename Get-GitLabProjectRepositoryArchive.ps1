@@ -24,7 +24,7 @@
     [Parameter(HelpMessage = 'ProjectID',
     Mandatory = $true)]
     [Alias('ID')]
-    [int]$ProjectID,
+    [String]$ProjectID,
 
     #the commit SHA or Branch name
     [Parameter(HelpMessage = 'Commit SHA or branch name',
@@ -61,7 +61,7 @@
     }
 
     $httpmethod = 'get'
-    $apiurl = "/projects/$ProjectID/repository/archive.$ArchiveType"
+    $apiurl = "/projects/$([System.Web.HttpUtility]::UrlEncode($projectId))/repository/archive.$ArchiveType"
     $Parameters = @{}
 
     if($sha){
