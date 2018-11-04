@@ -69,7 +69,8 @@ PowerShellVersion = '5.0'
 # NestedModules = @()
 
 # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
-FunctionsToExport = 'Get-GitLabProjectMRCommits', 'Get-GitLabProjectMRNote', 
+FunctionsToExport = 'Get-GitLabGroup',
+               'Get-GitLabProjectMRCommits', 'Get-GitLabProjectMRNote', 
                'Get-GitLabRepository', 'New-GitLabProjectMRNote', 
                'Set-GitLabProjectRepositoryTag', 'Add-GitLabProjectStar', 
                'Add-GitLabToken', 'Approve-GitLabProjectMergeRequest', 
