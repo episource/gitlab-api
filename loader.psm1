@@ -8,6 +8,7 @@
 
 # LOADING ALL FUNCTION DEFINITIONS:
 
+. $PSScriptRoot\Get-GitLabGroup.ps1
 . $PSScriptRoot\Add-GitLabProjectStar.ps1
 . $PSScriptRoot\Add-GitLabToken.ps1
 . $PSScriptRoot\Approve-GitLabProjectMergeRequest.ps1
@@ -39,6 +40,7 @@
 . $PSScriptRoot\Invoke-GitLabProjectArchive.ps1
 . $PSScriptRoot\Invoke-GitLabProjectUnArchive.ps1
 . $PSScriptRoot\Invoke-GitLabProjectFork.ps1
+. $PSScriptRoot\New-GitLabGroup.ps1
 . $PSScriptRoot\New-GitLabProject.ps1
 . $PSScriptRoot\New-GitlabProjectBranch.ps1
 . $PSScriptRoot\New-GitLabProjectIssue.ps1
@@ -57,6 +59,7 @@
 . $PSSCriptRoot\Remove-GitLabProjectRepositoryFile.ps1
 . $PSScriptRoot\Remove-GitLabProjectStar.ps1
 . $PSScriptRoot\Remove-GitLabToken.ps1
+. $PSScriptRoot\Set-GitlabGroup.ps1
 . $PSScriptRoot\Set-GitlabProject.ps1
 . $PSScriptRoot\Set-GitLabProjectIssue.ps1
 . $PSScriptRoot\Set-GitLabProjectIssueNote.ps1
