@@ -148,6 +148,10 @@
     if($PSCmdlet.MyInvocation.BoundParameters.keys -contains 'description'){
         $parameters.description = $description
     }
+    #namespace
+    if($PSCmdlet.MyInvocation.BoundParameters.keys -contains 'namespace_id'){
+        $parameters.namespace_id = $namespace_id
+    }
     #issues_enabled
     if($PSCmdlet.MyInvocation.BoundParameters.keys -contains 'issues_enabled'){
       if($issues_enabled){
