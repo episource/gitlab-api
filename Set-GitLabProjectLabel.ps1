@@ -24,7 +24,7 @@
     [Parameter(HelpMessage = 'ProjectID',
     Mandatory = $true)]
     [Alias('ID')]
-    [int]$ProjectID,
+    [String]$ProjectID,
 
     # The name of the label
     [Parameter(HelpMessage = 'Label Name',
@@ -73,7 +73,7 @@
   )
   
   $httpmethod = 'put'
-  $apiurl = "projects/$ProjectID/labels"
+  $apiurl = "projects/$([System.Web.HttpUtility]::UrlEncode($projectId))/labels"
   $parameters = @{
     id   = $ProjectID
     name = $Name

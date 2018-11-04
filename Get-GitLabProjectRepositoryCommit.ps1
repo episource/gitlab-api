@@ -27,7 +27,7 @@
     [Parameter(HelpMessage = 'The ID of a project',
     Mandatory = $true)]
     [Alias('ID')]
-    [int]$ProjectID,
+    [String]$ProjectID,
 
     # The name of a repository branch or tag or if not given the default branch
     [Parameter(ParameterSetName = 'AllCommits',
@@ -64,7 +64,7 @@
   )
 
   $httpmethod = 'get'
-  $apiurl = "projects/$ProjectID/repository/commits"
+  $apiurl = "projects/$([System.Web.HttpUtility]::UrlEncode($projectId))/repository/commits"
   $parameters = @{}
 
   if($PSCmdlet.ParameterSetName -eq 'AllCommits')

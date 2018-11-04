@@ -19,7 +19,7 @@
     [Parameter(HelpMessage = 'ProjectID',
         Mandatory = $true)]
     [Alias('ID')]
-    [int]$ProjectID,
+    [String]$ProjectID,
 
     # The ID of the MR
     [Parameter(HelpMessage = 'The ID of MR',
@@ -35,7 +35,7 @@
   )
 
   $httpmethod = 'get'
-  $apiurl = "projects/$ProjectID/merge_requests/$MergeRequestID/commits"
+  $apiurl = "projects/$([System.Web.HttpUtility]::UrlEncode($projectId))/merge_requests/$MergeRequestID/commits"
   $parameters = @{}
 
   $GitlabConnect.callapi($apiurl,$httpmethod,$parameters)

@@ -34,7 +34,7 @@
         HelpMessage = 'ProjectID',
     Mandatory = $true)]
     [Alias('ID')]
-    [int]$ProjectID,
+    [String]$ProjectID,
 
     # If specified only returns opened or closed issues.
     [Parameter(ParameterSetName = 'AllIssues',
@@ -67,7 +67,7 @@
 
 
   $httpmethod = 'get'
-  $apiurl = "projects/$ProjectID/issues"
+  $apiurl = "projects/$([System.Web.HttpUtility]::UrlEncode($projectId))/issues"
   $parameters = @{}
 
   if($PSCmdlet.ParameterSetName -like 'AllIssues')

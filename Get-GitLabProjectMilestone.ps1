@@ -21,7 +21,7 @@
     [Parameter(HelpMessage = 'ProjectID',
     Mandatory = $true)]
     [Alias('ID')]
-    [int]$ProjectID,
+    [String]$ProjectID,
 
     [Parameter(ParameterSetName = 'AllMilestones', mandatory = $false)]
     [validateset('active','closed')]
@@ -38,7 +38,7 @@
   )
   
   $httpmethod = 'get'
-  $apiurl = "projects/$ProjectID/milestones"
+  $apiurl = "projects/$([System.Web.HttpUtility]::UrlEncode($projectId))/milestones"
   $parameters = @{}
   if($State)
   {

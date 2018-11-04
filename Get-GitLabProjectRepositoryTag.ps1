@@ -20,12 +20,10 @@
   [OutputType()]
   Param
   (
-    #The ID of the project
-    [Parameter(
-        HelpMessage = 'ProjectID',
-    Mandatory = $true)]
+    # The ID of the project
+    [Parameter(Mandatory = $true, HelpMessage = 'The id of a project')]
     [Alias('ID')]
-    [int]$ProjectID,
+    [String]$ProjectID,
 
     #The name of the tag
     [Parameter(ParameterSetName = 'SingleTag',
@@ -40,9 +38,9 @@
     DontShow = $true)]
     [psobject]$GitlabConnect = (Get-GitlabConnect)
   )
-
+  
   $httpmethod = 'get'
-  $apiurl = "projects/$ProjectID/repository/tags"
+  $apiurl = "projects/$([System.Web.HttpUtility]::UrlEncode($projectId))/repository/tags"
   $parameters = @{}
 
   if($PSCmdlet.ParameterSetName -like 'SingleTag')

@@ -57,7 +57,7 @@
                 HelpMessage = 'The ID of a group',
                 Mandatory = $true)]
         [Alias('ID')]
-        [int]$GroupId,
+        [String]$GroupId,
 
         # Existing GitlabConnector Object, can be retrieved with Get-GitlabConnect
         [Parameter(HelpMessage = 'Specify Existing GitlabConnector',
@@ -65,6 +65,8 @@
                 DontShow = $true)]
         [psobject]$GitlabConnect = (Get-GitlabConnect)
     )
+    
+    
 
     $httpmethod = 'get'
     $apiurl = 'groups'
@@ -82,9 +84,9 @@
         }
     }
     
-    if($PSCmdlet.ParameterSetName -eq 'SingleGroup')
+    if($PSCmdlet.ParameterSetName -like 'SingleGroup*')
     {
-        $apiurl += "/$GroupId"
+        $apiurl += "/$([System.Web.HttpUtility]::UrlEncode($groupId))"
     }
 
     if ($details) {

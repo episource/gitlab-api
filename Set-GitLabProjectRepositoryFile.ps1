@@ -26,7 +26,7 @@
     [Parameter(HelpMessage = 'ProjectID',
     Mandatory = $true)]
     [Alias('ID')]
-    [int]$ProjectID,
+    [String]$ProjectID,
 
     # The name of the branch
     [Parameter(HelpMessage = 'Commit SHA or branch name',
@@ -65,7 +65,7 @@
 
   
   $httpmethod = 'put'
-  $apiurl = "/projects/$ProjectID/repository/files"
+  $apiurl = "/projects/$([System.Web.HttpUtility]::UrlEncode($projectId))/repository/files"
   $parameters = @{
     'file_path'    = $FilePath
     'branch_name'  = $BranchName

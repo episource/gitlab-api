@@ -32,7 +32,7 @@
     [Parameter(HelpMessage = 'ProjectID',
     Mandatory = $true)]
     [Alias('ID')]
-    [int]$ProjectID,
+    [String]$ProjectID,
 
     # The commit SHA, Tag or Branch name
     [Parameter(HelpMessage = 'Commit SHA or branch name',
@@ -55,7 +55,7 @@
   )
 
   $httpmethod = 'get'
-  $apiurl = "/projects/$ProjectID/repository/files"
+  $apiurl = "/projects/$([System.Web.HttpUtility]::UrlEncode($projectId))/repository/files"
   $Parameters = @{
     'file_path'=$FilePath
     'ref' =$ReferenceName

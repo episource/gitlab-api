@@ -21,7 +21,7 @@
     [Parameter(HelpMessage = 'ProjectID',
     Mandatory = $true)]
     [Alias('ID')]
-    [int]$ProjectID,
+    [String]$ProjectID,
     
     # ID of th milestone
     [Parameter(HelpMessage = 'MilestoneID',
@@ -61,7 +61,7 @@
   )
   
   $httpmethod = 'put'
-  $apiurl = "projects/$ProjectID/milestones/$MilestoneID"
+  $apiurl = "projects/$([System.Web.HttpUtility]::UrlEncode($projectId))/milestones/$MilestoneID"
   $parameters = @{
   }
 

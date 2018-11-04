@@ -20,7 +20,7 @@
     [Parameter(HelpMessage = 'ProjectID',
     Mandatory = $true)]
     [Alias('ID')]
-    [int]$ProjectID,
+    [String]$ProjectID,
 
     # Existing GitlabConnector Object, can be retrieved with Get-GitlabConnect
     [Parameter(HelpMessage = 'Specify Existing GitlabConnector',
@@ -30,7 +30,7 @@
   )
 
   $httpmethod = 'get'
-  $apiurl = "projects/$ProjectID/repository/contributors"
+  $apiurl = "projects/$([System.Web.HttpUtility]::UrlEncode($projectId))/repository/contributors"
   $Parameters = @{}
 
   $GitlabConnect.callapi($apiurl,$httpmethod,$Parameters)

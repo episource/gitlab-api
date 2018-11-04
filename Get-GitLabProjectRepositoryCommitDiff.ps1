@@ -23,7 +23,7 @@
     [Parameter(HelpMessage = 'The ID of a project',
     Mandatory = $true)]
     [Alias('ID')]
-    [int]$ProjectID,
+    [String]$ProjectID,
 
     #The commit hash or name of a repository branch or tag
     [Parameter(HelpMessage = 'Commit Reference(hash|branchname|tagname)',
@@ -38,7 +38,7 @@
   )
 
   $httpmethod = 'get'
-  $apiurl = "projects/$ProjectID/repository/commits/$sha/diff"
+  $apiurl = "projects/$([System.Web.HttpUtility]::UrlEncode($projectId))/repository/commits/$sha/diff"
   $parameters = @{}
 
   $GitlabConnect.callapi($apiurl,$httpmethod,$parameters)

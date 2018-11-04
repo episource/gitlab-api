@@ -19,7 +19,7 @@
     [Parameter(HelpMessage = 'ProjectID',
     Mandatory = $true)]
     [Alias('ID')]
-    [int]$ProjectID,
+    [String]$ProjectID,
 
     # Existing GitlabConnector Object, can be retrieved with Get-GitlabConnect
     [Parameter(HelpMessage = 'Specify Existing GitlabConnector',
@@ -29,7 +29,7 @@
   )
 
   $httpmethod = 'get'
-  $apiurl = "projects/$ProjectID/events"
+  $apiurl = "projects/$([System.Web.HttpUtility]::UrlEncode($projectId))/events"
   $parameters = @{}
 
   $GitlabConnect.callapi($apiurl,$httpmethod,$parameters)
