@@ -59,7 +59,8 @@
         # Specify if builds are enabled for this project
         [Parameter(HelpMessage='Are Builds enabled for this project',
                    Mandatory=$false)]
-        [boolean]$builds_enabled,
+        [Alias("builds_enabled")]
+        [boolean]$jobs_enabled,
 
         # Specify if a wiki is enabled for this project
         [Parameter(HelpMessage='is the wiki enabled for this project',
@@ -171,12 +172,12 @@
       }
     }
     #builds_enabled
-    if($PSCmdlet.MyInvocation.BoundParameters.keys -contains 'builds_enabled'){
+    if($PSCmdlet.MyInvocation.BoundParameters.keys -contains 'jobs_enabled'){
       if($builds_enabled){
-        $parameters.builds_enabled = 'true'
+        $parameters.jobs_enabled = 'true'
       }
       else{
-        $parameters.builds_enabled = 'false'
+        $parameters.jobs_enabled = 'false'
       }
     }
     #wiki_enabled
