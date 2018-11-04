@@ -15,6 +15,7 @@
 . $PSScriptRoot\Block-GitlabUser.ps1
 . $PsScriptRoot\Compare-GitLabProjectRepositoryCommit.ps1
 . $PSScriptRoot\Get-GitLabConnect.ps1
+. $PSScriptRoot\Get-GitLabNamespace.ps1
 . $PSScriptRoot\Get-GitLabProject.ps1
 . $PSScriptRoot\Get-GitLabProjectBranch.ps1
 . $PSScriptRoot\Get-GitLabProjectEvents.ps1
